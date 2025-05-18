@@ -3,32 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="js/app.js"></script>
+    <title>LMS project</title>
+    <!-- importacion de scripts -->
+    <script src="js/dashboard.js"></script>
     <script src="js/paginas.js"></script>
-    <link rel="stylesheet" href="css/styles.css" />
+    <!-- importacion de estilos -->
+    <link rel="stylesheet" href="css/header.css" />
 </head>
 <body>
-    <nav class="menu">
-        <div class="logo">
-            <a href="#"><h1>LMS PORTAL</h1></a>
-        </div>
-        <ul class="nav-menu">
-            <li class="opcion"><a href="#">Dashboard</a></li>
-            <li class="opcion"><a href="#">Courses</a></li>
-            <li class="opcion"><a href="#">Assignments</a></li>
-            <li class="opcion"><a href="#">Progress</a></li>
-            <li class="opcion"><a href="#">Profile</a></li>
-        </ul>
-        <div class="aspecto">
-            <a href="#">🌙</a>
-        </div>
-        
-    </nav>
+    <header>
+        <nav class="menu">
+            <div class="logo">
+                <a href="#"><h1>LMS PORTAL</h1></a>
+            </div>
+            <ul class="nav-menu">
+                <li class="opcion" id="dashboard"><a href="#">Dashboard</a></li>
+                <li class="opcion" id="courses"><a href="#">Courses</a></li>
+                <li class="opcion" id="assignments"><a href="#">Assignments</a></li>
+                <li class="opcion" id="progress"><a href="#">Progress</a></li>
+                <li class="opcion" id="profile"><a href="#">Profile</a></li>
+            </ul>
+            <div class="tema-aspecto">
+                <a href="#">🌙</a>
+            </div>
+            <form action="#">
+                <!-- el disabled es porque no vamos a usar la funcionalidad del lenguaje en realidad -->
+                <select name="lenguajes" id="lang">
+                    <option value="english">English</option>
+                    <option value="español">Español</option>
+                    <option value="deutsch">Deutsch</option>
+                    <option value="chinese">中國人</option>
+                </select>
+            </form>
+            <div class="profile">
+                <img src="assets/profile-picture.png" alt="imagen de perfil" class="profile-image">
+                <form action="#">
+                <!-- el disabled es porque no vamos a usar la funcionalidad del lenguaje en realidad -->
+                <select name="profiles-options" id="profile-opt">
+                    <option value="my-profile">👤 My profile</option>
+                    <option value="español">⚙️ Settings</option>
+                    <hr>
+                    <option value="deutsch">🚪 Logout</option>
+                </select>
+            </form>
+            </div>
+        </nav>
+    </header>
     <div class="main">
-        <div class="dashnboardcontainer">
+        <div class="dash-board-container">
+            <div class="active-courses">
 
+            </div>
         </div>
+        <div class=""></div>
     </div>
 </body>
 </html>
