@@ -1,0 +1,93 @@
+{
+  "cursos": [
+    {
+      "codigo": "CURS001",
+      "nivel": "Básico",
+      "duracion": "4 semanas",
+      "titulo": "Introducción al Desarrollo Web",
+      "categoria": "Tecnología",
+      "descripcion": "Aprende las bases del desarrollo web moderno usando HTML, CSS y JavaScript puro.",
+      "prerequisitos": "Conocimientos básicos de informática.",
+      "resultados": "Crear páginas web estáticas e interactivas con HTML, CSS y JS.",
+      "estructuraCurso": [
+        {
+          "nombreModulo": "Módulo 1: Fundamentos de HTML",
+          "temas": [
+            {
+              "titulo": "Estructura básica de HTML",
+              "tipo": "video",
+              "recurso": "https://www.youtube.com/embed/UB1O30fR-EE"
+            },
+            {
+              "titulo": "Etiquetas esenciales",
+              "tipo": "pdf",
+              "recurso": "https://ejemplo.com/html-tags.pdf"
+            }
+          ]
+        },
+        {
+          "nombreModulo": "Módulo 2: Estilos con CSS",
+          "temas": [
+            {
+              "titulo": "Selectores y propiedades",
+              "tipo": "video",
+              "recurso": "https://www.youtube.com/embed/yfoY53QXEnI"
+            },
+            {
+              "titulo": "Responsive Design",
+              "tipo": "pdf",
+              "recurso": "https://ejemplo.com/css-responsive.pdf"
+            }
+          ]
+        },
+        {
+          "nombreModulo": "Módulo 3: Interacción con JavaScript",
+          "temas": [
+            {
+              "titulo": "Eventos y funciones",
+              "tipo": "video",
+              "recurso": "https://www.youtube.com/embed/PkZNo7MFNFg"
+            },
+            {
+              "titulo": "Manipulación del DOM",
+              "tipo": "pdf",
+              "recurso": "https://ejemplo.com/js-dom.pdf"
+            }
+          ]
+        }
+      ],
+      "experto": 1,
+      "precio": "Gratis",
+      "garantia": [
+        "✓ Lifetime access",
+        "✓ Certificate of completion",
+        "✓ 30-day money-back guarantee",
+        "✓ Direct instructor support"
+      ]
+    }
+  ],
+  "expertos": [
+    {
+      "id": 1,
+      "nombreCompleto": "Laura Martínez",
+      "email": "laura.martinez@example.com",
+      "nacionalidad": "Colombiana",
+      "biografia": "Desarrolladora front-end con más de 8 años de experiencia y docente universitaria."
+    }
+  ],
+  "estudiantes": [
+    {
+      "id": 101,
+      "nombreCompleto": "Carlos Rodríguez",
+      "email": "carlos.rod@example.com",
+      "nacionalidad": "Peruano"
+    }
+  ],
+  "matriculas": [
+    {
+      "idestudiante": 101,
+      "codigocurso": "CURS001",
+      "fecharegistro": "2025-05-17"
+    }
+  ]
+}
