@@ -16,20 +16,12 @@ a {
     text-decoration: none;
 }
 
-/* Estilos del header */
-.menu {
-    background-color: #2C3E50;
-    display: flex;
-    color: #fff;
-    height: 6rem;
-    align-items: center;
-    padding: 0 20rem;
-}
-
 /* logo */
-.logo {
-    width: auto;
-    margin-right: 2rem;
+.logo{
+    display: flex;
+    flex-wrap: wrap;
+    width: 6%;
+    font-size: small;
 }
 
 /* texto del logo principal */
@@ -38,11 +30,29 @@ a {
     color: #fff;
 }
 
+.logo a h1:active{
+    color: #fff;
+}
+
+/* Estilos del header */
+.menu {
+    background-color: #2C3E50;
+    display: flex;
+    color: #fff;
+    height: 6rem;
+    align-items: center;
+    gap: 1rem;
+    justify-content: center;
+}
+
 /* menu de navegación */
 .nav-menu {
     display: flex;
     list-style: none;
-    margin-right: auto;
+    gap: 2rem;
+    padding-left: 2rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
 }
 
 .menu li {
@@ -75,58 +85,170 @@ a {
     color: #229bcf;
 } */
 
+/* estilos de la barra de navegacion */
+
+.nav-actions{
+    display: flex;
+    align-items: center;
+    gap: 1rem; /* Espacio entre elementos como en la imagen */
+}
+
 /* Botón de tema */
 .tema-aspecto {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 1rem;
     cursor: pointer;
-    font-size: 1.2rem;
+    margin-right: 1rem;
 }
+
+.tema-btn{
+    border: none;
+    background: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.4rem;
+    transition: transform 0.5s;
+}
+
+.tema-btn:hover{
+    background-color: #425262;
+    border-radius: 100px;
+    height: 60%;
+    transform: scale(1.1);
+}
+
+.languaje-selector{
+    position: relative;
+}
+
 
 /* Selectores */
-select {
-    background-color: #34495E;
+#lang {
+    background-color: #425262;
     color: #fff;
-    border: none;
+    border: 1px solid #687581;
     padding: 0.5rem;
     border-radius: 4px;
-    margin: 0 0.5rem;
+
     cursor: pointer;
+} 
+
+#lang:hover {
+    background-color: #414048;
 }
 
-select:hover {
-    background-color: #425262;
-}
-
-select option {
-    background-color: #34495E;
+#lang option {
+    background-color: #2C3E50;
     color: white;
 }
 
 /* Perfil */
+/* TODO: revisar estos estilos para recortalos y que no sea con hover si no que sean con un evento que cuando se le de clik se vaya a desplegar las 3 opciones, a su vez, hacer que no tenga animaciones y mefjorar los diseños */
 .profile {
+    position: relative;
     display: flex;
     align-items: center;
-    margin-left: 0.5rem;
+    cursor: pointer;
+}
+
+.profile:hover{
+    background-color: #425262 ;
+    border-radius: 5px;
+    height: 4rem;
+}
+/* Checkbox oculto para controlar el menú */
+.profile-checkbox {
+    display: none;
+}
+
+.profile-trigger {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.3rem 0.5rem;
+    border-radius: 4px;
     cursor: pointer;
 }
 
 .profile-image {
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 2.2rem;
+    height: 2.2rem;
     border-radius: 50%;
-    margin-right: 0.5rem;
     object-fit: cover;
-    border: 2px solid #425262;
+    border: none;
+}
+
+.profile-name {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.dropdown-icon {
+    font-size: 0.6rem;
+    color: #fff;
+    margin-left: 0.2rem;
+}
+
+/* Menú desplegable */
+.profile-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 200px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    margin-top: 0.5rem;
+    display: none;
+    z-index: 100;
+}
+
+/* Mostrar menú cuando el checkbox está marcado */
+.profile-checkbox:checked ~ .profile-dropdown {
+    display: block;
+}
+
+.profile-dropdown ul {
+    list-style: none;
+    padding: 0.5rem 0;
+}
+
+.profile-dropdown li a {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    color: #333;
+}
+
+.profile-dropdown li a:hover {
+    background-color: #f5f5f5;
+}
+
+.profile-dropdown .icon {
+    margin-right: 0.75rem;
+    display: inline-block;
+    width: 20px;
+}
+
+.profile-dropdown .divider {
+    height: 1px;
+    background-color: #eee;
+    margin: 0.5rem 0;
+}
+
+.profile-dropdown .logout {
+    color: #e74c3c;
 }
 
 /* hasta acá se termina toda la parte del header */
 
-.main{
-    margin: 0rem 2rem 2rem 5rem; 
+.main-container{
     padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 h2{
