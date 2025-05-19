@@ -125,7 +125,7 @@ class RecentActivity extends HTMLElement {
     container.innerHTML = /* HTML */`
       <section>
         <header>
-          <slot name="titulo">[Sin título]</slot>
+          <slot name="titulo">[titulo]</slot>
         </header>
         <main>
           <slot name="contenido">[Sin contenido]</slot>
