@@ -1,0 +1,318 @@
+/* Reset básico */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* fuente general que es la que uso el profesor */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f5f6f7;
+}
+
+/* para evitar la barra de abajo de los textos de links */
+a {
+    text-decoration: none;
+}
+
+/* logo */
+.logo{
+    display: flex;
+    flex-wrap: wrap;
+    width: 6%;
+    font-size: small;
+}
+
+/* texto del logo principal */
+.logo a h1 {
+    font-size: 1.5rem;
+    color: #fff;
+}
+
+.logo a h1:active{
+    color: #fff;
+}
+
+/* Estilos del header */
+.menu {
+    background-color: #2C3E50;
+    display: flex;
+    color: #fff;
+    height: 6rem;
+    align-items: center;
+    gap: 1rem;
+    justify-content: center;
+}
+
+/* menu de navegación */
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    padding-left: 2rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+
+.menu li {
+    display: flex;
+    padding: 0;
+}
+
+.menu li a {
+    color: #fff;
+    padding: 0.8rem 1.2rem;
+    border-radius: 4px;
+}
+
+.menu li:hover {
+    background-color: #425262;
+    border-radius: 4px;
+}
+
+.menu li:hover a {
+    color: #229bcf;
+}
+
+/* revisar bien estos active porque deben de colocarse en el JS */
+/* .opcion:active {
+    background-color: #425262;
+    border-radius: 4px;
+}
+
+.opcion.active a {
+    color: #229bcf;
+} */
+
+/* estilos de la barra de navegacion */
+
+.nav-actions{
+    display: flex;
+    align-items: center;
+    gap: 1rem; /* Espacio entre elementos como en la imagen */
+}
+
+/* Botón de tema */
+.tema-aspecto {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-right: 1rem;
+}
+
+.tema-btn{
+    border: none;
+    background: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.4rem;
+    transition: transform 0.5s;
+}
+
+.tema-btn:hover{
+    background-color: #425262;
+    border-radius: 100px;
+    height: 60%;
+    transform: scale(1.1);
+}
+
+.languaje-selector{
+    position: relative;
+}
+
+
+/* Selectores */
+#lang {
+    background-color: #425262;
+    color: #fff;
+    border: 1px solid #687581;
+    padding: 0.5rem;
+    border-radius: 4px;
+
+    cursor: pointer;
+} 
+
+#lang:hover {
+    background-color: #414048;
+}
+
+#lang option {
+    background-color: #2C3E50;
+    color: white;
+}
+
+/* Perfil */
+/* TODO: revisar estos estilos para recortalos y que no sea con hover si no que sean con un evento que cuando se le de clik se vaya a desplegar las 3 opciones, a su vez, hacer que no tenga animaciones y mefjorar los diseños */
+.profile {
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.profile:hover{
+    background-color: #425262 ;
+    border-radius: 5px;
+    height: 4rem;
+}
+/* Checkbox oculto para controlar el menú */
+.profile-checkbox {
+    display: none;
+}
+
+.profile-trigger {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.3rem 0.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.profile-image {
+    width: 2.2rem;
+    height: 2.2rem;
+    border-radius: 50%;
+    object-fit: cover;
+    border: none;
+}
+
+.profile-name {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.dropdown-icon {
+    font-size: 0.6rem;
+    color: #fff;
+    margin-left: 0.2rem;
+}
+
+/* Menú desplegable */
+.profile-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 200px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    margin-top: 0.5rem;
+    display: none;
+    z-index: 100;
+}
+
+/* Mostrar menú cuando el checkbox está marcado */
+.profile-checkbox:checked ~ .profile-dropdown {
+    display: block;
+}
+
+.profile-dropdown ul {
+    list-style: none;
+    padding: 0.5rem 0;
+}
+
+.profile-dropdown li a {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    color: #333;
+}
+
+.profile-dropdown li a:hover {
+    background-color: #f5f5f5;
+}
+
+.profile-dropdown .icon {
+    margin-right: 0.75rem;
+    display: inline-block;
+    width: 20px;
+}
+
+.profile-dropdown .divider {
+    height: 1px;
+    background-color: #eee;
+    margin: 0.5rem 0;
+}
+
+.profile-dropdown .logout {
+    color: #e74c3c;
+}
+
+/* hasta acá se termina toda la parte del header */
+
+.main-container{
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+h2{
+    font-size: 3rem;
+    font-weight: 500;
+    color: #2c3e50;
+    margin-bottom: 2rem;
+}
+
+.dashboard{
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 4rem;
+}
+
+.header-MRC{
+    display: flex;
+    justify-content: space-between; /* separa el título y el botón */
+    align-items: center;            /* los alinea verticalmente */
+    margin-bottom: 1.5rem;
+    max-width: 100%;
+    flex-wrap: wrap; 
+}
+
+h3{
+    font-size: 1.7rem;
+    font-weight: 400;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+}
+
+.btn-MRC{
+    background-color: #3498db; /* azul principal */
+    color: white;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-right: 3.5rem;
+}
+
+.btn-MRC:hover{
+    background-color: #2980b9; /* azul más oscuro */
+    transform: translateY(-2px);
+}
+
+.my-enrolled-courses{
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 4rem;
+}
+
+.recent-activity-container{
+    gap: 3rem;
+}
+
+
+
+/* hacer el responsivo para toda la pagina porque que pesadilla hacer el codigo en diferentes pantallas ya resoluciones */
+
+@media (max-width: 1378px) {
+}
