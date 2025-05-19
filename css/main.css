@@ -311,6 +311,29 @@ h3{
 }
 
 
+/*AQUI EMPIEZA EL ESTILO RELACIONADO CON LA PAGINA DE PERFIL (POR FAVOR NO TOCAR SIN CONSULTAR)*/
+.profilecontainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profinfocont{
+    background: linear-gradient(to right,#3394d4,#2d4961);
+    width: 54.2%;
+    height: 100vh; /*cambiar a porcentaje al finalizar de maquetar la pagina*/
+    border-radius: 10px;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.03);
+}
+
+.infocont{
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    margin-top: 20%;
+    padding: 5rem;
+}
+/*AQUI TERMINA TODO LO RELACIONADO CON LA PAGINA DE PERFIL */
 
 /* hacer el responsivo para toda la pagina porque que pesadilla hacer el codigo en diferentes pantallas ya resoluciones */
 
