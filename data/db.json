@@ -5,7 +5,7 @@
       "nivel": "Básico",
       "duracion": "4 semanas",
       "titulo": "Introducción al Desarrollo Web",
-      "categoria": "Tecnología",
+      "categoria": "Frontend",
       "descripcion": "Aprende las bases del desarrollo web moderno usando HTML, CSS y JavaScript puro.",
       "prerequisitos": "Conocimientos básicos de informática.",
       "resultados": "Crear páginas web estáticas e interactivas con HTML, CSS y JS.",
@@ -64,6 +64,97 @@
         "✓ 30-day money-back guarantee",
         "✓ Direct instructor support"
       ]
+    },
+    {
+      "codigo": "CURS002",
+      "nivel": "Intermedio",
+      "duracion": "6 semanas",
+      "titulo": "Unity Game Development",
+      "categoria": "Videojuego",
+      "descripcion": "Desarrolla videojuegos en 2D y 3D utilizando Unity y C#.",
+      "prerequisitos": "Conocimientos básicos de programación orientada a objetos.",
+      "resultados": "Crear juegos completos con Unity, controlando física, animaciones y eventos.",
+      "estructuraCurso": [
+        {
+          "nombreModulo": "Módulo 1: Introducción a Unity",
+          "temas": [
+            { "titulo": "Entorno de desarrollo", "tipo": "video", "recurso": "https://youtu.be/IlKaB1etrik" }
+          ]
+        },
+        {
+          "nombreModulo": "Módulo 2: Movimiento y física",
+          "temas": [
+            { "titulo": "RigidBody y colisiones", "tipo": "pdf", "recurso": "https://ejemplo.com/unity-fisica.pdf" }
+          ]
+        }
+      ],
+      "experto": 1,
+      "precio": "USD 49",
+      "garantia": [
+        "✓ Lifetime access",
+        "✓ Certificate of completion",
+        "✓ Instructor Q&A"
+      ]
+    },
+    {
+      "codigo": "CURS003",
+      "nivel": "Avanzado",
+      "duracion": "5 semanas",
+      "titulo": "Node.js Development",
+      "categoria": "Backend",
+      "descripcion": "Aprende a construir servidores robustos y escalables con Node.js.",
+      "prerequisitos": "Experiencia con JavaScript.",
+      "resultados": "Desarrollar APIs RESTful y servicios backend escalables.",
+      "estructuraCurso": [
+        {
+          "nombreModulo": "Módulo 1: Fundamentos de Node.js",
+          "temas": [
+            { "titulo": "Event Loop", "tipo": "video", "recurso": "https://youtu.be/8aGhZQkoFbQ" }
+          ]
+        },
+        {
+          "nombreModulo": "Módulo 2: Express y rutas",
+          "temas": [
+            { "titulo": "Middleware", "tipo": "pdf", "recurso": "https://ejemplo.com/node-express.pdf" }
+          ]
+        }
+      ],
+      "experto": 1,
+      "precio": "USD 59",
+      "garantia": [
+        "✓ Lifetime access",
+        "✓ Certificate of completion"
+      ]
+    },
+    {
+      "codigo": "CURS004",
+      "nivel": "Básico",
+      "duracion": "3 semanas",
+      "titulo": "Mathematics 101",
+      "categoria": "Schools",
+      "descripcion": "Fundamentos matemáticos para el aprendizaje de ciencias e ingeniería.",
+      "prerequisitos": "Ninguno.",
+      "resultados": "Resolver problemas aritméticos y algebraicos básicos.",
+      "estructuraCurso": [
+        {
+          "nombreModulo": "Módulo 1: Aritmética básica",
+          "temas": [
+            { "titulo": "Operaciones con números enteros", "tipo": "pdf", "recurso": "https://ejemplo.com/mate-basica.pdf" }
+          ]
+        },
+        {
+          "nombreModulo": "Módulo 2: Álgebra elemental",
+          "temas": [
+            { "titulo": "Ecuaciones lineales", "tipo": "video", "recurso": "https://youtu.be/xWZ4xMZyRrQ" }
+          ]
+        }
+      ],
+      "experto": 1,
+      "precio": "Gratis",
+      "garantia": [
+        "✓ Lifetime access",
+        "✓ Certificate of completion"
+      ]
     }
   ],
   "expertos": [
@@ -81,13 +172,6 @@
       "nombreCompleto": "Carlos Rodríguez",
       "email": "carlos.rod@example.com",
       "nacionalidad": "Peruano"
-    }
-  ],
-  "matriculas": [
-    {
-      "idestudiante": 101,
-      "codigocurso": "CURS001",
-      "fecharegistro": "2025-05-17"
     }
   ]
 }

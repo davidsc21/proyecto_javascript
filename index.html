@@ -8,13 +8,13 @@
     <script src="js/dashboard.js"></script>
     <script src="js/paginas.js"></script>
     <!-- importacion de estilos -->
-    <link rel="stylesheet" href="css/header.css" />
+    <link rel="stylesheet" href="css/main.css" />
 </head>
 <body>
     <header>
         <nav class="menu">
             <div class="logo">
-                <a href="#"><h1>LMS PORTAL</h1></a>
+                <a href="#"><h1>LMS Portal</h1></a>
             </div>
             <ul class="nav-menu">
                 <li class="opcion" id="dashboard"><a href="#">Dashboard</a></li>
@@ -23,39 +23,69 @@
                 <li class="opcion" id="progress"><a href="#">Progress</a></li>
                 <li class="opcion" id="profile"><a href="#">Profile</a></li>
             </ul>
-            <div class="tema-aspecto">
-                <a href="#">🌙</a>
-            </div>
-            <form action="#">
-                <!-- el disabled es porque no vamos a usar la funcionalidad del lenguaje en realidad -->
-                <select name="lenguajes" id="lang">
-                    <option value="english">English</option>
-                    <option value="español">Español</option>
-                    <option value="deutsch">Deutsch</option>
-                    <option value="chinese">中國人</option>
-                </select>
-            </form>
-            <div class="profile">
-                <img src="assets/profile-picture.png" alt="imagen de perfil" class="profile-image">
-                <form action="#">
-                <!-- el disabled es porque no vamos a usar la funcionalidad del lenguaje en realidad -->
-                <select name="profiles-options" id="profile-opt">
-                    <option value="my-profile">👤 My profile</option>
-                    <option value="español">⚙️ Settings</option>
-                    <hr>
-                    <option value="deutsch">🚪 Logout</option>
-                </select>
-            </form>
+            <div class="nav-actions">
+                <div class="tema-aspecto">
+                    <button class="tema-btn">🌙</button>
+                </div>
+                <div class="language-selector">
+                    <select name="lenguajes" id="lang">
+                        <option value="english">English</option>
+                        <option value="español">Español</option>
+                        <option value="deutsch">Deutsch</option>
+                        <option value="chinese">中國人</option>
+                    </select>
+                </div>
+                <div class="profile">
+                    <input type="checkbox" id="profile-toggle" class="profile-checkbox">
+                    <label for="profile-toggle" class="profile-trigger">
+                        <img src="./assets/profile-picture.png" alt="imagen de perfil" class="profile-image">
+                        <div class="profile-info">
+                            <span class="profile-name">John Doe</span>
+                        </div>
+                        <div class="dropdown-icon">▼</div>
+                    </label>
+                    <div class="profile-dropdown">
+                        <ul>
+                            <li><a href="#"><span class="icon">👤</span> My Profile</a></li>
+                            <li><a href="#"><span class="icon">⚙️</span> Settings</a></li>
+                            <hr>
+                            <li><a href="#" class="logout"><span class="icon">🚪</span> Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </nav>
     </header>
-    <div class="main">
-        <div class="dash-board-container">
-            <div class="active-courses">
-
+    <main>
+        <div class="main-container">
+            <div class="dash-board-container">
+                <h2>Dashboard</h2>
+                <div class="dashboard">
+                    <dashboard-card></dashboard-card>
+                    <dashboard-card></dashboard-card>
+                    <dashboard-card></dashboard-card>
+                </div>
+            </div>
+            <div class="my-enrolled-courses-container">
+                <header class="header-MRC">
+                    <h3>My Enrolled Courses</h3>
+                    <button type="button" class="btn-MRC">Browse More Courses</button>
+                </header>
+                <div class="my-enrolled-courses">
+                    <my-enrolled-courses-card></my-enrolled-courses-card>
+                    <my-enrolled-courses-card></my-enrolled-courses-card>
+                    <my-enrolled-courses-card></my-enrolled-courses-card>
+                </div>
+            </div>
+            <div class="recent-activity-container">
+                <h2>Recent Activity</h2>
+                <div class="recent-activity">
+                    <recent-activity-card></recent-activity-card>
+                    <recent-activity-card></recent-activity-card>
+                    <recent-activity-card></recent-activity-card>
+                </div>
             </div>
         </div>
-        <div class=""></div>
-    </div>
+    </main>
 </body>
 </html>
