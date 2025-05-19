@@ -8,6 +8,7 @@
 /* fuente general que es la que uso el profesor */
 body {
     font-family: Arial, Helvetica, sans-serif;
+    background-color: #f5f6f7;
 }
 
 /* para evitar la barra de abajo de los textos de links */
@@ -119,4 +120,77 @@ select option {
     margin-right: 0.5rem;
     object-fit: cover;
     border: 2px solid #425262;
+}
+
+/* hasta acá se termina toda la parte del header */
+
+.main{
+    margin: 0rem 2rem 2rem 5rem; 
+    padding: 2rem;
+}
+
+h2{
+    font-size: 3rem;
+    font-weight: 500;
+    color: #2c3e50;
+    margin-bottom: 2rem;
+}
+
+.dashboard{
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 4rem;
+}
+
+.header-MRC{
+    display: flex;
+    justify-content: space-between; /* separa el título y el botón */
+    align-items: center;            /* los alinea verticalmente */
+    margin-bottom: 1.5rem;
+    max-width: 100%;
+    flex-wrap: wrap; 
+}
+
+h3{
+    font-size: 1.7rem;
+    font-weight: 400;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+}
+
+.btn-MRC{
+    background-color: #3498db; /* azul principal */
+    color: white;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-right: 3.5rem;
+}
+
+.btn-MRC:hover{
+    background-color: #2980b9; /* azul más oscuro */
+    transform: translateY(-2px);
+}
+
+.my-enrolled-courses{
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 4rem;
+}
+
+.recent-activity-container{
+    gap: 3rem;
+}
+
+
+
+/* hacer el responsivo para toda la pagina porque que pesadilla hacer el codigo en diferentes pantallas ya resoluciones */
+
+@media (max-width: 1378px) {
 }

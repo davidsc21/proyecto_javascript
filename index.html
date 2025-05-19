@@ -8,7 +8,7 @@
     <script src="js/dashboard.js"></script>
     <script src="js/paginas.js"></script>
     <!-- importacion de estilos -->
-    <link rel="stylesheet" href="css/header.css" />
+    <link rel="stylesheet" href="css/main.css" />
 </head>
 <body>
     <header>
@@ -51,11 +51,32 @@
     </header>
     <div class="main">
         <div class="dash-board-container">
-            <div class="active-courses">
-
+            <h2>Dashboard</h2>
+            <div class="dashboard">
+                <dashboard-card></dashboard-card>
+                <dashboard-card></dashboard-card>
+                <dashboard-card></dashboard-card>
             </div>
         </div>
-        <div class=""></div>
+        <div class="my-enrolled-courses-container">
+            <header class="header-MRC">
+                <h3>My Enrolled Courses</h3>
+                <button type="button" class="btn-MRC">Browse More Courses</button>
+            </header>
+            <div class="my-enrolled-courses">
+                <my-enrolled-courses-card></my-enrolled-courses-card>
+                <my-enrolled-courses-card></my-enrolled-courses-card>
+                <my-enrolled-courses-card></my-enrolled-courses-card>
+            </div>
+        </div>
+        <div class="recent-activity-container">
+            <h2>Recent Activity</h2>
+            <div class="recent-activity">
+                <recent-activity-card></recent-activity-card>
+                <recent-activity-card></recent-activity-card>
+                <recent-activity-card></recent-activity-card>
+            </div>
+        </div>
     </div>
 </body>
 </html>
