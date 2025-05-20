@@ -127,67 +127,67 @@ class RecentActivity extends HTMLElement {
     this.attachShadow({ mode: 'open' });
   }
     connectedCallback() {
-    const emoji = this.getAttribute('emoji') || 'titulo no definido';
+    const emoji = this.getAttribute('emoji') || 'emoki no definido';
     const description = this.getAttribute('description') || 'texto no definido';
     const time = this.getAttribute('time') || 'tiempo no definido';
 
     const container = document.createElement('section');
     container.innerHTML = /* HTML */`
-      <section>
-        <div class="emoji-container">
-          <button class="emoji-btn">${emoji}</button>
+        <div class="activity-card">
+          <div class="emoji">${emoji}</div>
+          <div class="content">
+            <p>${description}</p>
+            <span>${time}</span>
+          </div>
         </div>
-        <div class="description-container">
-          <p class="description-text">${description}</p>
-          <span class="time-text">${time}</span>
-        </div>
-      </section>
     `;
 
     const style = document.createElement('style');
     style.textContent = /* CSS */ `
-      .container-emoji {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        margin-right: 1rem;
-      }
-      .emoji-btn{
-        border: none;
-        background: none;
-        font-size: 1.2rem;
-        cursor: pointer;
-        padding: 0.4rem;
-        transition: transform 0.5s;
-      }
+      .activity-card {
+          display: flex;
+          align-items: center;
+          padding: 1rem;
+          gap: 1rem;
+          background-color: #f8f9fa;
+          border-radius: 8px;
+        }
+        .emoji {
+          width: 2.5rem;
+          height: 2.5rem;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 1.2rem;
+        }
+        .content{
+          flex-grow: 1;
+        }
 
-      section {
-        border: 2px solid #888;
-        padding: 12px;
-        border-radius: 10px;
-        font-family: Inter;
-        max-width: 400px;
-        background: #F8F9FA;
-        box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
-      }
-      header {
-        font-weight: bold;
-        font-size: 20px;
-        margin-bottom: 10px;
-        color: #003366;
-      }
-      main {
-        font-size: 16px;
-        margin-bottom: 10px;
-        color: #222;
-      }
-      footer {
-        font-size: 12px;
-        color: #555;
-        text-align: right;
-      }
-
+        .content p {
+          color: #2c3e50;
+          margin-bottom: 0.25rem;
+          font-size: 1rem;
+        }
+        
+        .content span {
+          color: #666;
+          font-size: 0.85rem;
+          display: inline-block;
+        }
+        /* Estilos específicos para diferentes tipos de actividades */
+        :host([emoji="📚"]) .emoji {
+          background-color: #e8f4fc;
+        }
+        
+        :host([emoji="✍️"]) .emoji {
+          background-color: #fef2e6;
+        }
+        
+        :host([emoji="🏆"]) .emoji {
+          background-color: #e9f7ef;
+        }
     `;
     this.shadowRoot.innerHTML = ''; // Limpiar si hay algo anterior
     this.shadowRoot.append(style, container);
