@@ -13,6 +13,20 @@ body {
     background-color: #f5f6f7;
 }
 
+body::-webkit-scrollbar{
+    width: 10px;
+}
+
+body::-webkit-scrollbar-track{
+    background: transparent;
+}
+
+body::-webkit-scrollbar-thumb{
+    background-color: #3eb9df;
+    border: 2 px solid #3eb9df;
+    border-radius: 10px;
+}
+
 /*tuve que editar el main para que ocupe todo su espacio y poder trabajar mejor el menu(si alguien presenta algun problema reportarlo)*/
 main{
     width: 100%;
@@ -442,6 +456,41 @@ h3{
     padding: 1rem;
     border-radius: 1rem;
     margin-bottom: 2rem;
+}
+
+#progress{
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+}
+
+.card-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+.profile-card{
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem;
+    height: 5rem;
+    width: auto;
+    border-radius: 5px;
+    box-shadow:  3px 3px 3px rgba(158, 158, 158, 0.103), -3px 3px 3px rgba(158, 158, 158, 0.103);
+    flex-direction: column;
+}
+
+.profile-card p{
+    color: rgb(133, 133, 133);
+}
+
+#infocardprof{
+    font-size: 35px;
+    color: #3394d4;
 }
 /*AQUI TERMINA TODO LO RELACIONADO CON LA PAGINA DE PERFIL */
 /*ESTE ES EL CSS DE PROGRESS PAGE*/
