@@ -3,12 +3,22 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 /* fuente general que es la que uso el profesor */
 body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: #f5f6f7;
+}
+
+/*tuve que editar el main para que ocupe todo su espacio y poder trabajar mejor el menu(si alguien presenta algun problema reportarlo)*/
+main{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* para evitar la barra de abajo de los textos de links */
@@ -312,26 +322,91 @@ h3{
 
 
 /*AQUI EMPIEZA EL ESTILO RELACIONADO CON LA PAGINA DE PERFIL (POR FAVOR NO TOCAR SIN CONSULTAR)*/
+
 .profilecontainer{
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.profinfocont{
-    background: linear-gradient(to right,#3394d4,#2d4961);
-    width: 54.2%;
-    height: 100vh; /*cambiar a porcentaje al finalizar de maquetar la pagina*/
-    border-radius: 10px;
-    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.03);
-}
-
-.infocont{
+    flex-direction: column;
     background-color: white;
-    width: 100%;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.103);
+    width: 62rem;
+}
+
+.profheader .cover{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to right,#3394d4,#2d4961) ;
+    width: 62rem;
+    height: 12.5rem; /*cambiar a porcentaje al finalizar de maquetar la pagina*/
+    max-height: 12.5rem;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    
+}
+
+.profheader{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%
+
+}
+
+.avatarcontainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 2;
+    position: absolute;
+    top: 13rem;
+    
+}
+
+.avatarimg{
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 10rem;
+    height: 10rem;
+    overflow: hidden;
+    border: 3px solid white;
+    background-color: white;
+    border-radius: 60%;
+    img{
+        border-radius: 50%;
+        width: 100%;
+        height: 100%;
+        background-color: white;
+        padding: 0.2rem;
+        z-index: 2;
+    }
+}
+
+.avatartext{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.infoprofile{
+    background-color: white;
+    width: 62rem;
     height: 100%;
-    margin-top: 20%;
-    padding: 5rem;
+    padding: 2rem;
+    margin-top: 12rem;
+    
+}
+
+.infocontainers{
+    background-color: #F8F9FA;
+    padding: 1rem;
+    border-radius: 1rem;
+    margin-bottom: 2rem;
 }
 /*AQUI TERMINA TODO LO RELACIONADO CON LA PAGINA DE PERFIL */
 
