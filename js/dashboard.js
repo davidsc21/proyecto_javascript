@@ -2,18 +2,21 @@
 class Dashboard extends HTMLElement {
   constructor() {
     super();
-    const shadow = this.attachShadow({ mode: 'open' });
+    this.attachShadow({ mode: 'open' });
+  }
 
-    const container = document.createElement('div');
+    connectedCallback() {
+    const title = this.getAttribute('title') || 'titulo no definido';
+    const text = this.getAttribute('text') || 'texto no definido';
+
+    const container = document.createElement('section');
     container.innerHTML = /* HTML */`
-      <section>
-        <header>
-          <slot name="titulo">[Sin título]</slot>
-        </header>
-        <main>
-          <slot name="contenido">[Sin contenido]</slot>
-        </main>
-      </section>
+      <header>
+        <slot name="titulo">${title}</slot>
+      </header>
+      <main>
+        <slot name="contenido">${text}</slot>
+      </main>
     `;
 
     const style = document.createElement('style');
@@ -22,33 +25,34 @@ class Dashboard extends HTMLElement {
         box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
         padding: 1.5rem;
         border-radius: 10px;
-        font-family: Arial;
+        font-family: Inter;
         width: 20rem;
+        min-height: 10rem;
         background: #fefefe;
       }
       header {
-        font-weight: bold;
-        font-size: 2rem;
-        margin-bottom: 10px;
+        font-weight: 500;
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
         color: #2c3e50;
       }
       main {
-        font-weight: bold;
-        font-size: 2rem;
-        margin-bottom: 10px;
-        color: #27a4e0;
-      }
-      .dash-board{
-        display: flex;
+        font-weight: bolder;
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #3498db;
       }
     `;
-    shadow.append(style, container);
+
+    this.shadowRoot.innerHTML = ''; // Limpiar si hay algo anterior
+    this.shadowRoot.append(style, container);
   }
 }
 customElements.define('dashboard-card', Dashboard);
 
 
 // componente de los cursos en proceso
+// falta terminar este componente e implementarlo con JSON dinamico
 class MyEnrolledCourses extends HTMLElement {
   constructor() {
     super();
@@ -72,12 +76,13 @@ class MyEnrolledCourses extends HTMLElement {
     `;
 
     const style = document.createElement('style');
+    // terminar de arrreglar los dise;os de la pagina
     style.textContent = /* CSS */ `
       section {
         box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
         padding: 1.5rem;
         border-radius: 10px;
-        font-family: Arial;
+        font-family: Inter;
         width: 20rem;
         background: #fefefe;
       }
@@ -119,32 +124,51 @@ customElements.define('my-enrolled-courses-card', MyEnrolledCourses);
 class RecentActivity extends HTMLElement {
   constructor() {
     super();
-    const shadow = this.attachShadow({ mode: 'open' });
+    this.attachShadow({ mode: 'open' });
+  }
+    connectedCallback() {
+    const emoji = this.getAttribute('emoji') || 'titulo no definido';
+    const description = this.getAttribute('description') || 'texto no definido';
+    const time = this.getAttribute('time') || 'tiempo no definido';
 
-    const container = document.createElement('div');
+    const container = document.createElement('section');
     container.innerHTML = /* HTML */`
       <section>
-        <header>
-          <slot name="titulo">[titulo]</slot>
-        </header>
-        <main>
-          <slot name="contenido">[Sin contenido]</slot>
-        </main>
-        <footer>
-          <slot name="footer">[Sin pie de página]</slot>
-        </footer>
+        <div class="emoji-container">
+          <button class="emoji-btn">${emoji}</button>
+        </div>
+        <div class="description-container">
+          <p class="description-text">${description}</p>
+          <span class="time-text">${time}</span>
+        </div>
       </section>
     `;
 
     const style = document.createElement('style');
     style.textContent = /* CSS */ `
+      .container-emoji {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        margin-right: 1rem;
+      }
+      .emoji-btn{
+        border: none;
+        background: none;
+        font-size: 1.2rem;
+        cursor: pointer;
+        padding: 0.4rem;
+        transition: transform 0.5s;
+      }
+
       section {
         border: 2px solid #888;
         padding: 12px;
         border-radius: 10px;
-        font-family: Arial;
+        font-family: Inter;
         max-width: 400px;
-        background: #fefefe;
+        background: #F8F9FA;
         box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
       }
       header {
@@ -163,11 +187,10 @@ class RecentActivity extends HTMLElement {
         color: #555;
         text-align: right;
       }
-      .dash-board{
-        display: flex;
-      }
+
     `;
-    shadow.append(style, container);
+    this.shadowRoot.innerHTML = ''; // Limpiar si hay algo anterior
+    this.shadowRoot.append(style, container);
   }
 }
 customElements.define('recent-activity-card', RecentActivity);

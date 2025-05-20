@@ -7,8 +7,13 @@
     <!-- importacion de scripts -->
     <script src="js/dashboard.js"></script>
     <script src="js/paginas.js"></script>
+    <!-- importacion de estilos y fuente-->
+    <script src="js/progres.js"></script>
     <!-- importacion de estilos -->
     <link rel="stylesheet" href="css/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -19,9 +24,13 @@
             <ul class="nav-menu">
                 <li class="opcion" id="dashboard"><a href="#">Dashboard</a></li>
                 <li class="opcion" id="courses"><a href="#">Courses</a></li>
+<<<<<<< HEAD
                 <li class="opcion" id="'assignments'"><a href="#">Assignments</a></li>
                 <li class="opcion" id="progress" ><a>Progress</a></li>
                 <li class="opcion" id="profile" onclick="navigate('profile')"><a href="#">Profile</a></li>
+=======
+
+>>>>>>> c18e323 (feat: :sparkles: proto js progress)
             </ul>
             <div class="nav-actions">
                 <div class="tema-aspecto">
@@ -58,12 +67,19 @@
     </header>
     <main id="main">
         <div class="main-container">
+=======
             <div class="dash-board-container">
                 <h2>Dashboard</h2>
                 <div class="dashboard">
-                    <dashboard-card></dashboard-card>
-                    <dashboard-card></dashboard-card>
-                    <dashboard-card></dashboard-card>
+                    <dashboard-card
+                        title="Active Courses"
+                        text="3"></dashboard-card>
+                    <dashboard-card
+                        title="Pending Assignments"
+                        text="2"></dashboard-card>
+                    <dashboard-card
+                        title="Overall Progress"
+                        text="75%"></dashboard-card>
                 </div>
             </div>
             <div class="my-enrolled-courses-container">
@@ -80,9 +96,18 @@
             <div class="recent-activity-container">
                 <h2>Recent Activity</h2>
                 <div class="recent-activity">
-                    <recent-activity-card></recent-activity-card>
-                    <recent-activity-card></recent-activity-card>
-                    <recent-activity-card></recent-activity-card>
+                    <recent-activity-card
+                        emoji="📚"
+                        description="Completed Chapter 5 in Unity Game Development"
+                        time="2 hours ago"></recent-activity-card>
+                    <recent-activity-card
+                        emoji="✍️"
+                        description="Submitted assignment: E-commerce Platform Project"
+                        time="1 day ago"></recent-activity-card>
+                    <recent-activity-card
+                        emoji="🏆"
+                        description="Earned certificate in React Fundamentals"
+                        time="3 days ago"></recent-activity-card>
                 </div>
             </div>
         </div>
