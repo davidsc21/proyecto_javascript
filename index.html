@@ -17,6 +17,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     <!-- TODO: toca tener en cuenta que falta pulir todo este header -->
@@ -28,11 +29,12 @@
             <button class="hamburger" id="hamburger-btn" aria-label="Menú">
                 ☰
             </button>
+            
             <ul class="nav-menu">
                 <li class="opcion" id="dashboard"><a href="#">Dashboard</a></li>
                 <li class="opcion" id="courses" onclick="courses('courses')"><a href="#">Courses</a></li>
                 <li class="opcion" id="'assignments'"><a href="#">Assignments</a></li>
-                <li class="opcion" id="progress" onclick="mover('progreso')"><a>Progress</a></li>
+                <li class="opcion" id="progress"onclick="nav('progreso')"><a>Progress</a></li>
                 <li class="opcion" id="profile" onclick="navigate('profile')"><a href="#">Profile</a></li>
             </ul>
             <div class="nav-actions">
@@ -48,6 +50,7 @@
                     </select>
                 </div>
                 <div class="profile">
+                    <!-- Al hacer clic en el label, se activa el checkbox para mostrar u ocultar el menú -->
                     <input type="checkbox" id="profile-toggle" class="profile-checkbox">
                     <label for="profile-toggle" class="profile-trigger">
                         <img src="./assets/profile-picture.png" alt="imagen de perfil" class="profile-image">
@@ -56,12 +59,14 @@
                         </div>
                         <div class="dropdown-icon">▼</div>
                     </label>
+                    <!-- Menú desplegable -->
                     <div class="profile-dropdown">
                         <ul>
-                            <li><a href="#"><span class="icon">👤</span> My Profile</a></li>
-                            <li><a href="#"><span class="icon">⚙️</span> Settings</a></li>
-                            <hr>
-                            <li><a href="#" class="logout"><span class="icon">🚪</span> Logout</a></li>
+                            <!-- TODO: acordarse en el href hacer que se diriga hacia el label del perfi -->
+                            <li><a href="#" class="dropdown-item"><span class="icon" onclick="navigate('profile')">👤</span> My Profile</a></li>
+                            <li><a href="#" class="dropdown-item"><span class="icon">⚙️</span> Settings</a></li>
+                            <li class="dropdown-divider"></li>
+                            <li><button type="button" class="dropdown-item logout"><span class="icon">🚪</span> Logout</button></li>
                         </ul>
                     </div>
                 </div>

@@ -1,1 +1,0 @@
-// no se si mantener este archivo debido a que no se si crear un main para todas las paginas, supongo que sera para las funcionalidades del header
