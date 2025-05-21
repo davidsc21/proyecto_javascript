@@ -1,5 +1,5 @@
 //diferentes paginas a usar (spa)//
-const pages = {
+  const pages = {
     profile: `
         <div class="globalprofile">
             <div class="profilecontainer">
@@ -11,8 +11,8 @@ const pages = {
                             <img src="../assets/profile-picture.png" width=100rem>
                         </div>
                         <div class="avatartext">
-                            <h2>texto</h2>
-                            <h3>hola mundo</h3>
+                            <h2>John Doe</h2>
+                            <h4 class="career">Computer Science Student</h4>
                         </div>   
                     </div>
                 </div>
@@ -20,12 +20,46 @@ const pages = {
                     <div class="infocontainers" id="personal">
                         <h3>Personal Information</h3>
                         <hr>
-                        <p>Hola mundo</p>
+                        <div class="user-container">
+                            <div class="user-info">
+                                <label>Full Name</label>
+                                <input placeholder="Your name" class="user-input" value="John Doe">
+                            </div>
+                            <div class="user-info">
+                                <label>Email</label>
+                                <input placeholder="Your email" class="user-input" value="john.doe@example.com">
+                            </div>
+                            <div class="user-info">
+                                <label>Phone</label>
+                                <input placeholder="Your phone number" class="user-input" value="+1 234 567 890">
+                            </div>
+                            <div class="user-info">
+                                <label>Location</label>
+                                <input placeholder="Your location" class="user-input" value="New York, USA">
+                            </div>
+                        </div>  
                     </div>
                     <div class="infocontainers" id="academic">
                         <h3>Academic Information</h3>
                         <hr>
-                        <p>Hola mundo</p>
+                        <div class="user-container">
+                            <div class="user-info">
+                                <label>Student ID</label>
+                                <input id="stid" class="user-input" value="CS2023001" disabled>
+                            </div>
+                            <div class="user-info">
+                                <label>Program</label>
+                                <input placeholder="Your program" class="user-input" value="Bachelor of Computer Science">
+                            </div>
+                            <div class="user-info">
+                                <label>Start Date</label>
+                                <input  class="user-input" type="date" value="2023-08-29">
+                            </div>
+                            <div class="user-info">
+                                <label>Expected Date</label>
+                                <input  class="user-input" type="date" value="2027-06-30">
+                            </div>
+                        </div>  
                     </div>
                     <div class="infocontainers" id="progress">
                         <h3>Personal Information</h3>
@@ -48,7 +82,33 @@ const pages = {
                     <div class="infocontainers" id="preferences">
                         <h3>Preferences</h3>
                         <hr>
-                        <p>Hola mundo</p>
+                        <div class="preferences-container">
+                            <div class="preference-item">
+                                <label class="checkbox-container">
+                                    <input type="checkbox" class"checkbox">
+                                     Email Notifications 
+                                </label>
+                                <span>Receive updates about your courses and assignments</span>
+                            </div>
+                            <div class="preference-item">
+                                <label class="checkbox-container">
+                                    <input type="checkbox">
+                                     Public Profile
+                                </label>
+                                <span>Make your profile visible to other students</span>
+                            </div>
+                            <div class="preference-item">
+                                <label class="checkbox-container">
+                                    <input type="checkbox">
+                                     Show Progress 
+                                </label>
+                                <span>Display your progress on your public profile</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="buttons">
+                    <button class="buttonprof" id="save"  onclick="alert('Profile updated successfully!')"><h4>Save Changes</h4></button>
+                    <button class="buttonprof" id="cancel"><h4>Cancel</h4></button>
                     </div>
                 </div>
             </div>

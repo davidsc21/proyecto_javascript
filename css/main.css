@@ -395,6 +395,11 @@ h3{
     
 }
 
+.career{
+    color: rgb(139, 139, 139);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 .profheader{
     display: flex;
     justify-content: center;
@@ -456,11 +461,98 @@ h3{
     padding: 1rem;
     border-radius: 1rem;
     margin-bottom: 2rem;
+    hr{
+        color: rgb(241, 241, 241);
+        background-color: rgb(235, 233, 233);
+        height: 2px;
+        border: none;
+    }
+}
+
+.user-container{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    padding: 2rem;
+    gap: 1.5rem;
+}
+
+#stid{
+    cursor: not-allowed;
+}
+
+.user-info{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    label{
+        color: #797979;
+        font-size: 0.8rem;
+    }
+}
+
+.buttons{
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 1rem;
+}
+
+.buttonprof{
+    padding: 1rem;
+    cursor: pointer;  
+}
+
+#save{
+    background-color: #3394d4 ;
+    border-radius: 5px;
+    color: white;
+    border: none;
+    width: 10rem;
+    font-size: 1rem;
+}
+
+#save:hover{
+    background-color: #2870a0 ;
+    transform: translateY(-5px);
+    transition: all 0.3s ease;
+}
+
+#cancel{
+    border: 1px solid rgb(228, 228, 228);
+    border-radius: 5px;
+    background-color: transparent;
+    font-size: 1rem;
+    width: 6rem;
+}
+
+#cancel:hover{
+    border: 1px solid rgb(146, 146, 146);
+    background-color: #f5f5f5;
+}
+
+.user-info input{
+    width: 17rem;
+    height: 3.5rem;
+    border-radius: 5px;
+    border: 1px solid #ebe9e9;
+    background-color: transparent;
+    padding: 1rem;
+    font-size: 18px;
+    color: rgb(112, 112, 112);
+}
+
+.user-info input:focus{
+    border: 1px solid #3394d4;
+    outline: none;
+    box-shadow: 0 0 5px  rgb(130, 193, 196);
+}
+
+.user-info input::placeholder{
+    color: rgb(189, 188, 188);
 }
 
 #progress{
     display: flex;
-    gap: 1rem;
     flex-direction: column;
 }
 
@@ -469,6 +561,7 @@ h3{
     justify-content: center;
     align-items: center;
     gap: 2rem;
+    padding: 1rem;
 }
 
 .profile-card{
@@ -492,7 +585,45 @@ h3{
     font-size: 35px;
     color: #3394d4;
 }
+
+.preferences-container{
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  font-family: sans-serif;
+}
+
+.preference-item {
+  display: flex;
+  flex-direction: column;
+  color: #000000;
+  gap: 1rem;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.checkbox-container input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #c2d8f7; /* Azul claro como en tu imagen */
+  cursor: pointer;
+}
+
+.preference-item span{
+  font-size: 0.875rem;
+  color: #7a7a7a;
+  margin-left: 2.3rem;
+}
+
 /*AQUI TERMINA TODO LO RELACIONADO CON LA PAGINA DE PERFIL */
+
 /*ESTE ES EL CSS DE PROGRESS PAGE*/
 .Web-component {
     font-family: 'Arial', sans-serif;
