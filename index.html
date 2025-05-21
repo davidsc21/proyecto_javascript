@@ -41,6 +41,7 @@
                     </select>
                 </div>
                 <div class="profile">
+                    <!-- Al hacer clic en el label, se activa el checkbox para mostrar u ocultar el menú -->
                     <input type="checkbox" id="profile-toggle" class="profile-checkbox">
                     <label for="profile-toggle" class="profile-trigger">
                         <img src="./assets/profile-picture.png" alt="imagen de perfil" class="profile-image">
@@ -49,12 +50,14 @@
                         </div>
                         <div class="dropdown-icon">▼</div>
                     </label>
+                    <!-- Menú desplegable -->
                     <div class="profile-dropdown">
                         <ul>
-                            <li><a href="#"><span class="icon">👤</span> My Profile</a></li>
-                            <li><a href="#"><span class="icon">⚙️</span> Settings</a></li>
-                            <hr>
-                            <li><a href="#" class="logout"><span class="icon">🚪</span> Logout</a></li>
+                            <!-- TODO: acordarse en el href hacer que se diriga hacia el label del perfi -->
+                            <li><a href="#" class="dropdown-item"><span class="icon" onclick="navigate('profile')">👤</span> My Profile</a></li>
+                            <li><a href="#" class="dropdown-item"><span class="icon">⚙️</span> Settings</a></li>
+                            <li class="dropdown-divider"></li>
+                            <li><button type="button" class="dropdown-item logout"><span class="icon">🚪</span> Logout</button></li>
                         </ul>
                     </div>
                 </div>
