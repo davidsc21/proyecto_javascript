@@ -93,9 +93,10 @@ class MyEnrolledCourses extends HTMLElement {
         box-shadow: 0 2px 4px #0000001a;
         transition: transform 0.3s ease;
         font-family: Inter;
+        min-width: 10rem;
       }
       section:hover{
-        transition: transform 0.5s ease;
+        transform: translateY(-10px);
       }
       .course-image{
         position: relative;
