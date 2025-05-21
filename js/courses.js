@@ -1,15 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="/css/courses.css"/>
-  <script src="/js/flip.js"defer></script>
-  <title>courses</title>
- 
-</head>
-<body>
-  <section class="courses-section">
+const pages3 = {
+    courses:`
+    <section class="courses">
+     <section class="courses-section">
   <h1>Available Courses</h1>
   <h2>Video Games</h2>
   <div class="courses-container">
@@ -484,6 +476,37 @@
 
 </div>
 </section>
+    
+    
+    
+    </section>
+    
+    
+    `,
 
-</body>
-</html>
+}
+function courses(page3){
+    const content = document.getElementById('main')
+    content.textContent= `
+    document.addEventListener('DOMContentLoaded', () => {
+  const cards = document.querySelectorAll('.courses-card');
+
+  cards.forEach(card => {
+    const moreInfoBtn = card.querySelector('.info-btn');
+    const closeBtn = card.querySelector('.flip-btn');
+
+    moreInfoBtn.addEventListener('click', () => {
+      card.classList.add('flipped');
+    });
+
+    closeBtn.addEventListener('click', () => {
+      card.classList.remove('flipped');
+    });
+  });
+});
+
+    
+    `
+    content.appendChild
+    content.innerHTML = pages3[page3] || '<h1>pagina no en contrada</h1>'
+}
