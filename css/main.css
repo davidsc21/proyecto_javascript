@@ -400,6 +400,7 @@ h2{
 /* estos estilos corresponden a la parte de los cursos que se estan realizando */
 .my-enrolled-courses-container{
     margin-bottom: 3rem;
+    width: 100%;
 }
 
 .header-MRC{
@@ -437,9 +438,14 @@ h3{
 
 /* esto supuestamente deber[ia de ser grid pero no se por que no aplica  */
 .my-enrolled-courses{
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+    /* display: flex;
+    flex-direction: column;
     gap: 1.5rem;
+    min-width: 10rem; */
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 1.5rem;
+    width: 100%;
 }
 /* estilos de la parte de recent activity */
 
