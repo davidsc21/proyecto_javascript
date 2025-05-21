@@ -487,26 +487,6 @@ const pages3 = {
 }
 function courses(page3){
     const content = document.getElementById('main')
-    content.textContent= `
-    document.addEventListener('DOMContentLoaded', () => {
-  const cards = document.querySelectorAll('.courses-card');
-
-  cards.forEach(card => {
-    const moreInfoBtn = card.querySelector('.info-btn');
-    const closeBtn = card.querySelector('.flip-btn');
-
-    moreInfoBtn.addEventListener('click', () => {
-      card.classList.add('flipped');
-    });
-
-    closeBtn.addEventListener('click', () => {
-      card.classList.remove('flipped');
-    });
-  });
-});
-
-    
-    `
     content.appendChild
     content.innerHTML = pages3[page3] || '<h1>pagina no en contrada</h1>'
 }
