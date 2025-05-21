@@ -155,6 +155,65 @@ header{
     background-color: #2C3E50;
     color: #fff;
 }
+/* menu hamburguesa*/
+
+.hamburger {
+  display: none;
+  font-size: 2rem;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+/* Modo móvil */
+@media (max-width: 768px) {
+  .nav-menu {
+    display: none;
+    flex-direction: column;
+    background-color: #2C3E50;
+    position: absolute;
+    top: 6rem;
+    left: 0;
+    width: 100%;
+    padding: 1rem 0;
+    z-index: 1000;
+  }
+
+  .nav-menu.active {
+    display: flex;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .nav-actions {
+    flex-direction: column;
+    align-items: flex-start;
+    position: absolute;
+    top: auto;
+    right: 0;
+    background-color: #2C3E50;
+    width: 100%;
+    padding: 1rem;
+    display: none;
+  }
+
+  .nav-actions.active {
+    display: flex;
+  }
+
+  .menu {
+    justify-content: space-between;
+    position: relative;
+  }
+
+  .logo {
+    width: auto;
+  }
+}
 
 /* Perfil */
 /* TODO: revisar estos estilos para recortalos y que no sea con hover si no que sean con un evento que cuando se le de clik se vaya a desplegar las 3 opciones, a su vez, hacer que no tenga animaciones y mefjorar los diseños */
@@ -699,6 +758,63 @@ h2::after {
   background-color: #2980b9;
 }
 
+@media (max-width: 1100px) {
+  .courses-section {
+    width: 100%;
+    padding: 0 1rem;
+    box-sizing: border-box;
+  }
 
+  h1 {
+    font-size: 2rem;
+  }
 
+  h2 {
+    font-size: 1.4rem;
+  }
+
+  .card-content h3 {
+    font-size: 1.3rem;
+  }
+
+  .card-content p {
+    font-size: 0.85rem;
+  }
+
+  .enroll-btn,
+  .info-btn,
+  .flip-btn {
+    font-size: 0.85rem;
+    padding: 0.75rem;
+  }
+}
+
+/* Responsivo para pantallas pequeñas: móviles */
+@media (max-width: 480px) {
+  .courses-container {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 0.5rem;
+  }
+
+  .card-buttons {
+    flex-direction: column;
+  }
+
+  .card-content {
+    padding: 1rem;
+    gap: 0.75rem;
+  }
+
+  .card-back {
+    padding: 1rem;
+  }
+
+  .enroll-btn,
+  .info-btn,
+  .flip-btn {
+    font-size: 0.8rem;
+    padding: 0.75rem;
+  }
+}
  /* AQUI TERMINAN LOS ESTILOS DE COURSES */
