@@ -3,23 +3,13 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Inter, Helvetica, sans-serif;
 }
 
 /* fuente general que es la que uso el profesor y el background minimamente oscuro */
 
 body {
-    font-family: Inter, Helvetica, sans-serif;
     background-color: #f5f6f7;
-}
-
-/*tuve que editar el main para que ocupe todo su espacio y poder trabajar mejor el menu(si alguien presenta algun problema reportarlo)*/
-main{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 /* para evitar la barra de abajo de los textos de links */
@@ -49,7 +39,7 @@ header{
     display: flex;
     flex-wrap: wrap;
     width: 6%;
-
+    line-height: 0.95;
 }
 
 /* texto del logo principal */
@@ -76,7 +66,6 @@ header{
 .menu li a {
     color: #fff;
     padding: 0.5rem 1rem;
-    height: 2.5rem;
     border-radius: 4px;
     transition: color 0.3s ease, backgrond-color 0.3s ease;
 }
@@ -144,6 +133,7 @@ header{
 
 /* Perfil */
 /* TODO: revisar estos estilos para recortalos y que no sea con hover si no que sean con un evento que cuando se le de clik se vaya a desplegar las 3 opciones, a su vez, hacer que no tenga animaciones y mefjorar los diseños */
+/* contenedor principal del perfil */
 .profile {
     position: relative;
     display: flex;
@@ -153,20 +143,14 @@ header{
     width: 9.5rem;
 }
 
-.profile:hover{
-    background-color: #425262 ;
-    border-radius: 5px;
-    height: 4rem;
-    transition: color 0.5s ease, background-color 0.5s ease;
-}
-
-/* Checkbox oculto para controlar el menú */
+/* creacion de un checkbox oculto para controlar el menu y evitar que sea un boton */
 .profile-checkbox {
     position: absolute;
     opacity: 0;
     pointer-events: none;
 }
 
+/* diseños del triger del perfil */
 .profile-trigger {
     background: none;
     border: none;
@@ -174,11 +158,18 @@ header{
     align-items: center;
     gap: 0.75rem;
     padding: 0.5rem;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
-    transform: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+.profile-trigger:hover{
+    background-color: #425262 ;
+    border-radius: 5px;
+    height: 4rem;
+    transition: color 0.5s ease, background-color 0.5s ease;
 }
 
+/* contenedor de la imagen de perfil */
 .profile-image {
     width: 2rem;
     height: 2rem;
@@ -187,20 +178,23 @@ header{
     border: none;
 }
 
+/* informacion del perfil, el nombre basicamente  */
 .profile-info {
     display: flex;
     align-items: center;
-    gap: 0.3rem; /* separación entre nombre e ícono */
+    gap: 0.3rem;
     font-weight: 500;
-    color: white;
-    line-height: 1.6/* Aumenta el valor para más espacio */
+    color: #fff;
+    line-height: 1.6;
 }
 
+/* estilos para el texto del nombre */
 .profile-name {
     font-size: 0.9rem;
     text-align: center;
 }
 
+/* icono del dropdown ▼*/
 .dropdown-icon {
     font-size: 0.8rem;
     color: #fff;
@@ -208,63 +202,85 @@ header{
     transition: transform 0.3s ease, color 0.3s ease;
 }
 
-/* Menú desplegable del profile*/
+/* estilos del div del menu desplegable */
 .profile-dropdown {
-    display: none;
     position: absolute;
     top: 100%;
     right: 0;
     background-color: #fff;
     border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    min-width: 12.25rem;
     margin-top: 0.5rem;
+    overflow: hidden;
     z-index: 100;
+    display: none;
 }
 
+/* mostrar el div drop down cuando el checkbox esta marcado */
 .profile-checkbox:checked ~ .profile-dropdown {
     display: block;
 }
 
-/* Mostrar menú cuando el checkbox está marcado */
+/* rotar el icono del drp down cuando se le da lick y se abre el menu */
 .profile-checkbox:checked + .profile-trigger .dropdown-icon {
     transform: rotate(180deg);
+    transition: transform 0.3s ease;
 }
 
-.profile-dropdown ul {
-    list-style: none;
-    padding: 0.5rem 0;
-}
-
-.profile-dropdown li a {
+/* elementos del dropdown */
+.dropdown-item {
     display: flex;
     align-items: center;
-    padding: 0.75rem 1rem;
-    color: #333;
+    gap: .75rem;
+    padding: .75rem 1rem;
+    color: #2c3e50;
+    text-decoration: none;
+    transition: all .3s ease;
+    cursor: pointer;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+    font-size: .9rem;
 }
 
-.profile-dropdown li a:hover {
+.dropdown-item:hover {
     background-color: #f5f5f5;
 }
 
-.profile-dropdown .icon {
-    margin-right: 0.75rem;
+.icon {
     display: inline-block;
-    width: 20px;
+    width: 1.5rem;
+    font-size: 1.2rem;
+    margin-right: 0.75rem;
 }
 
-.profile-dropdown .divider {
+.dropdown-divider {
     height: 1px;
-    background-color: #eee;
-    margin: 0.5rem 0;
+    background: #e1e8ed;
+    margin: .5rem 0;
 }
 
-.profile-dropdown .logout {
+.dropdown-item.logout {
     color: #e74c3c;
 }
+
+
+
 
 /* hasta acá se termina toda la parte del header */
 
 /* estos estilos son de toda la parte del conteido principal de la pagina */
+/*tuve que editar el main para que ocupe todo su espacio y poder trabajar mejor el menu(si alguien presenta algun problema reportarlo)*/
+main{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .main-container{
     padding: 2rem;
     display: flex;
@@ -308,7 +324,7 @@ h3{
 
 .btn-MRC{
     background-color: #3498db; /* azul principal */
-    color: white;
+    color: #fff;
     padding: 10px 20px;
     font-size: 1rem;
     border: none;
@@ -363,7 +379,7 @@ h3{
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: white;
+    background-color: #fff;
     box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.103);
     width: 62rem;
 }
@@ -408,14 +424,14 @@ h3{
     width: 10rem;
     height: 10rem;
     overflow: hidden;
-    border: 3px solid white;
-    background-color: white;
+    border: 3px solid #fff;
+    background-color: #fff;
     border-radius: 60%;
     img{
         border-radius: 50%;
         width: 100%;
         height: 100%;
-        background-color: white;
+        background-color: #fff;
         padding: 0.2rem;
         z-index: 2;
     }
@@ -429,7 +445,7 @@ h3{
 }
 
 .infoprofile{
-    background-color: white;
+    background-color: #fff;
     width: 62rem;
     height: 100%;
     padding: 2rem;

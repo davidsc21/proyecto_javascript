@@ -67,7 +67,7 @@ class MyEnrolledCourses extends HTMLElement {
         <main>
           <h2>[Nombre del curso]</h2>
           <p>[trainer o profesor]</p>
-          <hr>
+          <div class="dropdown-divider"></div>
         </main>
         <footer>
           <button type="button" class="btn-MRC-card">Continue Learning</
@@ -86,6 +86,9 @@ class MyEnrolledCourses extends HTMLElement {
         width: 20rem;
         background: #fefefe;
       }
+      section:hover{
+        transition: transform 0.5s ease;
+      }
       header {
         font-weight: bold;
         font-size: 2rem;
@@ -97,6 +100,11 @@ class MyEnrolledCourses extends HTMLElement {
         font-size: 2rem;
         margin-bottom: 10px;
         color: #27a4e0;
+      }
+      .dropdown-divider {
+        height: 1px;
+        background: #e1e8ed;
+        margin: .5rem 0;
       }
       .btn-MRC-card{
         background-color: #3498db; /* azul principal */
@@ -144,7 +152,7 @@ class RecentActivity extends HTMLElement {
 
     const style = document.createElement('style');
     style.textContent = /* CSS */ `
-      .activity-card {
+        .activity-card {
           display: flex;
           align-items: center;
           padding: 1rem;
