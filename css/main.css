@@ -432,6 +432,11 @@ h3{
     
 }
 
+.career{
+    color: rgb(139, 139, 139);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 .profheader{
     display: flex;
     justify-content: center;
@@ -493,11 +498,98 @@ h3{
     padding: 1rem;
     border-radius: 1rem;
     margin-bottom: 2rem;
+    hr{
+        color: rgb(241, 241, 241);
+        background-color: rgb(235, 233, 233);
+        height: 2px;
+        border: none;
+    }
+}
+
+.user-container{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    padding: 2rem;
+    gap: 1.5rem;
+}
+
+#stid{
+    cursor: not-allowed;
+}
+
+.user-info{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    label{
+        color: #797979;
+        font-size: 0.8rem;
+    }
+}
+
+.buttons{
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 1rem;
+}
+
+.buttonprof{
+    padding: 1rem;
+    cursor: pointer;  
+}
+
+#save{
+    background-color: #3394d4 ;
+    border-radius: 5px;
+    color: white;
+    border: none;
+    width: 10rem;
+    font-size: 1rem;
+}
+
+#save:hover{
+    background-color: #2870a0 ;
+    transform: translateY(-5px);
+    transition: all 0.3s ease;
+}
+
+#cancel{
+    border: 1px solid rgb(228, 228, 228);
+    border-radius: 5px;
+    background-color: transparent;
+    font-size: 1rem;
+    width: 6rem;
+}
+
+#cancel:hover{
+    border: 1px solid rgb(146, 146, 146);
+    background-color: #f5f5f5;
+}
+
+.user-info input{
+    width: 17rem;
+    height: 3.5rem;
+    border-radius: 5px;
+    border: 1px solid #ebe9e9;
+    background-color: transparent;
+    padding: 1rem;
+    font-size: 18px;
+    color: rgb(112, 112, 112);
+}
+
+.user-info input:focus{
+    border: 1px solid #3394d4;
+    outline: none;
+    box-shadow: 0 0 5px  rgb(130, 193, 196);
+}
+
+.user-info input::placeholder{
+    color: rgb(189, 188, 188);
 }
 
 #progress{
     display: flex;
-    gap: 1rem;
     flex-direction: column;
 }
 
@@ -506,6 +598,7 @@ h3{
     justify-content: center;
     align-items: center;
     gap: 2rem;
+    padding: 1rem;
 }
 
 .profile-card{
@@ -529,7 +622,252 @@ h3{
     font-size: 35px;
     color: #3394d4;
 }
+
+.preferences-container{
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  font-family: sans-serif;
+}
+
+.preference-item {
+  display: flex;
+  flex-direction: column;
+  color: #000000;
+  gap: 1rem;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.checkbox-container input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #c2d8f7; /* Azul claro como en tu imagen */
+  cursor: pointer;
+}
+
+.preference-item span{
+  font-size: 0.875rem;
+  color: #7a7a7a;
+  margin-left: 2.3rem;
+}
+
 /*AQUI TERMINA TODO LO RELACIONADO CON LA PAGINA DE PERFIL */
+
+/*ESTE ES EL CSS DE PROGRESS PAGE*/
+.Web-component {
+    font-family: 'Arial', sans-serif;
+    margin: 20px;
+    width: 430%;
+    height: 12rem;
+    justify-content: center;
+  }
+  
+  .card-container {
+    display: flex;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 30px;
+    justify-items: center;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+    
+  }
+  
+  .card h4 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+  
+  .card p {
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  .progress-bar {
+    width: 100%;
+    height: 10px;
+    margin: 10px 0;
+    border-radius: 10px;
+    appearance: none;
+    background-color: #f3f3f3;
+  }
+  
+  .progress-bar::-webkit-progress-bar {
+    background-color: #f3f3f3;
+    border-radius: 10px;
+  }
+  
+  .progress-bar::-webkit-progress-value {
+    background-color: #007bff;
+    border-radius: 10px;
+  }
+  
+  .progress-bar::-moz-progress-bar {
+    background-color: #007bff;
+    border-radius: 10px;
+  }
+  
+  .blue-text-btn {
+    background: none;
+    border: none;
+    color: #007bff;
+    font-size: 1rem;
+    cursor: pointer;
+    text-decoration: none;
+    margin-right: 15rem;
+    height: 1rem;
+    padding-top: 1rem;
+    
+  }
+  .card h5{
+    color: grey;
+    text-align: left;
+    font-size: 1rem;
+    
+  }
+  .card h4{
+    font-size: 2.2rem;
+    text-align: left;
+    font-weight: 1px;
+  }
+  .Web-component h1{
+    padding: 2px;
+    font-size: 3.1rem;
+    margin-bottom: 50px;
+    font-weight: -9px;
+  }
+  
+  .blue-text-btn:hover {
+    color: #0056b3;
+  }
+  
+/* Estilos del modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 500px;
+    position: relative;
+  }
+  
+  .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #333;
+  }
+  
+  .close-btn:hover {
+    color: #ff0000;
+  }
+  .progress-section {
+    margin: 15px 0;
+  }
+  
+  progress {
+    width: 100%;
+    height: 10px;
+    border-radius: 20px;
+    appearance: none;
+    background-color: #f3f3f3;
+  }
+  
+  progress::-webkit-progress-bar {
+    background-color: #f3f3f3;
+    border-radius: 20px;
+  }
+  
+  progress::-webkit-progress-value {
+    background-color: #007bff;
+    border-radius: 20px;
+  }
+  
+  progress::-moz-progress-bar {
+    background-color: #007bff;
+    border-radius: 20px;
+  }
+
+  
+.superior {
+    background-image: url(../assets/mode.js-development.png);
+    background-size: cover; 
+    background-position: center;
+    height: 267px;
+    width: 100%; 
+    display: flex;
+    
+    justify-content: left;
+    align-items: left;
+    
+    border-radius: 8px;
+     
+}
+
+.superior img {
+    width: 100%; 
+    height: 100%;
+    opacity: 0; 
+    position: absolute;
+
+    
+}
+
+.superior progress{
+    width: 90%;
+    margin-bottom: 30px;
+    margin-left: 10px;
+}
+
+.superior h2 {
+    margin-top:170px ;
+    z-index: 10; 
+    color: white;
+    margin-left: 20px; 
+    font-size: 2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); 
+}
+
+.contenido-imagen{
+    display: absolute;
+
+}
+/*ACA TERMINA EL CSS DE EL PROGRESS BAR*/
 
 /* hacer el responsivo para toda la pagina porque que pesadilla hacer el codigo en diferentes pantallas ya resoluciones */
 
