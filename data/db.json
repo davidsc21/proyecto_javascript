@@ -178,5 +178,17 @@
     {
       "email": "ejemplo@gmail.com"
     }
+  ],
+  "usuario":[
+    {
+      "name": "John Doe",
+      "email": "john.doe@example.com",
+      "phone": "+1 234 567 890",
+      "location": "New York, USA",
+      "id": "CS2023001",
+      "program": "Bachelor of Computer Science",
+      "start": "01/09/2023",
+      "expected": "30/06/2027"
+    }
   ]
 }

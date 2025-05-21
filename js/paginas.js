@@ -28,9 +28,22 @@ const pages = {
                         <p>Hola mundo</p>
                     </div>
                     <div class="infocontainers" id="progress">
-                        <h3>Progress Overview</h3>
+                        <h3>Personal Information</h3>
                         <hr>
-                        <p>Hola mundo</p>
+                        <div class="card-container">
+                            <div class="profile-card">
+                                <h3 id="infocardprof"><strong>12</strong></h3>
+                                <p>Courses Completed</p>
+                            </div>
+                            <div class="profile-card">
+                                <h3 id="infocardprof"><strong>3</strong></h3>
+                                <p>Certificates Earned</p>
+                            </div>
+                            <div class="profile-card">
+                                <h3 id="infocardprof"><strong>92%</strong></h3>
+                                <p>Average Grade</p>
+                            </div>
+                        </div>  
                     </div>
                     <div class="infocontainers" id="preferences">
                         <h3>Preferences</h3>
