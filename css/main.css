@@ -34,6 +34,28 @@ header{
     margin: auto;
 }
 
+
+.menu .nav-menu li {
+    display: flex;
+    padding: 0;
+}
+
+.menu .nav-menu li a {
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: color 0.3s ease, backgrond-color 0.3s ease;
+}
+
+.menu .nav-menu li:hover {
+    background-color: #425262;
+    border-radius: 4px;
+}
+
+.menu .nav-menu li:hover a {
+    color: #229bcf;
+}
+
 /* logo */
 .logo{
     display: flex;
@@ -56,27 +78,6 @@ header{
     margin: 0 2rem;
     padding-left: 2rem;
     box-sizing: border-box;
-}
-
-.menu li {
-    display: flex;
-    padding: 0;
-}
-
-.menu li a {
-    color: #fff;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    transition: color 0.3s ease, backgrond-color 0.3s ease;
-}
-
-.menu li:hover {
-    background-color: #425262;
-    border-radius: 4px;
-}
-
-.menu li:hover a {
-    color: #229bcf;
 }
 
 /* estilos de la barra de navegacion derecha */
@@ -229,15 +230,13 @@ header{
 }
 
 /* elementos del dropdown */
-.dropdown-item {
+.profile-dropdown .dropdown-item {
     display: flex;
     align-items: center;
-    gap: .75rem;
     padding: .75rem 1rem;
     color: #2c3e50;
     text-decoration: none;
     transition: all .3s ease;
-    cursor: pointer;
     border: none;
     background: none;
     width: 100%;
@@ -245,11 +244,13 @@ header{
     font-size: .9rem;
 }
 
-.dropdown-item:hover {
+/* Hover de los elementos del dropdown */
+.profile-dropdown .dropdown-item:hover {
     background-color: #f5f5f5;
 }
 
-.icon {
+/* Iconos dentro del dropdown */
+.profile-dropdown .icon {
     display: inline-block;
     width: 1.5rem;
     font-size: 1.2rem;
@@ -259,13 +260,21 @@ header{
 .dropdown-divider {
     height: 1px;
     background: #e1e8ed;
-    margin: .5rem 0;
+    margin: 0.5rem 0;
+    overflow: hidden;
+    border-top: 1px solid #e1e8ed;
+    opacity: 1;
 }
 
-.dropdown-item.logout {
-    color: #e74c3c;
-}
+/* Estilo especial para el botón de logout */
+.profile-dropdown .dropdown-item.logout {
+    color: #e74c3c; 
 
+}
+.profile-dropdown .dropdown-item.logout:hover {
+    background-color: #FEE8E7;
+    cursor: pointer;
+}
 
 
 
@@ -287,6 +296,7 @@ main{
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    max-width: 75rem;
 }
 
 h2{
@@ -301,38 +311,41 @@ h2{
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
-    margin-bottom: 4rem;
+    margin-bottom: 3rem;
 }
 
 
 /* estos estilos corresponden a la parte de los cursos que se estan realizando */
+.my-enrolled-courses-container{
+    margin-bottom: 3rem;
+}
+
 .header-MRC{
     display: flex;
     justify-content: space-between; /* separa el título y el botón */
     align-items: center;            /* los alinea verticalmente */
     margin-bottom: 1.5rem;
-    max-width: 100%;
-    flex-wrap: wrap; 
+    /* max-width: 100%;
+    flex-wrap: wrap;  */
 }
 
 h3{
-    font-size: 1.7rem;
-    font-weight: 400;
+    font-size: 1.5rem;
+    font-weight: 500;
     color: #2c3e50;
-    margin-bottom: 1rem;
 }
 
 .btn-MRC{
     background-color: #3498db; /* azul principal */
     color: #fff;
-    padding: 10px 20px;
+    padding: .75rem 1.5rem;
     font-size: 1rem;
+    font-weight: 400;
+    line-height: 150%;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin-right: 3.5rem;
+    transition: all .3s ease;
 }
 
 .btn-MRC:hover{
@@ -340,13 +353,12 @@ h3{
     transform: translateY(-2px);
 }
 
+/* esto supuestamente deber[ia de ser grid pero no se por que no aplica  */
 .my-enrolled-courses{
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    margin-bottom: 4rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+    gap: 1.5rem;
 }
-
 /* estilos de la parte de recent activity */
 
 .recent-activity-container {
