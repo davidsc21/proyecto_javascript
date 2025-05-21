@@ -189,15 +189,14 @@ header{
   }
 
   .nav-actions {
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: row;
     position: absolute;
     top: auto;
-    right: 0;
+    right: 40px;
     background-color: #2C3E50;
-    width: 100%;
     padding: 1rem;
-    display: none;
+    display: flex;
+  
   }
 
   .nav-actions.active {
@@ -210,7 +209,8 @@ header{
   }
 
   .logo {
-    width: auto;
+    width: 10px;
+    
   }
 }
 
