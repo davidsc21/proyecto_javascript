@@ -176,7 +176,7 @@ header{
     top: 6rem;
     left: 0;
     width: 100%;
-    padding: 1rem 0;
+    padding: 0.5rem 0;
     z-index: 1000;
   }
 
@@ -194,7 +194,7 @@ header{
     top: auto;
     right: 40px;
     background-color: #2C3E50;
-    padding: 1rem;
+    padding: 0.5rem;
     display: flex;
   
   }
