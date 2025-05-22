@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/video.css">
+    <script src="/js/video.js" defer></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Course topic</h2>
+        <p id="progress">0/4 completed</p>
+        <ul class="topics" id="topicList"></ul>
+    </div>
+    <div class="main">
+        <div id="defaultView">
+            <h2>>📺 Select a Topic to Start Learning</h2>
+            <p>Choose a topic from the sidebar to begin watching the course content.</p>
+        </div>
+        <div class="video-container" id="videoView">
+            <iframe id="videoFrame" frameborder="0" allowfullscreen></iframe>
+            <h3 id="topicTitle"></h3>
+            <p id="topicDescription"></p>
+            <div class="resource-links">
+                <a href="#">Course Syllabus</a>
+                <a href="#">Setup Instructions</a>
+            </div>
+            <div class="preview-image">
+                    <img id="topicImage" src="" alt="Preview" />
+            </div>
+            <div class="">
+                <button id="prevBtn">&larr; Previous Topic</button>
+                <button id="completeBtn" class="complete-btn">Mark as complate</button>
+                <button id="nextBtn">Next Topic &rarr;</button>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
