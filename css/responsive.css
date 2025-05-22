@@ -1,0 +1,73 @@
+@media (max-width: 400px) {
+    .buttons {
+    width: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    }
+   
+    #save {
+    background-color: #3394d4;
+    border-radius: 5px;
+    color: white;
+    border: none;
+    width: 100%;
+    font-size: 1rem;
+    }
+
+    #save {
+    background-color: #3394d4;
+    border-radius: 5px;
+    color: white;
+    border: none;
+    width: 100%;
+    font-size: 1rem;
+    }
+
+}
+
+@media (max-width: 850px) {
+    .globalprofile{
+        width: 300vh;
+    }
+
+    .infoprofile {
+    background-color: #fff;
+    width: 100%;
+    height: auto;
+    padding: 2rem;
+    margin-top: 28%;
+    box-sizing: border-box;
+    }
+    .buttons {
+    width: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    }
+   
+    #save {
+    background-color: #3394d4;
+    border-radius: 5px;
+    color: white;
+    border: none;
+    width: 100%;
+    font-size: 1rem;
+    }
+
+    #save {
+    background-color: #3394d4;
+    border-radius: 5px;
+    color: white;
+    border: none;
+    width: 100%;
+    font-size: 1rem;
+    }
+
+}

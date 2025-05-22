@@ -474,255 +474,276 @@ h3{
 
 /*AQUI EMPIEZA EL ESTILO RELACIONADO CON LA PAGINA DE PERFIL (POR FAVOR NO TOCAR SIN CONSULTAR)*/
 
-.profilecontainer{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    background-color: #fff;
-    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.103);
-    width: 62rem;
+.globalprofile{
+  width: 130vh;
 }
 
-.profheader .cover{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(to right,#3394d4,#2d4961) ;
-    width: 62rem;
-    height: 12.5rem; /*cambiar a porcentaje al finalizar de maquetar la pagina*/
-    max-height: 12.5rem;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    
+.profilecontainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #fff;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.103);
+  width: 100%;
 }
 
-.career{
-    color: rgb(139, 139, 139);
-    font-family: Arial, Helvetica, sans-serif;
+.profheader .cover {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to right, #3394d4, #2d4961);
+  width: 100%;
+  height: 25vh;
+  max-height: 12.5rem;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
-.profheader{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%
-
+.career {
+  color: rgb(139, 139, 139);
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-.avatarcontainer{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    z-index: 2;
-    position: absolute;
-    top: 13rem;
-    
+.profheader {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  flex-wrap: wrap;
 }
 
-.avatarimg{
-    z-index: 2;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 10rem;
-    height: 10rem;
-    overflow: hidden;
-    border: 3px solid #fff;
-    background-color: #fff;
-    border-radius: 60%;
-    img{
-        border-radius: 50%;
-        width: 100%;
-        height: 100%;
-        background-color: #fff;
-        padding: 0.2rem;
-        z-index: 2;
-    }
+.avatarcontainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 2;
+  position: absolute;
+  top: 33vh;
 }
 
-.avatartext{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.avatarimg {
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25vw;
+  height: 25vw;
+  max-width: 10rem;
+  max-height: 10rem;
+  overflow: hidden;
+  border: 3px solid #fff;
+  background-color: #fff;
+  border-radius: 60%;
 }
 
-.infoprofile{
-    background-color: #fff;
-    width: 62rem;
+.avatarimg img {
+    border-radius: 50%;
+    width: 100%;
     height: 100%;
-    padding: 2rem;
-    margin-top: 12rem;
-    
+    background-color: #fff;
+    padding: 0.2rem;
+    z-index: 2;
 }
 
-.infocontainers{
+.avatartext {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.infoprofile {
+    background-color: #fff;
+    width: 100%;
+    height: auto;
+    padding: 2rem;
+    margin-top: 25vh;
+    box-sizing: border-box;
+}
+
+.infocontainers {
     background-color: #F8F9FA;
     padding: 1rem;
+    width: 100%;
     border-radius: 1rem;
     margin-bottom: 2rem;
-    hr{
-        color: rgb(241, 241, 241);
-        background-color: rgb(235, 233, 233);
-        height: 2px;
-        border: none;
-    }
 }
 
-.user-container{
+.infocontainers hr {
+    color: rgb(241, 241, 241);
+    background-color: rgb(235, 233, 233);
+    height: 2px;
+    border: none;
+}
+
+.user-container {
     display: grid;
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     padding: 2rem;
     gap: 1.5rem;
+    width: 100%;
+    box-sizing: border-box;
 }
 
-#stid{
+#stid {
     cursor: not-allowed;
 }
 
-.user-info{
+.user-info {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    label{
-        color: #797979;
-        font-size: 0.8rem;
-    }
 }
 
-.buttons{
+.user-info label {
+    color: #797979;
+    font-size: 0.8rem;
+}
+
+.buttons {
     width: 100%;
     display: flex;
     flex-direction: row-reverse;
+    flex-wrap: wrap;
     gap: 1rem;
 }
 
-.buttonprof{
+.buttonprof {
     padding: 1rem;
-    cursor: pointer;  
+    cursor: pointer;
 }
 
-#save{
-    background-color: #3394d4 ;
+#save {
+    background-color: #3394d4;
     border-radius: 5px;
     color: white;
     border: none;
-    width: 10rem;
+    width: 100%;
+    max-width: 10rem;
     font-size: 1rem;
 }
 
-#save:hover{
-    background-color: #2870a0 ;
+#save:hover {
+    background-color: #2870a0;
     transform: translateY(-5px);
     transition: all 0.3s ease;
 }
 
-#cancel{
+#cancel {
     border: 1px solid rgb(228, 228, 228);
     border-radius: 5px;
     background-color: transparent;
     font-size: 1rem;
-    width: 6rem;
+    width: 100%;
+    max-width: 6rem;
 }
 
-#cancel:hover{
+#cancel:hover {
     border: 1px solid rgb(146, 146, 146);
     background-color: #f5f5f5;
 }
 
-.user-info input{
-    width: 17rem;
+.user-info input {
+    width: 100%;
     height: 3.5rem;
     border-radius: 5px;
     border: 1px solid #ebe9e9;
     background-color: transparent;
     padding: 1rem;
-    font-size: 18px;
+    font-size: 1rem;
     color: rgb(112, 112, 112);
+    box-sizing: border-box;
 }
 
-.user-info input:focus{
+.user-info input:focus {
     border: 1px solid #3394d4;
     outline: none;
-    box-shadow: 0 0 5px  rgb(130, 193, 196);
+    box-shadow: 0 0 5px rgb(130, 193, 196);
 }
 
-.user-info input::placeholder{
+.user-info input::placeholder {
     color: rgb(189, 188, 188);
 }
 
-#progress{
+#progress {
     display: flex;
     flex-direction: column;
 }
 
-.card-container{
+.card-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 2rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
     padding: 1rem;
 }
 
-.profile-card{
+.profile-card {
     background-color: white;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 4rem;
-    height: 5rem;
-    width: auto;
-    border-radius: 5px;
-    box-shadow:  3px 3px 3px rgba(158, 158, 158, 0.103), -3px 3px 3px rgba(158, 158, 158, 0.103);
+    padding: 2rem;
+    height: auto;
+    width: 100%;
+    max-width: 18rem;
+    border-radius: 10px;
+    box-shadow: 3px 3px 3px rgba(158, 158, 158, 0.103), -3px 3px 3px rgba(158, 158, 158, 0.103);
     flex-direction: column;
 }
 
-.profile-card p{
+.profile-card p {
     color: rgb(133, 133, 133);
 }
 
-#infocardprof{
-    font-size: 35px;
+#infocardprof {
+    font-size: 2rem;
     color: #3394d4;
 }
 
-.preferences-container{
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  padding: 1.5rem;
-  font-family: sans-serif;
+.preferences-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    font-family: sans-serif;
+    box-sizing: border-box;
+    width: 100%;
 }
 
 .preference-item {
-  display: flex;
-  flex-direction: column;
-  color: #000000;
-  gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    color: #000000;
+    gap: 1rem;
 }
 
 .checkbox-container {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-weight: 600;
-  cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    cursor: pointer;
 }
 
 .checkbox-container input[type="checkbox"] {
-  width: 18px;
-  height: 18px;
-  accent-color: #c2d8f7; /* Azul claro como en tu imagen */
-  cursor: pointer;
+    width: 18px;
+    height: 18px;
+    accent-color: #c2d8f7;
+    cursor: pointer;
 }
 
-.preference-item span{
-  font-size: 0.875rem;
-  color: #7a7a7a;
-  margin-left: 2.3rem;
+.preference-item span {
+    font-size: 0.875rem;
+    color: #7a7a7a;
+    margin-left: 2.3rem;
 }
+
 
 /*AQUI TERMINA TODO LO RELACIONADO CON LA PAGINA DE PERFIL */
 
