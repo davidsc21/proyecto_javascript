@@ -286,7 +286,7 @@ h2::after {
               game physics, and professional game development...
             </p>
             <div class="card-buttons">
-              <button class="enroll-btn">Enroll Now</button>
+              <button class="enroll-btn" onclick="money('money')">Enroll Now</button>
               <button class="info-btn">More Info</button>
             </div>
           </div>
@@ -322,7 +322,7 @@ h2::after {
               game physics, and professional game development...
             </p>
             <div class="card-buttons">
-              <button class="enroll-btn">Enroll Now</button>
+              <button class="enroll-btn" onclick="money('money')">Enroll Now</button>
               <button class="info-btn">More Info</button>
             </div>
           </div>
@@ -359,7 +359,7 @@ h2::after {
               game physics, and professional game development...
             </p>
             <div class="card-buttons">
-              <button class="enroll-btn">Enroll Now</button>
+              <button class="enroll-btn" onclick="money('money')">Enroll Now</button>
               <button class="info-btn">More Info</button>
             </div>
           </div>
@@ -404,7 +404,7 @@ h2::after {
               game physics, and professional game development...
             </p>
             <div class="card-buttons">
-              <button class="enroll-btn">Enroll Now</button>
+              <button class="enroll-btn" onclick="money('money')">Enroll Now</button>
               <button class="info-btn">More Info</button>
             </div>
           </div>
@@ -440,7 +440,7 @@ h2::after {
               game physics, and professional game development...
             </p>
             <div class="card-buttons">
-              <button class="enroll-btn">Enroll Now</button>
+              <button class="enroll-btn" onclick="money('money')">Enroll Now</button>
               <button class="info-btn">More Info</button>
             </div>
           </div>
@@ -478,7 +478,7 @@ h2::after {
               game physics, and professional game development...
             </p>
             <div class="card-buttons">
-              <button class="enroll-btn">Enroll Now</button>
+              <button class="enroll-btn" onclick="money('money')">Enroll Now</button>
               <button class="info-btn">More Info</button>
             </div>
           </div>
@@ -524,7 +524,7 @@ h2::after {
               game physics, and professional game development...
             </p>
             <div class="card-buttons">
-              <button class="enroll-btn">Enroll Now</button>
+              <button class="enroll-btn" onclick="money('money')">Enroll Now</button>
               <button class="info-btn">More Info</button>
             </div>
           </div>
@@ -560,7 +560,7 @@ h2::after {
               game physics, and professional game development...
             </p>
             <div class="card-buttons">
-              <button class="enroll-btn">Enroll Now</button>
+              <button class="enroll-btn" onclick="money('money')">Enroll Now</button>
               <button class="info-btn">More Info</button>
             </div>
           </div>
@@ -597,7 +597,7 @@ h2::after {
               game physics, and professional game development...
             </p>
             <div class="card-buttons">
-              <button class="enroll-btn">Enroll Now</button>
+              <button class="enroll-btn" onclick="money('money')">Enroll Now</button>
               <button class="info-btn">More Info</button>
             </div>
           </div>
@@ -643,7 +643,7 @@ h2::after {
               game physics, and professional game development...
             </p>
             <div class="card-buttons">
-              <button class="enroll-btn">Enroll Now</button>
+              <button class="enroll-btn" onclick="money('money')">Enroll Now</button>
               <button class="info-btn">More Info</button>
             </div>
           </div>
@@ -679,7 +679,7 @@ h2::after {
               game physics, and professional game development...
             </p>
             <div class="card-buttons">
-              <button class="enroll-btn">Enroll Now</button>
+              <button class="enroll-btn" onclick="money('money')">Enroll Now</button>
               <button class="info-btn">More Info</button>
             </div>
           </div>
@@ -716,7 +716,7 @@ h2::after {
               game physics, and professional game development...
             </p>
             <div class="card-buttons">
-              <button class="enroll-btn">Enroll Now</button>
+              <button class="enroll-btn" onclick="money('money')">Enroll Now</button>
               <button class="info-btn">More Info</button>
             </div>
           </div>
@@ -776,10 +776,435 @@ this.shadowRoot.addEventListener('click', (e) => {
 customElements.define('courses-page', CoursesPage)
 
 
+class MoneyCourses extends HTMLElement{
+  constructor(){
+    super();
+    this.attachShadow({mode:'open'})
+    this.shadowRoot.innerHTML =`
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #f4f5f7;
+      color: #1f2937;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 2rem 1rem;
+    }
+
+    a.back-link {
+      color: #3b82f6;
+      text-decoration: none;
+      font-size: 0.9rem;
+      display: inline-block;
+      margin-bottom: 1rem;
+      padding:1rem 1rem;
+      cursor:pointer;
+    }
+
+    .header-card {
+      position: relative;
+      border-radius: 1rem;
+      overflow: hidden;
+      color: white;
+    }
+
+    .header-card img {
+      width:100%;
+      height: 300px;
+      display: block;
+      object-fit: cover;
+    }
+
+    .header-content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 2rem;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6));
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .header-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+    }
+
+    .badges {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 0.75rem;
+    }
+
+    .badge {
+      background-color: rgba(255, 255, 255, 0.2);
+      padding: 0.4rem 0.8rem;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .header-description {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .instructor {
+      display: flex;
+      align-items: center;
+      margin-top: 1.5rem;
+    }
+
+    .instructor img {
+      width: 48px;
+      height: 48px;
+      border-radius: 9999px;
+      margin-right: 0.75rem;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+   .side-card {
+      background-color: white;
+      border-radius: 1rem;
+      padding: 1.5rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      height: 350px;
+      
+    }
+    .card{
+       background-color: white;
+      border-radius: 1rem;
+      padding: 1.5rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    
+      
+
+    }
+
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.5rem;
+    }
+
+    .side-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .price {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .features {
+      list-style: none;
+      padding: 0;
+      text-align: left;
+      line-height: 1.8;
+      margin: 1rem 0;
+    }
+
+    .features li::before {
+      content: "✓";
+      color: green;
+      margin-right: 0.5rem;
+    }
+
+    .button {
+      flex: 1;
+      padding: 1rem 6rem;
+      font-size: 0.9rem;
+      border-radius: 24px;
+      cursor: pointer;
+      background-color:  #3498db;
+      border: 2px solid #3498db;
+      color:white;
+       transition: 0.3s ease;
+    }
+
+    #card{
+        height: 150px;
+    }
+    .container2 {
+      background-color: white;
+      max-width: 700px;
+      margin: auto;
+      padding: 30px;
+      border-radius: 20px;
+      border:none;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    h2 {
+      font-size: 32px;
+      color: #1f2937;
+      margin-bottom: 25px;
+    }
+
+    .module {
+      background-color: #f9fafb;
+      border-radius: 12px;
+      margin-bottom: 16px;
+      padding: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .module:hover {
+      background-color: #f1f5f9;
+    }
+
+    .module-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .module-header .title {
+      display: flex;
+      gap: 8px;
+    }
+
+    .module-header .title span {
+      color: #3b82f6;
+      font-weight: 600;
+    }
+
+    .toggle-icon {
+      font-size: 20px;
+      color: #6b7280;
+    }
+
+    .module-content {
+      margin-top: 15px;
+      padding-left: 20px;
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .module-content p {
+      margin: 8px 0;
+      font-size: 15px;
+      color: #374151;
+      border-top: 1px solid #e5e7eb;
+      padding-top: 10px;
+    }
+
+    .active .module-content {
+      display: block;
+    }
+
+    .active .toggle-icon {
+      transform: rotate(180deg);
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    @media (max-width: 768px) {
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  
+  </style>
+
+  <div class="container">
+    <a class="back-link"  onclick="courses('courses')">← Back to Courses</a>
+
+    <div class="header-card">
+      <img src="/assets/courses/13.jpeg" alt="Course banner" />
+      <div class="header-content">
+        <div>
+          <h1 class="header-title">Unity Game Development</h1>
+          <div class="badges">
+            <div class="badge">⏱ 12 weeks</div>
+            <div class="badge">Intermediate</div>
+            <div class="badge">250+ enrolled</div>
+          </div>
+          <p class="header-description">
+            Create immersive 3D games with Unity. Learn C# programming, game physics, and professional game development workflows.
+          </p>
+        </div>
+        <div class="instructor">
+          <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Instructor" />
+          <div>
+            <strong>Course Instructor</strong><br />
+            Dr. John Smith
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-grid">
+      <div>
+        <div class="cards">
+          
+          <div class="card">
+             <h2>Course Overview</h2>
+             <p>Create immersive 3D games with Unity. Learn C# programming, game physics, and professional game development workflows.</p>
+          </div>
+          <br>
+          <div class="card">
+            <h2>Prerequisites</h2>
+            <p>Basic programming knowledge in any language</p>
+            <p style="margin-top: 1rem; border-top: 1px solid #e5e7eb; padding-top: 1rem;">
+              Understanding of 3D geometry is helpful but not required.
+            </p>
+          </div>
+          <br>
+          <div class="card">
+            <h2>What You'll Learn</h2>
+            <p>Basic programming knowledge in any language</p>
+            <p style="margin-top: 1rem; border-top: 1px solid #e5e7eb; padding-top: 1rem;">
+              Understanding of 3D geometry is helpful but not required.
+            </p>
+             <p style="margin-top: 1rem; border-top: 1px solid #e5e7eb; padding-top: 1rem;">
+              Understanding of 3D geometry is helpful but not required.
+            </p>
+             <p style="margin-top: 1rem; border-top: 1px solid #e5e7eb; padding-top: 1rem;">
+              Understanding of 3D geometry is helpful but not required.
+            </p>
+             <p style="margin-top: 1rem; border-top: 1px solid #e5e7eb; padding-top: 1rem;">
+              Understanding of 3D geometry is helpful but not required.
+            </p>
+          </div>
+          <br>
+          <div class="card">
+            <div class="conatiner2">
+                  <h2>Course Structure</h2>
+
+                  <div class="module">
+                    <div class="module-header">
+                      <div class="title"><span>Module 1</span> Introduction to the Course</div>
+                      <div class="toggle-icon">+</div>
+                    </div>
+                    <div class="module-content">
+                      <p>Course overview and objectives</p>
+                      <p>Setting up your development environment</p>
+                      <p>Understanding the course structure</p>
+                    </div>
+                  </div>
+
+                  <div class="module">
+                    <div class="module-header">
+                      <div class="title"><span>Module 2</span> Fundamentals and Core Concepts</div>
+                      <div class="toggle-icon">+</div>
+                    </div>
+                    <div class="module-content">
+                      <p>Variables and Data Types</p>
+                      <p>Control Structures</p>
+                      <p>Object-Oriented Programming</p>
+                    </div>
+                  </div>
+
+                  <div class="module">
+                    <div class="module-header">
+                      <div class="title"><span>Module 3</span> Advanced Topics</div>
+                      <div class="toggle-icon">+</div>
+                    </div>
+                    <div class="module-content">
+                      <p>Multithreading</p>
+                      <p>Game Physics</p>
+                      <p>AI Basics</p>
+                    </div>
+                  </div>
+
+                  <div class="module">
+                    <div class="module-header">
+                      <div class="title"><span>Module 4</span> Project Work</div>
+                      <div class="toggle-icon">+</div>
+                    </div>
+                    <div class="module-content">
+                      <p>Project Planning</p>
+                      <p>Development and Testing</p>
+                      <p>Final Presentation</p>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            
+          
+          
+        </div>
+        
+       
+      </div>
+      
+
+      <div class="side-card">
+        <div class="price">$99.99</div>
+        <p>One-time payment</p>
+        <ul class="features">
+          <li>Lifetime access</li>
+          <li>Certificate of completion</li>
+          <li>30-day money-back guarantee</li>
+          <li>Direct instructor support</li>
+        </ul>
+        <button class="button">Start Learning</button>
+      </div>
+
+      
+    </div>
+    
+  </div>
+
+
+    
+    `
+  }
+  connectedCallback(){
+    this.shadowRoot.querySelectorAll('.module').forEach(module => {
+    module.addEventListener('click', () => {
+      module.classList.toggle('active');
+      const icon = module.querySelector('.toggle-icon');
+      icon.textContent = module.classList.contains('active') ? '-' : '+';
+    });
+  });
+
+  }
+}
+customElements.define('money-course', MoneyCourses)
 
 
 
 
+const pages4 ={
+  money:`
+  <money-course></money-course>
+  `
+}
+function money(page4){
+  const content = document.getElementById('main')
+  content.appendChild
+  content.innerHTML = pages4[page4] || 'pagina no encontrada'
+}
 const pages3 = {
     courses:`
     <courses-page></courses-page>
