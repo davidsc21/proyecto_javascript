@@ -71,3 +71,15 @@ button{
 .resource-links{
     margin-top: 10px;
 }
+
+.preview-image {
+  margin-top: 10px;
+  width: 100%;
+  text-align: center;
+}
+.preview-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}

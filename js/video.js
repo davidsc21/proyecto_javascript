@@ -1,10 +1,11 @@
  const topics = [
-      { title: "Introduction to the Course", duration: "10 min", video: "https://www.youtube.com/embed/dQw4w9WgXcQ", description: "Overview of what you will learn in this course and how to get the most out of it.", completed: false },
-      { title: "Getting Started with Tools", duration: "15 min", video: "https://www.youtube.com/embed/dQw4w9WgXcQ", description: "Learn how to set up and use the tools required.", completed: false },
-      { title: "Core Concepts", duration: "20 min", video: "https://www.youtube.com/embed/dQw4w9WgXcQ", description: "Understand the essential concepts you'll need.", completed: false },
-      { title: "Advanced Techniques", duration: "25 min", video: "https://www.youtube.com/embed/dQw4w9WgXcQ", description: "Dive into advanced applications and techniques.", completed: false },
+      { title: "Introduction to the Course", duration: "10 min", video: "https://www.youtube.com/embed/dQw4w9WgXcQ", description: "Overview of what you will learn in this course and how to get the most out of it.",image: "279c7b0a-3b5e-43c5-80ea-a1fa39ad5f07.png", completed: false },
+      { title: "Getting Started with Tools", duration: "15 min", video: "https://www.youtube.com/embed/dQw4w9WgXcQ", description: "Learn how to set up and use the tools required.",image: "279c7b0a-3b5e-43c5-80ea-a1fa39ad5f07.png", completed: false },
+      { title: "Core Concepts", duration: "20 min", video: "https://www.youtube.com/embed/dQw4w9WgXcQ", description: "Understand the essential concepts you'll need.",image: "279c7b0a-3b5e-43c5-80ea-a1fa39ad5f07.png", completed: false },
+      { title: "Advanced Techniques", duration: "25 min", video: "https://www.youtube.com/embed/dQw4w9WgXcQ", description: "Dive into advanced applications and techniques.",image: "279c7b0a-3b5e-43c5-80ea-a1fa39ad5f07.png", completed: false },
     ];
- const topicList = document.getElementById("topicList");
+    const topicImage = document.getElementById('topicImage')
+    const topicList = document.getElementById("topicList");
     const progress = document.getElementById("progress");
     const defaultView = document.getElementById("defaultView");
     const videoView = document.getElementById("videoView");
@@ -42,6 +43,7 @@
       topicDescription.textContent = topic.description;
       completeBtn.textContent = topic.completed ? "Completed" : "Mark as Complete";
       completeBtn.classList.toggle("completed", topic.completed);
+      topicImage.src = `/mnt/data/${topic.image}`
       renderTopics();
     }
 
