@@ -765,7 +765,8 @@ h3{
 .titulo {
   font-size: 2rem;
   margin-bottom: 30px;
-  align-items: left;
+  margin-right: 82rem;
+  width: 100%;
 }
 
 .card-container {
@@ -1333,5 +1334,10 @@ border-radius: 5px;
   .blue-text-btn {
     font-size: 0.9rem;
     margin-right: 0;
+  }
+  .titulo {
+    font-size: 1.5rem;
+    margin-right: 80rem;
+    margin-bottom: 20px;
   }
 }

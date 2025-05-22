@@ -8,25 +8,25 @@ const pagess = {
         <div class="card-container">
           <div class="card">
             <h4>Web Development</h4>
-            <progress class="progress-bar" value="60" max="100">60%</progress>
+            <progress class="progress-bar" value="80" max="100">60%</progress>
             <h5>80% Complete</h5>
             <button class="blue-text-btn" onclick="openModal('modal1')">Clic to view topics → </button>
           </div>
           <div class="card">
             <h4>Data Science</h4>
-            <progress class="progress-bar" value="40" max="100">40%</progress>
+            <progress class="progress-bar" value="60" max="100">40%</progress>
             <h5>60% Complete</h5>
             <button class="blue-text-btn" onclick="openModal('modal2')">Clic to view topics → </button>
           </div>
           <div class="card">
             <h4>Mobile Development</h4>
-            <progress class="progress-bar" value="80" max="100">80%</progress>
+            <progress class="progress-bar" value="45" max="100">80%</progress>
             <h5>45% Complete</h5>
             <button class="blue-text-btn" onclick="openModal('modal3')">Clic to view topics → </button>
           </div>
           <div class="card">
             <h4>Cloud Computing</h4>
-            <progress class="progress-bar" value="20" max="100">20%</progress>
+            <progress class="progress-bar" value="30" max="100">20%</progress>
             <h5>30% Complete</h5>
             <button class="blue-text-btn"onclick="openModal('modal4')">Clic to view topics → </button>
           </div>
