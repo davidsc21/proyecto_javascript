@@ -476,6 +476,9 @@ h3{
 
 .globalprofile{
   width: 130vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .profilecontainer {
@@ -485,7 +488,7 @@ h3{
   flex-direction: column;
   background-color: #fff;
   box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.103);
-  width: 100%;
+  width: 90%;
 }
 
 .profheader .cover {
@@ -521,7 +524,7 @@ h3{
   flex-direction: column;
   z-index: 2;
   position: absolute;
-  top: 33vh;
+  top: 23%;
 }
 
 .avatarimg {
