@@ -279,5 +279,69 @@
       "start": "01/09/2023",
       "expected": "30/06/2027"
     }
+  ],
+  "dashboard":[
+    {
+      "dashboard-card-1":[
+        {
+          "title": "Active Courses",
+          "text": "3"
+        }
+      ],
+      "dashboard-card-2":[
+        {
+          "title": "Pending Assignments",
+          "text": "2"
+        }
+      ],
+      "dashboard-card-3":[
+        {
+          "title": "Overall Progress",
+          "text": "75%"
+        }
+      ],
+      "dashboard-card-4":[
+        {
+          "imagen": "./assets/unity-game-development.png",
+          "title": "Unity Game Development",
+          "trainer": "Dr. John Smith",
+          "lessons": "12"
+        }
+      ],
+      "dashboard-card-5":[
+        {
+          "imagen": "./assets/node.js-development.png",
+          "title": "Node.js Development",
+          "trainer": "Sarah Johnson",
+          "lessons": "6"
+        }
+      ],
+      "dashboard-card-6":[
+        {
+          "imagen": "./assets/react-mastery.png",
+          "title": "React Mastery",
+          "trainer": "Mike Wilson",
+          "lessons": "10"
+        }
+      ],
+      "dashboard-card-7":[
+        {
+          "title": "Overall Progress",
+          "result2": "75%"
+        }
+      ],
+      "dashboard-card-8":[
+        {
+          "title": "Overall Progress",
+          "result2": "75%"
+        }
+      ],
+      "dashboard-card-9":[
+        {
+          "title": "Overall Progress",
+          "result2": "75%"
+        }
+      ]
+    }
   ]
 }
