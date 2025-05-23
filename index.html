@@ -35,7 +35,7 @@
             <ul class="nav-menu">
                 <li class="opcion" id="dashboard"><a href="#">Dashboard</a></li>
                 <li class="opcion" id="courses" onclick="courses('courses')"><a href="#">Courses</a></li>
-                <li class="opcion" id="'assignments'"><a href="#">Assignments</a></li>
+                <li class="opcion" id="assignments"><a href="#">Assignments</a></li>
                 <li class="opcion" id="progress"onclick="nav('progreso')"><a>Progress</a></li>
                 <li class="opcion" id="profile" onclick="navigate('profile')"><a href="#">Profile</a></li>
             </ul>
@@ -80,15 +80,9 @@
             <div class="dash-board-container">
                 <h2>Dashboard</h2>
                 <div class="dashboard">
-                    <dashboard-card
-                        title="Active Courses"
-                        text="3"></dashboard-card>
-                    <dashboard-card
-                        title="Pending Assignments"
-                        text="2"></dashboard-card>
-                    <dashboard-card
-                        title="Overall Progress"
-                        text="75%"></dashboard-card>
+                    <dashboard-card filtro="dashboard-card-1"></dashboard-card>
+                    <dashboard-card filtro="dashboard-card-2"></dashboard-card>
+                    <dashboard-card filtro="dashboard-card-3"></dashboard-card>
                 </div>
             </div>
             <div class="my-enrolled-courses-container">
@@ -97,9 +91,9 @@
                     <button type="button" class="btn-MRC">Browse More Courses</button>
                 </header>
                 <div class="my-enrolled-courses">
-                    <my-enrolled-courses-card></my-enrolled-courses-card>
-                    <my-enrolled-courses-card></my-enrolled-courses-card>
-                    <my-enrolled-courses-card></my-enrolled-courses-card>
+                    <my-enrolled-courses-card filtro="dashboard-card-4"></my-enrolled-courses-card>
+                    <my-enrolled-courses-card filtro="dashboard-card-5"></my-enrolled-courses-card>
+                    <my-enrolled-courses-card filtro="dashboard-card-6"></my-enrolled-courses-card>
                 </div>
             </div>
             <div class="recent-activity-container">
