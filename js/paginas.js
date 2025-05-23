@@ -1,5 +1,5 @@
 //diferentes paginas a usar (spa)//
-  const pages = {
+const pages = {
     profile: `
         <div class="globalprofile">
             <div class="profilecontainer">
@@ -23,19 +23,19 @@
                         <div class="user-container">
                             <div class="user-info">
                                 <label>Full Name</label>
-                                <input placeholder="Your name" class="user-input" value="John Doe">
+                                <input id="name" placeholder="Your name" class="user-input" value="John Doe">
                             </div>
                             <div class="user-info">
                                 <label>Email</label>
-                                <input placeholder="Your email" class="user-input" value="john.doe@example.com">
+                                <input id="email" placeholder="Your email" class="user-input" value="john.doe@example.com">
                             </div>
                             <div class="user-info">
                                 <label>Phone</label>
-                                <input placeholder="Your phone number" class="user-input" value="+1 234 567 890">
+                                <input id="phone" placeholder="Your phone number" class="user-input" value="+1 234 567 890">
                             </div>
                             <div class="user-info">
                                 <label>Location</label>
-                                <input placeholder="Your location" class="user-input" value="New York, USA">
+                                <input id="location"  placeholder="Your location" class="user-input" value="New York, USA">
                             </div>
                         </div>  
                     </div>
@@ -49,15 +49,15 @@
                             </div>
                             <div class="user-info">
                                 <label>Program</label>
-                                <input placeholder="Your program" class="user-input" value="Bachelor of Computer Science">
+                                <input id="program" placeholder="Your program" class="user-input" value="Bachelor of Computer Science">
                             </div>
                             <div class="user-info">
                                 <label>Start Date</label>
-                                <input  class="user-input" type="date" value="2023-08-29">
+                                <input  id="start" class="user-input" type="date" value="2023-08-29">
                             </div>
                             <div class="user-info">
                                 <label>Expected Date</label>
-                                <input  class="user-input" type="date" value="2027-06-30">
+                                <input id="end" class="user-input" type="date" value="2027-06-30">
                             </div>
                         </div>  
                     </div>
@@ -86,21 +86,21 @@
                             <div class="preference-item">
                                 <label class="checkbox-container">
                                     <input type="checkbox" class"checkbox">
-                                     Email Notifications 
+                                    Email Notifications 
                                 </label>
                                 <span>Receive updates about your courses and assignments</span>
                             </div>
                             <div class="preference-item">
                                 <label class="checkbox-container">
                                     <input type="checkbox">
-                                     Public Profile
+                                    Public Profile
                                 </label>
                                 <span>Make your profile visible to other students</span>
                             </div>
                             <div class="preference-item">
                                 <label class="checkbox-container">
                                     <input type="checkbox">
-                                     Show Progress 
+                                    Show Progress 
                                 </label>
                                 <span>Display your progress on your public profile</span>
                             </div>

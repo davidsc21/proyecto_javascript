@@ -1,0 +1,47 @@
+/* Estilo normal del nav */
+nav.menu {
+  background-color: #2C3E50; 
+  transition: background-color 0.3s ease; 
+}
+
+/* Estilo cuando está activo el modo oscuro */
+nav.menu.dark-nav {
+  background-color: #1a1a1a; 
+  
+  .tema-btn:hover{
+  background-color: #313131;
+  border-radius: 100px;
+  height: 60%;
+  transform: scale(1.1);
+  }
+  li:hover {
+    background-color: #313131;
+    border-radius: 4px;
+  }
+  #lang {
+    background-color: #313131;
+    color: #fff;
+    border: 1px solid #687581;
+    padding: 0.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: Inter, sans-serif;
+    font-size: 0.9rem;
+  } 
+  #lang option {
+    background-color: #313131;
+    color: #fff;
+  }
+  .profile-trigger:hover{
+    background-color: #313131;
+    border-radius: 5px;
+    height: 4rem;
+    transition: color 0.5s ease, background-color 0.5s ease;
+  }
+  .nav-actions{
+    display: flex;
+    align-items: center;
+    gap: 1.5rem; /* Espacio entre elementos como en la imagen */
+    background-color: transparent;
+  }
+}
