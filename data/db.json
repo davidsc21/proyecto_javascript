@@ -279,5 +279,120 @@
       "start": "01/09/2023",
       "expected": "30/06/2027"
     }
+  ],
+  "progress": [
+    {
+      "title": "Web Development",
+      "percentage": 80,
+      "modalId": "modal1",
+      "image": "assets/mode.js-development.png",
+      "topics": [
+        {
+          "title": "HTML Fundamentals",
+          "progress": 100,
+          "description": "Aprende las bases de HTML para estructurar correctamente una página web utilizando etiquetas semánticas."
+        },
+        {
+          "title": "CSS Styling",
+          "progress": 100,
+          "description": "Aplica estilos visuales a tus páginas utilizando selectores, propiedades de color, tipografía y layout."
+        },
+        {
+          "title": "JavaScript Basics",
+          "progress": 100,
+          "description": "Domina los conceptos fundamentales de programación en JavaScript, como variables, funciones y eventos."
+        },
+        {
+          "title": "Frontend Frameworks",
+          "progress": 110,
+          "description": "Explora frameworks modernos como React para construir interfaces dinámicas y componentes reutilizables."
+        }
+      ]
+    },
+    {
+      "title": "Data Science",
+      "percentage": 60,
+      "modalId": "modal2",
+      "image": "assets/data-science.png",
+      "topics": [
+        {
+          "title": "Python Programming",
+          "progress": 90,
+          "description": "Utiliza Python para automatizar tareas, manipular datos y construir scripts reutilizables."
+        },
+        {
+          "title": "Data Analysis",
+          "progress": 70,
+          "description": "Aprende a limpiar, transformar y analizar grandes conjuntos de datos con Pandas y NumPy."
+        },
+        {
+          "title": "Machine Learning",
+          "progress": 45,
+          "description": "Aplica modelos supervisados y no supervisados para resolver problemas reales de predicción."
+        },
+        {
+          "title": "Data Visualization",
+          "progress": 35,
+          "description": "Crea visualizaciones claras y atractivas con herramientas como Matplotlib y Seaborn."
+        }
+      ]
+    },
+    {
+      "title": "Mobile Development",
+      "percentage": 45,
+      "modalId": "modal3",
+      "image": "assets/mobile-development.jpeg",
+      "topics": [
+        {
+          "title": "Mobile UI Design",
+          "progress": 80,
+          "description": "Diseña interfaces intuitivas y atractivas adaptadas a dispositivos móviles."
+        },
+        {
+          "title": "React Native Basics",
+          "progress": 55,
+          "description": "Crea aplicaciones móviles nativas con JavaScript usando el framework React Native."
+        },
+        {
+          "title": "Native APIs",
+          "progress": 30,
+          "description": "Integra funciones nativas del dispositivo como cámara, GPS y almacenamiento local."
+        },
+        {
+          "title": "App Publishing",
+          "progress": 15,
+          "description": "Publica tus apps en Google Play y App Store, siguiendo sus requisitos y procesos de revisión."
+        }
+      ]
+    },
+    {
+      "title": "Cloud Computing",
+      "percentage": 30,
+      "modalId": "modal4",
+      "image": "assets/cloud-computing.png",
+      "topics": [
+        {
+          "title": "Cloud Fundamentals",
+          "progress": 100,
+          "description": "Comprende los conceptos básicos de la computación en la nube y sus beneficios."
+        },
+        {
+          "title": "AWS Services",
+          "progress": 40,
+          "description": "Explora servicios clave de AWS como EC2, S3 y Lambda para construir soluciones escalables."
+        },
+        {
+          "title": "Cloud Security",
+          "progress": 25,
+          "description": "Aplica principios de seguridad para proteger tus datos y aplicaciones en la nube."
+        },
+        {
+          "title": "Serverless Computing",
+          "progress": 15,
+          "description": "Crea aplicaciones sin servidor utilizando funciones como servicio (FaaS) en entornos cloud."
+        }
+      ]
+    }
   ]
+
 }
