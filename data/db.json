@@ -241,6 +241,31 @@
           "result3": "and understand lab safety. "
         }
       ]
+    },{
+      "id": "13",
+      "nivel": "Intermediate",
+      "duracion": "6 weeks",
+      "titulo": "CSS Architecture",
+      "categoria": "Frontend",
+      "imagen": "./assets/css-architecture.png",
+      "descripcion": "Learn to build maintainable CSS at scale using modern methodologies and tools",
+      "prerequisitos": "Strong understanding of CSS basics and experience with responsive design.",
+      "resultados": "Design scalable CSS architectures, implement modern CSS features, and optimize performance.",
+      "estructuraCurso": "12 lessons, 6 styling projects, 3 architecture workshops, and a final design system project.",
+      "prerequisitosList":[
+        {
+          "requisit1": "No technical prerequisites ",
+          "requisit2": "Passion for games and creative thinking required. "
+        }
+      ],
+      "resultadosList":[
+        {
+          "result1": "Design engaging game mechanics ",
+          "result2": "balance gameplay ",
+          "result3": "create compelling narratives ",
+          "result4": "and understand player psychology. "
+        }
+      ]
     }
   ],
   "usuario":[
