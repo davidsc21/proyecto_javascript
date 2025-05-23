@@ -1,4 +1,8 @@
 @media (max-width: 400px) {
+    .profilecontainer{
+        width: 100%;
+    }
+    
     .buttons {
     width: 100%;
     display: flex;
@@ -8,7 +12,6 @@
     justify-content: center;
     gap: 1rem;
     }
-   
     #save {
     background-color: #3394d4;
     border-radius: 5px;
