@@ -1,0 +1,10 @@
+/* Estilo normal del nav */
+nav.menu {
+  background-color: #2C3E50; /* Color inicial */
+  transition: background-color 0.3s ease; /* Transición suave */
+}
+
+/* Estilo cuando está activo el modo oscuro */
+nav.menu.dark-nav {
+  background-color: black; /* Color negro cuando está activo */
+}
