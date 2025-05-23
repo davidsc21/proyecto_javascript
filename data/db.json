@@ -242,16 +242,16 @@
         }
       ]
     },{
-      "id": "3",
-      "nivel": "All Levels",
-      "duracion": "10 weeks",
-      "titulo": "Game Design Principlest",
-      "categoria": "Video Games",
-      "imagen": "./assets/game-design-principles.png",
-      "descripcion": "Learn essential game design concepts including mechanics, dynamics, aesthetics, and player psychology.",
-      "prerequisitos": "No technical prerequisites. Passion for games and creative thinking required.",
-      "resultados": "Design engaging game mechanics, balance gameplay, create compelling narratives, and understand player psychology.",
-      "estructuraCurso": "20 theory lessons, 10 design workshops, 5 game analysis projects, and a final game design document.",
+      "id": "13",
+      "nivel": "Intermediate",
+      "duracion": "6 weeks",
+      "titulo": "CSS Architecture",
+      "categoria": "Frontend",
+      "imagen": "./assets/css-architecture.png",
+      "descripcion": "Learn to build maintainable CSS at scale using modern methodologies and tools",
+      "prerequisitos": "Strong understanding of CSS basics and experience with responsive design.",
+      "resultados": "Design scalable CSS architectures, implement modern CSS features, and optimize performance.",
+      "estructuraCurso": "12 lessons, 6 styling projects, 3 architecture workshops, and a final design system project.",
       "prerequisitosList":[
         {
           "requisit1": "No technical prerequisites ",

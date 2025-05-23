@@ -1,1196 +1,826 @@
-class CoursesPage extends HTMLElement{
+class CoursesPage extends HTMLElement {
   constructor() {
     super();
-    this.attachShadow({mode:'open'})
-
-     this.shadowRoot.innerHTML = `
-     <style>
-     .courses {
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #f3f4f6;
-  margin: 0;
-  padding: 2rem;
-  color: #111;
-}
-
-h1 {
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
-}
-
-h2 {
-  font-size: 1.7rem;
-  color: #2c3e50;
-  margin-bottom: 1rem;
-  position: relative;
-  padding-bottom: 0.5rem;
-  text-transform: capitalize;
-}
-
-h2::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 1px;
-  width: 100%;
-  background-color: #3498db;
-}
-
-.courses-section {
-  width: 1100px;
-  margin: 0 auto;
-}
-
-.courses-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-top: 1rem;
-  padding: 1rem;
-}
-
-.courses-card {
-  perspective: 1000px;
-  position: relative;
-  height: 100%;
-  position: relative;
-}
-
-.flip-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transition: transform 0.8s ease;
-  transform-style: preserve-3d;
-}
-
-.courses-card.flipped .flip-inner {
-  transform: rotateY(180deg);
-}
-
-.card-front,
-.card-back {
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  background-color: #fff;
-  border-radius: 16px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-.card-front {
-  z-index: 2;
-}
-
-.card-back {
-  transform: rotateY(180deg);
-  padding: 2rem;
-  box-sizing: border-box;
-  z-index: 1;
-  overflow-y: auto;
-  position: absolute;
-}
-
-.card-back::-webkit-scrollbar {
-  width: 10px;
-}
-
-.card-back::-webkit-scrollbar-track {
-  background: #f0f0f0; /* color del fondo del scroll */
-  border-radius: 10px;
-}
-
-.card-back::-webkit-scrollbar-thumb {
-  background-color: #888; /* color del thumb (la parte que se mueve) */
-  border-radius: 10px;
-  border: 2px solid #f0f0f0; /* opcional: agrega espacio entre el thumb y el track */
-}
-
-.card-back::-webkit-scrollbar-thumb:hover {
-  background-color: #2980b9;
-}
-.card-img {
-  height: 180px;
-  background-size: cover;
-  background-position: center;
-  position: relative;
-}
-
-.level-tag,
-.duration-tag {
-  position: absolute;
-  top: 10px;
-  background-color: rgba(0, 0, 0, 0.75);
-  color: #fff;
-  padding: 4px 12px;
-  border-radius: 16px;
-  font-size: 0.75rem;
-}
-
-.level-tag {
-  left: 10px;
-}
-
-.duration-tag {
-  right: 10px;
-}
-
-.card-content {
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  flex-grow: 1;
-}
-
-.card-content h3 {
-  margin: 0;
-  font-size: 1.5rem;
-}
-
-.card-content p {
-  font-size: 0.9rem;
-  color: #555;
-  flex-grow: 1;
-}
-
-.card-buttons {
-  display: flex;
-  gap: 0.75rem;
-  margin-top: auto;
-}
-
-.enroll-btn,
-.info-btn,
-.flip-btn {
-  flex: 1;
-  padding: 1rem 1rem;
-  font-size: 0.9rem;
-  border-radius: 24px;
-  cursor: pointer;
-  border: 2px solid #3498db;
-  transition: 0.3s ease;
-}
-
-.enroll-btn {
-  background-color: #3498db;
-  color: #fff;
-}
-
-.enroll-btn:hover {
-  background-color: #2980b9;
-}
-
-.info-btn {
-  background-color: transparent;
-  color: #3498db;
-}
-.flip-btn{
-  background-color: transparent;
-  color: #ecf0f1;
-  background-color: #3498db;
-}
-
-.info-btn:hover {
-  background-color: #ecf0f1;
-}
-.flip-btn:hover{
-  background-color: #2980b9;
-}
-
-@media (max-width: 1100px) {
-  .courses-section {
-    width: 100%;
-    padding: 0 1rem;
-    box-sizing: border-box;
+    this.attachShadow({ mode: 'open' });
+    this.coursesData = [];
   }
 
-  h1 {
-    font-size: 2rem;
+  async connectedCallback() {
+    await this.fetchCoursesData();
+    this.render();
+    this.setupEventListeners();
   }
 
-  h2 {
-    font-size: 1.4rem;
-  }
-
-  .card-content h3 {
-    font-size: 1.3rem;
-  }
-
-  .card-content p {
-    font-size: 0.85rem;
-  }
-
-  .enroll-btn,
-  .info-btn,
-  .flip-btn {
-    font-size: 0.85rem;
-    padding: 0.75rem;
-  }
-}
-
-/* Responsivo para pantallas pequeñas: móviles */
-@media (max-width: 480px) {
-  .courses-container {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-    padding: 0.5rem;
-  }
-
-  .card-buttons {
-    flex-direction: column;
-  }
-
-  .card-content {
-    padding: 1rem;
-    gap: 0.75rem;
-  }
-
-  .card-back {
-    padding: 1rem;
-  }
-
-  .enroll-btn,
-  .info-btn,
-  .flip-btn {
-    font-size: 0.8rem;
-    padding: 0.75rem;
-  }
-}
-     
-     </style>
-
-
-     <section class="courses">
-     <section class="courses-section">
-  <h1>Available Courses</h1>
-  <h2>Video Games</h2>
-  <div class="courses-container">
-    <div class="courses-card">
-      <div class="flip-inner">
-        <!-- FRONT -->
-        <div class="card-front">
-          <div class="card-img" style="background-image: url('/assets/courses/img1.jpeg');">
-            <span class="level-tag">Intermediate</span>
-            <span class="duration-tag">⏱ 12 weeks</span>
-          </div>
-          <div class="card-content">
-            <h3>Unity Game Development</h3>
-            <p>
-              Create immersive 3D games with Unity. Learn C# programming,
-              game physics, and professional game development...
-            </p>
-            <div class="card-buttons">
-              <button class="enroll-btn" onclick="money('money')">Enroll Now</button>
-              <button class="info-btn">More Info</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- BACK -->
-        <div class="card-back">
-          <div class="card-content">
-            <h2>Prerequisites</h2>
-            <p>Basic programming knowledge in any language. Understanding of 3D geometry is helpful but not required.</p>
-            <h2>What You'll Learn</h2>
-            <p>Build complete 3D games, master C# programming, implement game physics, create engaging UI systems, and optimize game performance.</p>
-            <h2>Course Structure</h2>
-            <p>24 interactive lessons, 12 hands-on projects, 4 major game development assignments, and a final capstone project..</p>
-            <button class="flip-btn">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  
- <div class="courses-card">
-      <div class="flip-inner">
-        <!-- FRONT -->
-        <div class="card-front">
-          <div class="card-img" style="background-image: url('/assets/courses/img2.jpeg');">
-            <span class="level-tag">Intermediate</span>
-            <span class="duration-tag">⏱ 12 weeks</span>
-          </div>
-          <div class="card-content">
-            <h3>Unity Game Development</h3>
-            <p>
-              Create immersive 3D games with Unity. Learn C# programming,
-              game physics, and professional game development...
-            </p>
-            <div class="card-buttons">
-              <button class="enroll-btn" onclick="money('money')">Enroll Now</button>
-              <button class="info-btn">More Info</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- BACK -->
-        <div class="card-back">
-          <div class="card-content">
-            <h2>Prerequisites</h2>
-            <p>Basic programming knowledge in any language. Understanding of 3D geometry is helpful but not required.</p>
-            <h2>What You'll Learn</h2>
-            <p>Build complete 3D games, master C# programming, implement game physics, create engaging UI systems, and optimize game performance.</p>
-            <h2>Course Structure</h2>
-            <p>24 interactive lessons, 12 hands-on projects, 4 major game development assignments, and a final capstone project..</p>
-            <button class="flip-btn">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
- <div class="courses-card">
-      <div class="flip-inner">
-        <!-- FRONT -->
-        <div class="card-front">
-          <div class="card-img" style="background-image: url('/assets/courses/img3.jpeg');">
-            <span class="level-tag">Intermediate</span>
-            <span class="duration-tag">⏱ 12 weeks</span>
-          </div>
-          <div class="card-content">
-            <h3>Unity Game Development</h3>
-            <p>
-              Create immersive 3D games with Unity. Learn C# programming,
-              game physics, and professional game development...
-            </p>
-            <div class="card-buttons">
-              <button class="enroll-btn" onclick="money('money')">Enroll Now</button>
-              <button class="info-btn">More Info</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- BACK -->
-        <div class="card-back">
-          <div class="card-content">
-             <h2>Prerequisites</h2>
-            <p>Basic programming knowledge in any language. Understanding of 3D geometry is helpful but not required.</p>
-            <h2>What You'll Learn</h2>
-            <p>Build complete 3D games, master C# programming, implement game physics, create engaging UI systems, and optimize game performance.</p>
-            <h2>Course Structure</h2>
-            <p>24 interactive lessons, 12 hands-on projects, 4 major game development assignments, and a final capstone project..</p>
-            <button class="flip-btn">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-
-
-</div>
-</section>
-
-  <section class="courses-section">
-  <h2>Video Games</h2>
-  <div class="courses-container">
-    <div class="courses-card">
-      <div class="flip-inner">
-        <!-- FRONT -->
-        <div class="card-front">
-          <div class="card-img" style="background-image: url('/assets/courses/img4.jpeg');">
-            <span class="level-tag">Intermediate</span>
-            <span class="duration-tag">⏱ 12 weeks</span>
-          </div>
-          <div class="card-content">
-            <h3>Unity Game Development</h3>
-            <p>
-              Create immersive 3D games with Unity. Learn C# programming,
-              game physics, and professional game development...
-            </p>
-            <div class="card-buttons">
-              <button class="enroll-btn" onclick="money('money')">Enroll Now</button>
-              <button class="info-btn">More Info</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- BACK -->
-        <div class="card-back">
-          <div class="card-content">
-            <h2>Prerequisites</h2>
-            <p>Basic programming knowledge in any language. Understanding of 3D geometry is helpful but not required.</p>
-            <h2>What You'll Learn</h2>
-            <p>Build complete 3D games, master C# programming, implement game physics, create engaging UI systems, and optimize game performance.</p>
-            <h2>Course Structure</h2>
-            <p>24 interactive lessons, 12 hands-on projects, 4 major game development assignments, and a final capstone project..</p>
-            <button class="flip-btn">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  
- <div class="courses-card">
-      <div class="flip-inner">
-        <!-- FRONT -->
-        <div class="card-front">
-          <div class="card-img" style="background-image: url('/assets/courses/img5.jpeg');">
-            <span class="level-tag">Intermediate</span>
-            <span class="duration-tag">⏱ 12 weeks</span>
-          </div>
-          <div class="card-content">
-            <h3>Unity Game Development</h3>
-            <p>
-              Create immersive 3D games with Unity. Learn C# programming,
-              game physics, and professional game development...
-            </p>
-            <div class="card-buttons">
-              <button class="enroll-btn" onclick="money('money')">Enroll Now</button>
-              <button class="info-btn">More Info</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- BACK -->
-        <div class="card-back">
-          <div class="card-content">
-            <h4>Prerequisites</h4>
-             <h2>Prerequisites</h2>
-            <p>Basic programming knowledge in any language. Understanding of 3D geometry is helpful but not required.</p>
-            <h2>What You'll Learn</h2>
-            <p>Build complete 3D games, master C# programming, implement game physics, create engaging UI systems, and optimize game performance.</p>
-            <h2>Course Structure</h2>
-            <p>24 interactive lessons, 12 hands-on projects, 4 major game development assignments, and a final capstone project..</p>
-            <button class="flip-btn">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
- <div class="courses-card">
-      <div class="flip-inner">
-        <!-- FRONT -->
-        <div class="card-front">
-          <div class="card-img" style="background-image: url('/assets/courses/img6.jpg');">
-            <span class="level-tag">Intermediate</span>
-            <span class="duration-tag">⏱ 12 weeks</span>
-          </div>
-          <div class="card-content">
-            <h3>Unity Game Development</h3>
-            <p>
-              Create immersive 3D games with Unity. Learn C# programming,
-              game physics, and professional game development...
-            </p>
-            <div class="card-buttons">
-              <button class="enroll-btn" onclick="money('money')">Enroll Now</button>
-              <button class="info-btn">More Info</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- BACK -->
-        <div class="card-back">
-          <div class="card-content">
-             <h2>Prerequisites</h2>
-            <p>Basic programming knowledge in any language. Understanding of 3D geometry is helpful but not required.</p>
-            <h2>What You'll Learn</h2>
-            <p>Build complete 3D games, master C# programming, implement game physics, create engaging UI systems, and optimize game performance.</p>
-            <h2>Course Structure</h2>
-            <p>24 interactive lessons, 12 hands-on projects, 4 major game development assignments, and a final capstone project..</p>
-            <button class="flip-btn">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-
-
-</div>
-</section>
-
-
-  <section class="courses-section">
-  <h2>Video Games</h2>
-  <div class="courses-container">
-    <div class="courses-card">
-      <div class="flip-inner">
-        <!-- FRONT -->
-        <div class="card-front">
-          <div class="card-img" style="background-image: url('/assets/courses/img7.jpeg');">
-            <span class="level-tag">Intermediate</span>
-            <span class="duration-tag">⏱ 12 weeks</span>
-          </div>
-          <div class="card-content">
-            <h3>Unity Game Development</h3>
-            <p>
-              Create immersive 3D games with Unity. Learn C# programming,
-              game physics, and professional game development...
-            </p>
-            <div class="card-buttons">
-              <button class="enroll-btn" onclick="money('money')">Enroll Now</button>
-              <button class="info-btn">More Info</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- BACK -->
-        <div class="card-back">
-          <div class="card-content">
-             <h2>Prerequisites</h2>
-            <p>Basic programming knowledge in any language. Understanding of 3D geometry is helpful but not required.</p>
-            <h2>What You'll Learn</h2>
-            <p>Build complete 3D games, master C# programming, implement game physics, create engaging UI systems, and optimize game performance.</p>
-            <h2>Course Structure</h2>
-            <p>24 interactive lessons, 12 hands-on projects, 4 major game development assignments, and a final capstone project..</p>
-            <button class="flip-btn">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  
- <div class="courses-card">
-      <div class="flip-inner">
-        <!-- FRONT -->
-        <div class="card-front">
-          <div class="card-img" style="background-image: url('/assets/courses/img11.jpeg');">
-            <span class="level-tag">Intermediate</span>
-            <span class="duration-tag">⏱ 12 weeks</span>
-          </div>
-          <div class="card-content">
-            <h3>Unity Game Development</h3>
-            <p>
-              Create immersive 3D games with Unity. Learn C# programming,
-              game physics, and professional game development...
-            </p>
-            <div class="card-buttons">
-              <button class="enroll-btn" onclick="money('money')">Enroll Now</button>
-              <button class="info-btn">More Info</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- BACK -->
-        <div class="card-back">
-          <div class="card-content">
-            <h2>Prerequisites</h2>
-            <p>Basic programming knowledge in any language. Understanding of 3D geometry is helpful but not required.</p>
-            <h2>What You'll Learn</h2>
-            <p>Build complete 3D games, master C# programming, implement game physics, create engaging UI systems, and optimize game performance.</p>
-            <h2>Course Structure</h2>
-            <p>24 interactive lessons, 12 hands-on projects, 4 major game development assignments, and a final capstone project..</p>
-            <button class="flip-btn">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
- <div class="courses-card">
-      <div class="flip-inner">
-        <!-- FRONT -->
-        <div class="card-front">
-          <div class="card-img" style="background-image: url('/assets/courses/img8.jpeg');">
-            <span class="level-tag">Intermediate</span>
-            <span class="duration-tag">⏱ 12 weeks</span>
-          </div>
-          <div class="card-content">
-            <h3>Unity Game Development</h3>
-            <p>
-              Create immersive 3D games with Unity. Learn C# programming,
-              game physics, and professional game development...
-            </p>
-            <div class="card-buttons">
-              <button class="enroll-btn" onclick="money('money')">Enroll Now</button>
-              <button class="info-btn">More Info</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- BACK -->
-        <div class="card-back">
-          <div class="card-content">
-             <h2>Prerequisites</h2>
-            <p>Basic programming knowledge in any language. Understanding of 3D geometry is helpful but not required.</p>
-            <h2>What You'll Learn</h2>
-            <p>Build complete 3D games, master C# programming, implement game physics, create engaging UI systems, and optimize game performance.</p>
-            <h2>Course Structure</h2>
-            <p>24 interactive lessons, 12 hands-on projects, 4 major game development assignments, and a final capstone project..</p>
-            <button class="flip-btn">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-
-
-</div>
-</section>
-
-
-  <section class="courses-section">
-  <h2>Video Games</h2>
-  <div class="courses-container">
-    <div class="courses-card">
-      <div class="flip-inner">
-        <!-- FRONT -->
-        <div class="card-front">
-          <div class="card-img" style="background-image: url('/assets/courses/img9.jpeg');">
-            <span class="level-tag">Intermediate</span>
-            <span class="duration-tag">⏱ 12 weeks</span>
-          </div>
-          <div class="card-content">
-            <h3>Unity Game Development</h3>
-            <p>
-              Create immersive 3D games with Unity. Learn C# programming,
-              game physics, and professional game development...
-            </p>
-            <div class="card-buttons">
-              <button class="enroll-btn" onclick="money('money')">Enroll Now</button>
-              <button class="info-btn">More Info</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- BACK -->
-        <div class="card-back">
-          <div class="card-content">
-            <h2>Prerequisites</h2>
-            <p>Basic programming knowledge in any language. Understanding of 3D geometry is helpful but not required.</p>
-            <h2>What You'll Learn</h2>
-            <p>Build complete 3D games, master C# programming, implement game physics, create engaging UI systems, and optimize game performance.</p>
-            <h2>Course Structure</h2>
-            <p>24 interactive lessons, 12 hands-on projects, 4 major game development assignments, and a final capstone project..</p>
-            <button class="flip-btn">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  
- <div class="courses-card">
-      <div class="flip-inner">
-        <!-- FRONT -->
-        <div class="card-front">
-          <div class="card-img" style="background-image: url('/assets/courses/img12.jpeg');">
-            <span class="level-tag">Intermediate</span>
-            <span class="duration-tag">⏱ 12 weeks</span>
-          </div>
-          <div class="card-content">
-            <h3>Unity Game Development</h3>
-            <p>
-              Create immersive 3D games with Unity. Learn C# programming,
-              game physics, and professional game development...
-            </p>
-            <div class="card-buttons">
-              <button class="enroll-btn" onclick="money('money')">Enroll Now</button>
-              <button class="info-btn">More Info</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- BACK -->
-        <div class="card-back">
-          <div class="card-content">
-            <h2>Prerequisites</h2>
-            <p>Basic programming knowledge in any language. Understanding of 3D geometry is helpful but not required.</p>
-            <h2>What You'll Learn</h2>
-            <p>Build complete 3D games, master C# programming, implement game physics, create engaging UI systems, and optimize game performance.</p>
-            <h2>Course Structure</h2>
-            <p>24 interactive lessons, 12 hands-on projects, 4 major game development assignments, and a final capstone project..</p>
-            <button class="flip-btn">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
- <div class="courses-card">
-      <div class="flip-inner">
-        <!-- FRONT -->
-        <div class="card-front">
-          <div class="card-img" style="background-image: url('/assets/courses/img10.jpeg');">
-            <span class="level-tag">Intermediate</span>
-            <span class="duration-tag">⏱ 12 weeks</span>
-          </div>
-          <div class="card-content">
-            <h3>Unity Game Development</h3>
-            <p>
-              Create immersive 3D games with Unity. Learn C# programming,
-              game physics, and professional game development...
-            </p>
-            <div class="card-buttons">
-              <button class="enroll-btn" onclick="money('money')">Enroll Now</button>
-              <button class="info-btn">More Info</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- BACK -->
-        <div class="card-back">
-          <div class="card-content">
-             <h2>Prerequisites</h2>
-            <p>Basic programming knowledge in any language. Understanding of 3D geometry is helpful but not required.</p>
-            <h2>What You'll Learn</h2>
-            <p>Build complete 3D games, master C# programming, implement game physics, create engaging UI systems, and optimize game performance.</p>
-            <h2>Course Structure</h2>
-            <p>24 interactive lessons, 12 hands-on projects, 4 major game development assignments, and a final capstone project..</p>
-            <button class="flip-btn">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-
-
-</div>
-</section>
-    
-    
-    
-    </section>
-     
-     
-     
-     ` 
-    
-
-  }
- connectedCallback(){
-this.shadowRoot.addEventListener('click', (e) => {
-  const card = e.target.closest('.courses-card');
-  if (!card) return;
-
-  if(e.target.classList.contains('info-btn')){
-    card.classList.add('flipped')
-
-  } else if (e.target.classList.contains('flip-btn')){
-    e.stopPropagation();
-    card.classList.remove('flipped')
-  }
-  
-
-
-
- }
-)}
-
-}
-customElements.define('courses-page', CoursesPage)
-
-
-class MoneyCourses extends HTMLElement{
-  constructor(){
-    super();
-    this.attachShadow({mode:'open'})
-    this.shadowRoot.innerHTML =`
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background-color: #f4f5f7;
-      color: #1f2937;
-    }
-
-    .container {
-      max-width: 1100px;
-      margin: auto;
-      padding: 2rem 1rem;
-    }
-
-    a.back-link {
-      color: #3b82f6;
-      text-decoration: none;
-      font-size: 0.9rem;
-      display: inline-block;
-      margin-bottom: 1rem;
-      padding:1rem 1rem;
-      cursor:pointer;
-    }
-
-    .header-card {
-      position: relative;
-      border-radius: 1rem;
-      overflow: hidden;
-      color: white;
-    }
-
-    .header-card img {
-      width:100%;
-      height: 300px;
-      display: block;
-      object-fit: cover;
-    }
-
-    .header-content {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      padding: 2rem;
-      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6));
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .header-title {
-      font-size: 2.2rem;
-      font-weight: 700;
-    }
-
-    .badges {
-      display: flex;
-      gap: 0.75rem;
-      margin-top: 0.75rem;
-    }
-
-    .badge {
-      background-color: rgba(255, 255, 255, 0.2);
-      padding: 0.4rem 0.8rem;
-      border-radius: 9999px;
-      font-size: 0.8rem;
-      display: flex;
-      align-items: center;
-    }
-
-    .header-description {
-      margin-top: 1rem;
-      font-size: 0.9rem;
-    }
-
-    .instructor {
-      display: flex;
-      align-items: center;
-      margin-top: 1.5rem;
-    }
-
-    .instructor img {
-      width: 48px;
-      height: 48px;
-      border-radius: 9999px;
-      margin-right: 0.75rem;
-    }
-
-    .card-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-
-   .side-card {
-      background-color: white;
-      border-radius: 1rem;
-      padding: 1.5rem;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-      height: 350px;
-      
-    }
-    .card{
-       background-color: white;
-      border-radius: 1rem;
-      padding: 1.5rem;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    
-      
-
-    }
-
-    .card h2 {
-      margin-top: 0;
-      font-size: 1.5rem;
-    }
-
-    .side-card {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-
-    .price {
-      font-size: 2rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-    }
-
-    .features {
-      list-style: none;
-      padding: 0;
-      text-align: left;
-      line-height: 1.8;
-      margin: 1rem 0;
-    }
-
-    .features li::before {
-      content: "✓";
-      color: green;
-      margin-right: 0.5rem;
-    }
-
-    .button {
-      flex: 1;
-      padding: 1rem 6rem;
-      font-size: 0.9rem;
-      border-radius: 24px;
-      cursor: pointer;
-      background-color:  #3498db;
-      border: 2px solid #3498db;
-      color:white;
-       transition: 0.3s ease;
-    }
-
-    #card{
-        height: 150px;
-    }
-    .container2 {
-      background-color: white;
-      max-width: 700px;
-      margin: auto;
-      padding: 30px;
-      border-radius: 20px;
-      border:none;
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
-    }
-
-    h2 {
-      font-size: 32px;
-      color: #1f2937;
-      margin-bottom: 25px;
-    }
-
-    .module {
-      background-color: #f9fafb;
-      border-radius: 12px;
-      margin-bottom: 16px;
-      padding: 20px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .module:hover {
-      background-color: #f1f5f9;
-    }
-
-    .module-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 16px;
-      font-weight: 500;
-    }
-
-    .module-header .title {
-      display: flex;
-      gap: 8px;
-    }
-
-    .module-header .title span {
-      color: #3b82f6;
-      font-weight: 600;
-    }
-
-    .toggle-icon {
-      font-size: 20px;
-      color: #6b7280;
-    }
-
-    .module-content {
-      margin-top: 15px;
-      padding-left: 20px;
-      display: none;
-      animation: fadeIn 0.3s ease;
-    }
-
-    .module-content p {
-      margin: 8px 0;
-      font-size: 15px;
-      color: #374151;
-      border-top: 1px solid #e5e7eb;
-      padding-top: 10px;
-    }
-
-    .active .module-content {
-      display: block;
-    }
-
-    .active .toggle-icon {
-      transform: rotate(180deg);
-    }
-
-    @keyframes fadeIn {
-      from {opacity: 0;}
-      to {opacity: 1;}
-    }
-
-    @media (max-width: 768px) {
-      .card-grid {
-        grid-template-columns: 1fr;
+  async fetchCoursesData() {
+    try {
+      const response = await fetch('/data/db.json');
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
       }
+      const data = await response.json();
+      this.coursesData = data.cursos;
+    } catch (error) {
+      console.error('Error fetching courses data:', error);
     }
-  
-  </style>
+  }
 
-  <div class="container">
-    <a class="back-link"  onclick="courses('courses')">← Back to Courses</a>
+  render() {
+    // Agrupar cursos por categoría
+    const coursesByCategory = this.groupCoursesByCategory();
 
-    <div class="header-card">
-      <img src="/assets/courses/13.jpeg" alt="Course banner" />
-      <div class="header-content">
-        <div>
-          <h1 class="header-title">Unity Game Development</h1>
-          <div class="badges">
-            <div class="badge">⏱ 12 weeks</div>
-            <div class="badge">Intermediate</div>
-            <div class="badge">250+ enrolled</div>
-          </div>
-          <p class="header-description">
-            Create immersive 3D games with Unity. Learn C# programming, game physics, and professional game development workflows.
-          </p>
+    // Generar HTML para cada categoría
+    let categoriesHTML = '';
+    for (const [category, courses] of Object.entries(coursesByCategory)) {
+      categoriesHTML += this.renderCategory(category, courses);
+    }
+
+    this.shadowRoot.innerHTML = `
+      <style>
+        .courses {
+          font-family: 'Segoe UI', sans-serif;
+          background-color: #f3f4f6;
+          margin: 0;
+          padding: 2rem;
+          color: #111;
+        }
+
+        h1 {
+          font-size: 2.5rem;
+          margin-bottom: 0.5rem;
+        }
+
+        h2 {
+          font-size: 1.7rem;
+          color: #2c3e50;
+          margin-bottom: 1rem;
+          position: relative;
+          padding-bottom: 0.5rem;
+          text-transform: capitalize;
+        }
+
+        h2::after {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          height: 1px;
+          width: 100%;
+          background-color: #3498db;
+        }
+
+        .courses-section {
+          width: 1100px;
+          margin: 0 auto;
+        }
+
+        .courses-container {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          gap: 2rem;
+          margin-top: 1rem;
+          padding: 1rem;
+        }
+
+        .courses-card {
+          perspective: 1000px;
+          position: relative;
+          height: 100%;
+          position: relative;
+        }
+
+        .flip-inner {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          transition: transform 0.8s ease;
+          transform-style: preserve-3d;
+        }
+
+        .courses-card.flipped .flip-inner {
+          transform: rotateY(180deg);
+        }
+
+        .card-front,
+        .card-back {
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          backface-visibility: hidden;
+          background-color: #fff;
+          border-radius: 16px;
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+        }
+        .card-front {
+          z-index: 2;
+        }
+
+        .card-back {
+          transform: rotateY(180deg);
+          padding: 2rem;
+          box-sizing: border-box;
+          z-index: 1;
+          overflow-y: auto;
+          position: absolute;
+        }
+
+        .card-back::-webkit-scrollbar {
+          width: 10px;
+        }
+
+        .card-back::-webkit-scrollbar-track {
+          background: #f0f0f0;
+          border-radius: 10px;
+        }
+
+        .card-back::-webkit-scrollbar-thumb {
+          background-color: #888;
+          border-radius: 10px;
+          border: 2px solid #f0f0f0;
+        }
+
+        .card-back::-webkit-scrollbar-thumb:hover {
+          background-color: #2980b9;
+        }
+        .card-img {
+          height: 180px;
+          background-size: cover;
+          background-position: center;
+          position: relative;
+        }
+
+        .level-tag,
+        .duration-tag {
+          position: absolute;
+          top: 10px;
+          background-color: rgba(0, 0, 0, 0.75);
+          color: #fff;
+          padding: 4px 12px;
+          border-radius: 16px;
+          font-size: 0.75rem;
+        }
+
+        .level-tag {
+          left: 10px;
+        }
+
+        .duration-tag {
+          right: 10px;
+        }
+
+        .card-content {
+          padding: 1.5rem;
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+          flex-grow: 1;
+        }
+
+        .card-content h3 {
+          margin: 0;
+          font-size: 1.5rem;
+        }
+
+        .card-content p {
+          font-size: 0.9rem;
+          color: #555;
+          flex-grow: 1;
+        }
+
+        .card-buttons {
+          display: flex;
+          gap: 0.75rem;
+          margin-top: auto;
+        }
+
+        .enroll-btn,
+        .info-btn,
+        .flip-btn {
+          flex: 1;
+          padding: 1rem 1rem;
+          font-size: 0.9rem;
+          border-radius: 24px;
+          cursor: pointer;
+          border: 2px solid #3498db;
+          transition: 0.3s ease;
+        }
+
+        .enroll-btn {
+          background-color: #3498db;
+          color: #fff;
+        }
+
+        .enroll-btn:hover {
+          background-color: #2980b9;
+        }
+
+        .info-btn {
+          background-color: transparent;
+          color: #3498db;
+        }
+        .flip-btn{
+          background-color: transparent;
+          color: #ecf0f1;
+          background-color: #3498db;
+        }
+
+        .info-btn:hover {
+          background-color: #ecf0f1;
+        }
+        .flip-btn:hover{
+          background-color: #2980b9;
+        }
+
+        @media (max-width: 1100px) {
+          .courses-section {
+            width: 100%;
+            padding: 0 1rem;
+            box-sizing: border-box;
+          }
+
+          h1 {
+            font-size: 2rem;
+          }
+
+          h2 {
+            font-size: 1.4rem;
+          }
+
+          .card-content h3 {
+            font-size: 1.3rem;
+          }
+
+          .card-content p {
+            font-size: 0.85rem;
+          }
+
+          .enroll-btn,
+          .info-btn,
+          .flip-btn {
+            font-size: 0.85rem;
+            padding: 0.75rem;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .courses-container {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            padding: 0.5rem;
+          }
+
+          .card-buttons {
+            flex-direction: column;
+          }
+
+          .card-content {
+            padding: 1rem;
+            gap: 0.75rem;
+          }
+
+          .card-back {
+            padding: 1rem;
+          }
+
+          .enroll-btn,
+          .info-btn,
+          .flip-btn {
+            font-size: 0.8rem;
+            padding: 0.75rem;
+          }
+        }
+      </style>
+
+      <section class="courses">
+        <h1>Available Courses</h1>
+        ${categoriesHTML}
+      </section>
+    `;
+  }
+
+  groupCoursesByCategory() {
+    return this.coursesData.reduce((acc, course) => {
+      if (!acc[course.categoria]) {
+        acc[course.categoria] = [];
+      }
+      acc[course.categoria].push(course);
+      return acc;
+    }, {});
+  }
+
+  renderCategory(category, courses) {
+    const coursesHTML = courses.map(course => this.renderCourseCard(course)).join('');
+    
+    return `
+      <section class="courses-section">
+        <h2>${category}</h2>
+        <div class="courses-container">
+          ${coursesHTML}
         </div>
-        <div class="instructor">
-          <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Instructor" />
-          <div>
-            <strong>Course Instructor</strong><br />
-            Dr. John Smith
+      </section>
+    `;
+  }
+
+  renderCourseCard(course) {
+    const prerequisitosList = typeof course.prerequisitosList === 'string' 
+      ? course.prerequisitosList 
+      : course.prerequisitosList?.[0] 
+        ? Object.values(course.prerequisitosList[0]).join('<br>• ') 
+        : course.prerequisitos;
+
+    const resultadosList = typeof course.resultadosList === 'string'
+      ? course.resultadosList
+      : course.resultadosList?.[0]
+        ? Object.values(course.resultadosList[0]).join('<br>• ')
+        : course.resultados;
+
+    return `
+      <div class="courses-card">
+        <div class="flip-inner">
+          <!-- FRONT -->
+          <div class="card-front">
+            <div class="card-img" style="background-image: url('${course.imagen}');">
+              <span class="level-tag">${course.nivel}</span>
+              <span class="duration-tag">⏱ ${course.duracion}</span>
+            </div>
+            <div class="card-content">
+              <h3>${course.titulo}</h3>
+              <p>${course.descripcion}</p>
+              <div class="card-buttons">
+                <button class="enroll-btn" onclick="money('money')">Enroll Now</button>
+                <button class="info-btn">More Info</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- BACK -->
+          <div class="card-back">
+            <div class="card-content">
+              <h2>Prerequisites</h2>
+              <p>• ${prerequisitosList}</p>
+              <h2>What You'll Learn</h2>
+              <p>• ${resultadosList}</p>
+              <h2>Course Structure</h2>
+              <p>${course.estructuraCurso}</p>
+              <button class="flip-btn">Close</button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    `;
+  }
 
-    <div class="card-grid">
-      <div>
-        <div class="cards">
-          
-          <div class="card">
-             <h2>Course Overview</h2>
-             <p>Create immersive 3D games with Unity. Learn C# programming, game physics, and professional game development workflows.</p>
+  setupEventListeners() {
+    this.shadowRoot.addEventListener('click', (e) => {
+      const card = e.target.closest('.courses-card');
+      if (!card) return;
+
+      if (e.target.classList.contains('info-btn')) {
+        card.classList.add('flipped');
+      } else if (e.target.classList.contains('flip-btn')) {
+        e.stopPropagation();
+        card.classList.remove('flipped');
+      }
+    });
+  }
+}
+
+customElements.define('courses-page', CoursesPage);
+
+
+class MoneyCourses extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+    this.courseData = null;
+  }
+
+  async connectedCallback() {
+    // Obtener el ID del curso de los parámetros de la URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const courseId = urlParams.get('id');
+
+    if (courseId) {
+      await this.fetchCourseData(courseId);
+      this.render();
+      this.setupEventListeners();
+    } else {
+      this.shadowRoot.innerHTML = '<p>Course not found</p>';
+    }
+  }
+
+  async fetchCourseData(courseId) {
+    try {
+      const response = await fetch('/data/db.json');
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await response.json();
+      this.courseData = data.cursos.find(course => course.id === courseId);
+    } catch (error) {
+      console.error('Error fetching course data:', error);
+    }
+  }
+
+  render() {
+    if (!this.courseData) {
+      this.shadowRoot.innerHTML = '<p>Loading course data...</p>';
+      return;
+    }
+
+    const prerequisitosList = typeof this.courseData.prerequisitosList === 'string' 
+      ? this.courseData.prerequisitosList 
+      : this.courseData.prerequisitosList?.[0] 
+        ? Object.values(this.courseData.prerequisitosList[0]).map(item => `<p style="margin-top: 1rem; border-top: 1px solid #e5e7eb; padding-top: 1rem;">${item}</p>`).join('') 
+        : `<p>${this.courseData.prerequisitos}</p>`;
+
+    const resultadosList = typeof this.courseData.resultadosList === 'string'
+      ? this.courseData.resultadosList
+      : this.courseData.resultadosList?.[0]
+        ? Object.values(this.courseData.resultadosList[0]).map(item => `<p style="margin-top: 1rem; border-top: 1px solid #e5e7eb; padding-top: 1rem;">${item}</p>`).join('')
+        : `<p>${this.courseData.resultados}</p>`;
+
+    // Generar módulos del curso (simplificado - en una implementación real podrías tener esta data en el JSON)
+    const modulesHTML = `
+      <div class="module">
+        <div class="module-header">
+          <div class="title"><span>Module 1</span> Introduction</div>
+          <div class="toggle-icon">+</div>
+        </div>
+        <div class="module-content">
+          <p>Course overview and objectives</p>
+          <p>Setting up your development environment</p>
+        </div>
+      </div>
+      <div class="module">
+        <div class="module-header">
+          <div class="title"><span>Module 2</span> Core Concepts</div>
+          <div class="toggle-icon">+</div>
+        </div>
+        <div class="module-content">
+          <p>Fundamentals of ${this.courseData.titulo}</p>
+          <p>Key concepts and terminology</p>
+        </div>
+      </div>
+      <div class="module">
+        <div class="module-header">
+          <div class="title"><span>Module 3</span> Advanced Topics</div>
+          <div class="toggle-icon">+</div>
+        </div>
+        <div class="module-content">
+          <p>Advanced techniques</p>
+          <p>Real-world applications</p>
+        </div>
+      </div>
+      <div class="module">
+        <div class="module-header">
+          <div class="title"><span>Module 4</span> Final Project</div>
+          <div class="toggle-icon">+</div>
+        </div>
+        <div class="module-content">
+          <p>Project planning</p>
+          <p>Implementation</p>
+          <p>Final presentation</p>
+        </div>
+      </div>
+    `;
+
+    this.shadowRoot.innerHTML = `
+      <style>
+        * {
+          box-sizing: border-box;
+        }
+
+        body {
+          margin: 0;
+          font-family: 'Inter', sans-serif;
+          background-color: #f4f5f7;
+          color: #1f2937;
+        }
+
+        .container {
+          max-width: 1100px;
+          margin: auto;
+          padding: 2rem 1rem;
+        }
+
+        a.back-link {
+          color: #3b82f6;
+          text-decoration: none;
+          font-size: 0.9rem;
+          display: inline-block;
+          margin-bottom: 1rem;
+          padding:1rem 1rem;
+          cursor:pointer;
+        }
+
+        .header-card {
+          position: relative;
+          border-radius: 1rem;
+          overflow: hidden;
+          color: white;
+        }
+
+        .header-card img {
+          width:100%;
+          height: 300px;
+          display: block;
+          object-fit: cover;
+        }
+
+        .header-content {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          padding: 2rem;
+          background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6));
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+        }
+
+        .header-title {
+          font-size: 2.2rem;
+          font-weight: 700;
+        }
+
+        .badges {
+          display: flex;
+          gap: 0.75rem;
+          margin-top: 0.75rem;
+        }
+
+        .badge {
+          background-color: rgba(255, 255, 255, 0.2);
+          padding: 0.4rem 0.8rem;
+          border-radius: 9999px;
+          font-size: 0.8rem;
+          display: flex;
+          align-items: center;
+        }
+
+        .header-description {
+          margin-top: 1rem;
+          font-size: 0.9rem;
+        }
+
+        .instructor {
+          display: flex;
+          align-items: center;
+          margin-top: 1.5rem;
+        }
+
+        .instructor img {
+          width: 48px;
+          height: 48px;
+          border-radius: 9999px;
+          margin-right: 0.75rem;
+        }
+
+        .card-grid {
+          display: grid;
+          grid-template-columns: 2fr 1fr;
+          gap: 1.5rem;
+          margin-top: 2rem;
+        }
+
+        .side-card {
+          background-color: white;
+          border-radius: 1rem;
+          padding: 1.5rem;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+          height: 350px;
+        }
+        
+        .card {
+          background-color: white;
+          border-radius: 1rem;
+          padding: 1.5rem;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .card h2 {
+          margin-top: 0;
+          font-size: 1.5rem;
+        }
+
+        .side-card {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+        }
+
+        .price {
+          font-size: 2rem;
+          font-weight: 700;
+          margin-bottom: 0.5rem;
+        }
+
+        .features {
+          list-style: none;
+          padding: 0;
+          text-align: left;
+          line-height: 1.8;
+          margin: 1rem 0;
+        }
+
+        .features li::before {
+          content: "✓";
+          color: green;
+          margin-right: 0.5rem;
+        }
+
+        .button {
+          flex: 1;
+          padding: 1rem 6rem;
+          font-size: 0.9rem;
+          border-radius: 24px;
+          cursor: pointer;
+          background-color: #3498db;
+          border: 2px solid #3498db;
+          color:white;
+          transition: 0.3s ease;
+        }
+
+        #card {
+          height: 150px;
+        }
+        
+        .container2 {
+          background-color: white;
+          max-width: 700px;
+          margin: auto;
+          padding: 30px;
+          border-radius: 20px;
+          border:none;
+          box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        h2 {
+          font-size: 32px;
+          color: #1f2937;
+          margin-bottom: 25px;
+        }
+
+        .module {
+          background-color: #f9fafb;
+          border-radius: 12px;
+          margin-bottom: 16px;
+          padding: 20px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+        }
+
+        .module:hover {
+          background-color: #f1f5f9;
+        }
+
+        .module-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          font-size: 16px;
+          font-weight: 500;
+        }
+
+        .module-header .title {
+          display: flex;
+          gap: 8px;
+        }
+
+        .module-header .title span {
+          color: #3b82f6;
+          font-weight: 600;
+        }
+
+        .toggle-icon {
+          font-size: 20px;
+          color: #6b7280;
+        }
+
+        .module-content {
+          margin-top: 15px;
+          padding-left: 20px;
+          display: none;
+          animation: fadeIn 0.3s ease;
+        }
+
+        .module-content p {
+          margin: 8px 0;
+          font-size: 15px;
+          color: #374151;
+          border-top: 1px solid #e5e7eb;
+          padding-top: 10px;
+        }
+
+        .active .module-content {
+          display: block;
+        }
+
+        .active .toggle-icon {
+          transform: rotate(180deg);
+        }
+
+        @keyframes fadeIn {
+          from {opacity: 0;}
+          to {opacity: 1;}
+        }
+
+        @media (max-width: 768px) {
+          .card-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+      </style>
+
+      <div class="container">
+        <a class="back-link" onclick="courses('courses')">← Back to Courses</a>
+
+        <div class="header-card">
+          <img src="${this.courseData.imagen}" alt="Course banner" />
+          <div class="header-content">
+            <div>
+              <h1 class="header-title">${this.courseData.titulo}</h1>
+              <div class="badges">
+                <div class="badge">⏱ ${this.courseData.duracion}</div>
+                <div class="badge">${this.courseData.nivel}</div>
+                <div class="badge">250+ enrolled</div>
+              </div>
+              <p class="header-description">
+                ${this.courseData.descripcion}
+              </p>
+            </div>
+            <div class="instructor">
+              <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Instructor" />
+              <div>
+                <strong>Course Instructor</strong><br />
+                Dr. John Smith
+              </div>
+            </div>
           </div>
-          <br>
-          <div class="card">
-            <h2>Prerequisites</h2>
-            <p>Basic programming knowledge in any language</p>
-            <p style="margin-top: 1rem; border-top: 1px solid #e5e7eb; padding-top: 1rem;">
-              Understanding of 3D geometry is helpful but not required.
-            </p>
-          </div>
-          <br>
-          <div class="card">
-            <h2>What You'll Learn</h2>
-            <p>Basic programming knowledge in any language</p>
-            <p style="margin-top: 1rem; border-top: 1px solid #e5e7eb; padding-top: 1rem;">
-              Understanding of 3D geometry is helpful but not required.
-            </p>
-             <p style="margin-top: 1rem; border-top: 1px solid #e5e7eb; padding-top: 1rem;">
-              Understanding of 3D geometry is helpful but not required.
-            </p>
-             <p style="margin-top: 1rem; border-top: 1px solid #e5e7eb; padding-top: 1rem;">
-              Understanding of 3D geometry is helpful but not required.
-            </p>
-             <p style="margin-top: 1rem; border-top: 1px solid #e5e7eb; padding-top: 1rem;">
-              Understanding of 3D geometry is helpful but not required.
-            </p>
-          </div>
-          <br>
-          <div class="card">
-            <div class="conatiner2">
+        </div>
+
+        <div class="card-grid">
+          <div>
+            <div class="cards">
+              <div class="card">
+                <h2>Course Overview</h2>
+                <p>${this.courseData.descripcion}</p>
+              </div>
+              <br>
+              <div class="card">
+                <h2>Prerequisites</h2>
+                ${prerequisitosList}
+              </div>
+              <br>
+              <div class="card">
+                <h2>What You'll Learn</h2>
+                ${resultadosList}
+              </div>
+              <br>
+              <div class="card">
+                <div class="conatiner2">
                   <h2>Course Structure</h2>
-
-                  <div class="module">
-                    <div class="module-header">
-                      <div class="title"><span>Module 1</span> Introduction to the Course</div>
-                      <div class="toggle-icon">+</div>
-                    </div>
-                    <div class="module-content">
-                      <p>Course overview and objectives</p>
-                      <p>Setting up your development environment</p>
-                      <p>Understanding the course structure</p>
-                    </div>
-                  </div>
-
-                  <div class="module">
-                    <div class="module-header">
-                      <div class="title"><span>Module 2</span> Fundamentals and Core Concepts</div>
-                      <div class="toggle-icon">+</div>
-                    </div>
-                    <div class="module-content">
-                      <p>Variables and Data Types</p>
-                      <p>Control Structures</p>
-                      <p>Object-Oriented Programming</p>
-                    </div>
-                  </div>
-
-                  <div class="module">
-                    <div class="module-header">
-                      <div class="title"><span>Module 3</span> Advanced Topics</div>
-                      <div class="toggle-icon">+</div>
-                    </div>
-                    <div class="module-content">
-                      <p>Multithreading</p>
-                      <p>Game Physics</p>
-                      <p>AI Basics</p>
-                    </div>
-                  </div>
-
-                  <div class="module">
-                    <div class="module-header">
-                      <div class="title"><span>Module 4</span> Project Work</div>
-                      <div class="toggle-icon">+</div>
-                    </div>
-                    <div class="module-content">
-                      <p>Project Planning</p>
-                      <p>Development and Testing</p>
-                      <p>Final Presentation</p>
-                    </div>
-                  </div>
-
+                  ${modulesHTML}
                 </div>
               </div>
-            
-          
-          
+            </div>
+          </div>
+
+          <div class="side-card">
+            <div class="price">$99.99</div>
+            <p>One-time payment</p>
+            <ul class="features">
+              <li>Lifetime access</li>
+              <li>Certificate of completion</li>
+              <li>30-day money-back guarantee</li>
+              <li>Direct instructor support</li>
+            </ul>
+            <button class="button" onclick="video('video')">Start Learning</button>
+          </div>
         </div>
-        
-       
       </div>
-      
-
-      <div class="side-card">
-        <div class="price">$99.99</div>
-        <p>One-time payment</p>
-        <ul class="features">
-          <li>Lifetime access</li>
-          <li>Certificate of completion</li>
-          <li>30-day money-back guarantee</li>
-          <li>Direct instructor support</li>
-        </ul>
-        <button class="button" onclick="video('video')">Start Learning</button>
-      </div>
-
-      
-    </div>
-    
-  </div>
-
-
-    
-    `
+    `;
   }
-  connectedCallback(){
-    this.shadowRoot.querySelectorAll('.module').forEach(module => {
-    module.addEventListener('click', () => {
-      module.classList.toggle('active');
-      const icon = module.querySelector('.toggle-icon');
-      icon.textContent = module.classList.contains('active') ? '-' : '+';
-    });
-  });
 
+  setupEventListeners() {
+    this.shadowRoot.querySelectorAll('.module').forEach(module => {
+      module.addEventListener('click', () => {
+        module.classList.toggle('active');
+        const icon = module.querySelector('.toggle-icon');
+        icon.textContent = module.classList.contains('active') ? '-' : '+';
+      });
+    });
   }
 }
-customElements.define('money-course', MoneyCourses)
+
+customElements.define('money-course', MoneyCourses);
 
 class VideoPage extends HTMLElement{
   constructor(){
@@ -1321,7 +951,7 @@ h1 {
 }
 
 .video-container {
-    width: 100%;
+    width: 600px;
     max-width: 650px;
     min-width: 450px;
     display: none;
