@@ -1199,14 +1199,13 @@ class VideoPage extends HTMLElement{
 
     this.shadowRoot.innerHTML = `
     <style>
-  body {
+  .container-total {
     font-family: Arial, sans-serif;
     margin: 0;
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #fff;
     padding: 20px;
     box-sizing: border-box;
 }
@@ -1323,7 +1322,8 @@ h1 {
 
 .video-container {
     width: 100%;
-    max-width: 750px;
+    max-width: 650px;
+    min-width: 450px;
     display: none;
     flex-direction: column;
     align-items: center;
@@ -1461,9 +1461,13 @@ button {
     }
 }
     </style>
-        <div class="container">
+
+
+
+          <div class="container-total">
+    <div class="container">
      <div class="sidebar-back">
-         <a href="#" class="back-link"  onclick="money('money')">← Back to Courses</a>
+         <a href="#" class="back-link">← Back to Courses</a>
     </div>
 <div class="video">
 
@@ -1509,6 +1513,7 @@ button {
     </div>
     
 
+</div>
 </div>
    
     
@@ -1566,7 +1571,7 @@ button {
     topicTitle.textContent = topic.title;
     topicDescription.textContent = topic.description;
     completeBtn.textContent = topic.completed ? "Completed" : "Mark as Complete";
-    completeBtn.classList.toggle("completed", topic.completed);
+    completeBtn.classList.toggle("completed", topic);
 
     // Limpiar y marcar como activo
     this.shadowRoot.querySelectorAll('.topic').forEach(item => item.classList.remove('active'));
