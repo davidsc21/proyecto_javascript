@@ -241,31 +241,6 @@
           "result3": "and understand lab safety. "
         }
       ]
-    },{
-      "id": "3",
-      "nivel": "All Levels",
-      "duracion": "10 weeks",
-      "titulo": "Game Design Principlest",
-      "categoria": "Video Games",
-      "imagen": "./assets/game-design-principles.png",
-      "descripcion": "Learn essential game design concepts including mechanics, dynamics, aesthetics, and player psychology.",
-      "prerequisitos": "No technical prerequisites. Passion for games and creative thinking required.",
-      "resultados": "Design engaging game mechanics, balance gameplay, create compelling narratives, and understand player psychology.",
-      "estructuraCurso": "20 theory lessons, 10 design workshops, 5 game analysis projects, and a final game design document.",
-      "prerequisitosList":[
-        {
-          "requisit1": "No technical prerequisites ",
-          "requisit2": "Passion for games and creative thinking required. "
-        }
-      ],
-      "resultadosList":[
-        {
-          "result1": "Design engaging game mechanics ",
-          "result2": "balance gameplay ",
-          "result3": "create compelling narratives ",
-          "result4": "and understand player psychology. "
-        }
-      ]
     }
   ],
   "usuario":[
@@ -278,6 +253,70 @@
       "program": "Bachelor of Computer Science",
       "start": "01/09/2023",
       "expected": "30/06/2027"
+    }
+  ],
+  "dashboard":[
+    {
+      "dashboard-card-1":[
+        {
+          "title": "Active Courses",
+          "text": "3"
+        }
+      ],
+      "dashboard-card-2":[
+        {
+          "title": "Pending Assignments",
+          "text": "2"
+        }
+      ],
+      "dashboard-card-3":[
+        {
+          "title": "Overall Progress",
+          "text": "75%"
+        }
+      ],
+      "dashboard-card-4":[
+        {
+          "imagen": "./assets/unity-game-development.png",
+          "title": "Unity Game Development",
+          "trainer": "Dr. John Smith",
+          "lessons": "12"
+        }
+      ],
+      "dashboard-card-5":[
+        {
+          "imagen": "./assets/node.js-development.png",
+          "title": "Node.js Development",
+          "trainer": "Sarah Johnson",
+          "lessons": "6"
+        }
+      ],
+      "dashboard-card-6":[
+        {
+          "imagen": "./assets/node.js-development.png",
+          "title": "React Mastery",
+          "trainer": "Mike Wilson",
+          "lessons": "17"
+        }
+      ],
+      "dashboard-card-7":[
+        {
+          "title": "Overall Progress",
+          "result2": "75%"
+        }
+      ],
+      "dashboard-card-8":[
+        {
+          "title": "Overall Progress",
+          "result2": "75%"
+        }
+      ],
+      "dashboard-card-9":[
+        {
+          "title": "Overall Progress",
+          "result2": "75%"
+        }
+      ]
     }
   ]
 }
