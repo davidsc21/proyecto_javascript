@@ -191,7 +191,7 @@ class MyEnrolledCourses extends HTMLElement {
       </style>
       <section>
         <div class="imagen" id="imagen">
-          <img src="./assets/${imagen}.png" alt="Imagen curso">
+          <img src="" alt="Imagen curso">
         </div>
         <div class="progress-indicator">
           <div class="progress-bar"></div>
@@ -250,11 +250,27 @@ class MyEnrolledCourses extends HTMLElement {
   // cargar los datos que tengan "d", en realidad puede ser cualqueir valro pero se escogio este porque es la sigla de data y es mas facil reconocerlo.
   set data(d) {
     // los carga a traves del id con el query selector
-    this.shadowRoot.querySelector('#imagen').textContent = d.imagen;
-    this.shadowRoot.querySelector('#title').textContent = d.title;
-    this.shadowRoot.querySelector('#trainer').textContent = d.trainer;
-    this.shadowRoot.querySelector('#lessons').textContent = d.lessons;
-    // establece el atributo filtro para poder agarrar el nombre clave del cual se van a basar todo los datos
+    const title = this.shadowRoot.querySelector('.title');
+    const trainer = this.shadowRoot.querySelector('.trainer');
+    const lessonsText = this.shadowRoot.querySelector('.progress-lessons');
+    const percentageText = this.shadowRoot.querySelector('.progress-percentage');
+    const progressBar = this.shadowRoot.querySelector('.progress-bar');
+    const imagen = this.shadowRoot.querySelector('.imagen img');
+
+    // constante de la cantidad total de lecciones 
+    const totalLessons = 20;
+    // parseint para pasar de string a entero
+    const completedLessons = parseInt(d.lessons);
+    // esta es la operacion matematica para poder calcular el progeso y el width de la barra de progeso con las lecciones que ha realizadoe el usuario con el fin de hacerlo dinamico 
+    const percentage = Math.round((completedLessons / totalLessons) * 100);
+    title.textContent = d.title;
+    trainer.textContent = d.trainer;
+    lessonsText.textContent = `${completedLessons}/${totalLessons} Lessons`;
+    percentageText.textContent = `${percentage}% Complete`;
+    progressBar.style.width = `${percentage}%`;
+
+    imagen.src = d.imagen;
+    imagen.alt = `Imagen del curso ${d.title}`;
   }
 }
 customElements.define('my-enrolled-courses-card', MyEnrolledCourses);

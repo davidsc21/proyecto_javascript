@@ -293,10 +293,10 @@
       ],
       "dashboard-card-6":[
         {
-          "imagen": "./assets/node.js-development.png",
+          "imagen": "./assets/react-mastery.png",
           "title": "React Mastery",
           "trainer": "Mike Wilson",
-          "lessons": "17"
+          "lessons": "10"
         }
       ],
       "dashboard-card-7":[
