@@ -850,7 +850,6 @@ class VideoPage extends HTMLElement {
 
   async connectedCallback() {
     try {
-      // Obtener el ID del curso del atributo
       const courseId = this.getAttribute('course-id');
       
       if (!courseId) {
@@ -885,43 +884,28 @@ class VideoPage extends HTMLElement {
   }
 
   prepareTopicsData() {
-    // Convertimos la estructura del curso en topics para el reproductor
-    if (this.courseData) {
-      // Extraemos módulos de la estructura del curso
-      const modules = this.courseData.estructuraCurso.split(', ');
-      
+    if (this.courseData && this.courseData.videos && this.courseData.videos.modulos) {
+      this.topics = this.courseData.videos.modulos.map((modulo, index) => ({
+        id: modulo.id,
+        title: modulo.titulo,
+        duration: modulo.duracion,
+        video: modulo.videoUrl,
+        thumbnail: modulo.thumbnail,
+        description: modulo.descripcion,
+        recursos: modulo.recursos || [],
+        completed: false
+      }));
+    } else {
+      // Fallback si no hay datos de videos en el JSON
+      const modules = this.courseData?.estructuraCurso?.split(', ') || [];
       this.topics = modules.map((module, index) => ({
         title: `Module ${index + 1}: ${module}`,
-        duration: this.calculateDuration(module),
-        video: this.getVideoPath(index),
-        description: this.getDescription(index),
-        image: this.courseData.imagen,
+        duration: `${Math.max(5, Math.min(30, module.split(' ').length))} min`,
+        video: `/assets/video/lesson-${index + 1}.mp4`,
+        description: "Contenido educativo del módulo",
         completed: false
       }));
     }
-  }
-
-  calculateDuration(module) {
-    // Lógica simple para calcular duración basada en palabras
-    const wordCount = module.split(' ').length;
-    return `${Math.max(5, Math.min(30, wordCount))} min`;
-  }
-
-  getVideoPath(index) {
-    // Usamos videos de ejemplo o podrías tener un campo en el JSON
-    return `/assets/video/lesson-${index + 1}.mp4`;
-  }
-
-  getDescription(index) {
-    // Descripciones basadas en el contenido del curso
-    const descriptions = [
-      "Introducción y conceptos básicos del curso",
-      "Profundizando en los fundamentos",
-      "Aplicaciones prácticas",
-      "Ejemplos avanzados",
-      "Proyecto final y conclusiones"
-    ];
-    return descriptions[index] || "Contenido educativo del módulo";
   }
 
   showError(message) {
@@ -959,7 +943,6 @@ class VideoPage extends HTMLElement {
   }
 
   render() {
-    // Mantenemos el mismo HTML pero ahora usamos this.topics en lugar de topics fijos
     this.shadowRoot.innerHTML = `
        <style>
   .container-total {
@@ -1064,38 +1047,35 @@ h1 {
     border-radius: 5px;
     cursor: pointer;
     justify-content: flex-start;
+    margin-bottom: 10px;
 }
 
 .topic.completed {
-    background: #28a745;
     color: white;
 }
 
-.topic-item {
-    padding: 10px;
-    cursor: pointer;
-    border-left: 5px solid transparent;
-    background-color: #fff;
-    transition: background-color 0.3s;
+.topic.active {
+    border-left: 5px solid #3b82f6;
+    background-color:  #3b82f6;
 }
 
 .topic:hover {
-    background-color: #ccc;
+    background-color: #e6f7ff;
 }
 
 .video-container {
-    width: 600px;
-    max-width: 650px;
-    min-width: 450px;
+    width: 100%;
+    max-width: 800px;
     display: none;
     flex-direction: column;
     align-items: center;
     border-radius: 8px;
 }
 
-iframe {
+.video-player {
     width: 100%;
-    height: 400px;
+    height: 450px;
+    background-color: #000;
     margin-bottom: 20px;
     border-radius: 8px;
 }
@@ -1144,6 +1124,16 @@ button {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+#completeBtn.completed {
+    background-color: #28a745;
+    color: white;
 }
 
 .description-container {
@@ -1163,10 +1153,17 @@ button {
     margin-top: 10px;
 }
 
-.resource-links a {
+.resource-link {
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
     text-decoration: none;
-    margin: 10px 0;
     color: #3b82f6;
+}
+
+.resource-icon {
+    margin-right: 8px;
+    font-size: 1.2rem;
 }
 
 /* ===== Responsive Styles ===== */
@@ -1192,7 +1189,7 @@ button {
         font-size: 1.5rem;
     }
 
-    iframe {
+    .video-player {
         height: 250px;
     }
 
@@ -1243,7 +1240,7 @@ button {
                 <p>Choose a topic from the sidebar to begin watching the course content.</p>
               </div>
               <div class="video-container" id="videoView">
-                <iframe id="videoFrame" frameborder="0" allowfullscreen></iframe>
+                <video controls class="video-player" id="videoPlayer"></video>
                 <div class="description">
                   <h3 id="topicTitle"></h3>
                   <p id="topicDescription"></p>
@@ -1251,10 +1248,8 @@ button {
                     
                 <div class="description-container">
                   <h2>Course Resources</h2>
-                  <div class="resource-links">
-                    <a href="#">📄 Course Syllabus</a>
-                    <a href="#">📝 Setup Instructions</a>
-                    <a href="#">📚 Additional Readings</a>
+                  <div class="resource-links" id="resourceLinks">
+                    <!-- Resources will be added dynamically -->
                   </div>
                 </div>
                 
@@ -1273,7 +1268,6 @@ button {
       </div>
     `;
 
-    // Inicializamos la interfaz después de renderizar
     this.initInterface();
   }
 
@@ -1282,9 +1276,10 @@ button {
     const progress = this.shadowRoot.getElementById("progress");
     const defaultView = this.shadowRoot.getElementById("defaultView");
     const videoView = this.shadowRoot.getElementById("videoView");
-    const videoFrame = this.shadowRoot.getElementById("videoFrame");
+    const videoPlayer = this.shadowRoot.getElementById("videoPlayer");
     const topicTitle = this.shadowRoot.getElementById("topicTitle");
     const topicDescription = this.shadowRoot.getElementById("topicDescription");
+    const resourceLinks = this.shadowRoot.getElementById("resourceLinks");
     const completeBtn = this.shadowRoot.getElementById("completeBtn");
     const prevBtn = this.shadowRoot.getElementById("prevBtn");
     const nextBtn = this.shadowRoot.getElementById("nextBtn");
@@ -1299,11 +1294,11 @@ button {
         if (index === currentTopicIndex) li.classList.add("active");
         if (topic.completed) li.classList.add("completed");
 
-        li.innerHTML = `${index + 1}.
-        <div class="duration"> 
-          <div>${topic.title}</div> 
-          <div class="d-t">${topic.duration}</div>
-        </div>`;
+        li.innerHTML = `
+          <div class="duration"> 
+            <div>${topic.title}</div> 
+            <div class="d-t">${topic.duration}</div>
+          </div>`;
 
         li.onclick = () => selectTopic(index);
         topicList.appendChild(li);
@@ -1316,17 +1311,58 @@ button {
     const selectTopic = (index) => {
       currentTopicIndex = index;
       const topic = this.topics[index];
+      
       defaultView.style.display = "none";
       videoView.style.display = "flex";
-      videoFrame.src = topic.video;
+      
+      // Configurar el reproductor de video
+      videoPlayer.src = topic.video;
+      videoPlayer.poster = topic.thumbnail || '';
+      videoPlayer.load();
+      
       topicTitle.textContent = topic.title;
       topicDescription.textContent = topic.description;
+      
+      // Actualizar botón de completado
       completeBtn.textContent = topic.completed ? "Completed" : "Mark as Complete";
       completeBtn.classList.toggle("completed", topic.completed);
-
+      
+      // Renderizar recursos
+      renderResources(topic.recursos);
+      
       // Actualizar tema activo
-      this.shadowRoot.querySelectorAll('.topic').forEach(item => item.classList.remove('active'));
+      this.shadowRoot.querySelectorAll('.topic').forEach(item => {
+        item.classList.remove('active');
+      });
       this.shadowRoot.querySelectorAll('.topic')[index].classList.add('active');
+    };
+
+    const renderResources = (resources) => {
+      resourceLinks.innerHTML = "";
+      
+      if (!resources || resources.length === 0) {
+        resourceLinks.innerHTML = "<p>No resources available for this topic.</p>";
+        return;
+      }
+      
+      resources.forEach(resource => {
+        const link = document.createElement("a");
+        link.className = "resource-link";
+        link.href = resource.url;
+        link.target = "_blank";
+        
+        // Determinar el icono según el tipo de recurso
+        let icon = "📄"; // Por defecto
+        if (resource.tipo === "pdf") icon = "📄";
+        if (resource.tipo === "link") icon = "🔗";
+        
+        link.innerHTML = `
+          <span class="resource-icon">${icon}</span>
+          <span>${resource.nombre}</span>
+        `;
+        
+        resourceLinks.appendChild(link);
+      });
     };
 
     completeBtn.onclick = () => {
@@ -1352,20 +1388,12 @@ button {
   }
 
   setupEventListeners() {
-    // Event listeners para los módulos (si los hay)
-    if (this.shadowRoot.querySelector('.module')) {
-      this.shadowRoot.querySelectorAll('.module').forEach(module => {
-        module.addEventListener('click', () => {
-          module.classList.toggle('active');
-          const icon = module.querySelector('.toggle-icon');
-          if (icon) icon.textContent = module.classList.contains('active') ? '-' : '+';
-        });
-      });
-    }
+    // Puedes agregar event listeners adicionales aquí si es necesario
   }
 }
 
 customElements.define('video-page', VideoPage);
+
 const pages5 = {
   video: (id) => `<video-page course-id="${id}"></video-page>`
 };
@@ -1374,6 +1402,7 @@ function video(page5, id) {
   const content = document.getElementById('main');
   content.innerHTML = pages5[page5](id) || 'Página no encontrada';
 }
+
 const pages4 = {
   money: (id) => `<money-course course-id="${id}"></money-course>`
 };
@@ -1382,14 +1411,12 @@ function money(page4, id) {
   const content = document.getElementById('main');
   content.innerHTML = pages4[page4](id) || 'Página no encontrada';
 }
-const pages3 = {
-    courses:`
-    <courses-page></courses-page>
-    `,
 
-}
-function courses(page3){
-    const content = document.getElementById('main')
-    content.appendChild
-    content.innerHTML = pages3[page3] || '<h1>pagina no en contrada</h1>'
+const pages3 = {
+  courses: `<courses-page></courses-page>`
+};
+
+function courses(page3) {
+  const content = document.getElementById('main');
+  content.innerHTML = pages3[page3] || '<h1>pagina no encontrada</h1>';
 }

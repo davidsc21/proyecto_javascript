@@ -4,7 +4,7 @@
       "id": "1",
       "nivel": "Intermediate",
       "duracion": "12 weeks",
-      "titulo": "Unity Game Development",
+      "titulo": "Unity Game",
       "categoria": "Video Games",
       "imagen": "./assets/unity-game-development.png",
       "descripcion": "Create immersive 3D games with Unity. Learn C# programming, game physics, and professional game development workflows.",
@@ -19,7 +19,7 @@
             "id": "mod1",
             "titulo": "Introducción a Unity",
             "duracion": "45 min",
-            "videoUrl": "./assets/videos/unity/introduccion.mp4",
+            "videoUrl": "/assets/video/Rick Astley - Never Gonna Give You Up (Official Music Video).mp4",
             "thumbnail": "./assets/videos/unity/thumbnails/introduccion.jpg",
             "descripcion": "Conceptos básicos del motor Unity y configuración inicial",
             "recursos": [
@@ -64,7 +64,7 @@
             "id": "mod1",
             "titulo": "Introducción a Unity",
             "duracion": "45 min",
-            "videoUrl": "./assets/videos/unity/introduccion.mp4",
+            "videoUrl": "/assets/video/Rick Astley - Never Gonna Give You Up (Official Music Video).mp4",
             "thumbnail": "./assets/videos/unity/thumbnails/introduccion.jpg",
             "descripcion": "Conceptos básicos del motor Unity y configuración inicial",
             "recursos": [
@@ -72,6 +72,7 @@
               {"tipo": "link", "nombre": "Documentación oficial", "url": "https://docs.unity3d.com"}
             ]
           }
+          
         ]
       },
       "prerequisitosList":[
@@ -108,7 +109,7 @@
             "id": "mod1",
             "titulo": "Introducción a Unity",
             "duracion": "45 min",
-            "videoUrl": "./assets/videos/unity/introduccion.mp4",
+            "videoUrl": "/assets/video/Rick Astley - Never Gonna Give You Up (Official Music Video).mp4",
             "thumbnail": "./assets/videos/unity/thumbnails/introduccion.jpg",
             "descripcion": "Conceptos básicos del motor Unity y configuración inicial",
             "recursos": [
@@ -152,7 +153,7 @@
             "id": "mod1",
             "titulo": "Introducción a Unity",
             "duracion": "45 min",
-            "videoUrl": "./assets/videos/unity/introduccion.mp4",
+            "videoUrl": "/assets/video/Rick Astley - Never Gonna Give You Up (Official Music Video).mp4",
             "thumbnail": "./assets/videos/unity/thumbnails/introduccion.jpg",
             "descripcion": "Conceptos básicos del motor Unity y configuración inicial",
             "recursos": [
@@ -191,7 +192,7 @@
             "id": "mod1",
             "titulo": "Introducción a Unity",
             "duracion": "45 min",
-            "videoUrl": "./assets/videos/unity/introduccion.mp4",
+            "videoUrl": "/assets/video/Rick Astley - Never Gonna Give You Up (Official Music Video).mp4",
             "thumbnail": "./assets/videos/unity/thumbnails/introduccion.jpg",
             "descripcion": "Conceptos básicos del motor Unity y configuración inicial",
             "recursos": [
@@ -270,7 +271,7 @@
             "id": "mod1",
             "titulo": "Introducción a Unity",
             "duracion": "45 min",
-            "videoUrl": "./assets/videos/unity/introduccion.mp4",
+            "videoUrl": "/assets/video/Rick Astley - Never Gonna Give You Up (Official Music Video).mp4",
             "thumbnail": "./assets/videos/unity/thumbnails/introduccion.jpg",
             "descripcion": "Conceptos básicos del motor Unity y configuración inicial",
             "recursos": [
@@ -309,7 +310,7 @@
             "id": "mod1",
             "titulo": "Introducción a Unity",
             "duracion": "45 min",
-            "videoUrl": "./assets/videos/unity/introduccion.mp4",
+            "videoUrl": "/assets/video/Rick Astley - Never Gonna Give You Up (Official Music Video).mp4",
             "thumbnail": "./assets/videos/unity/thumbnails/introduccion.jpg",
             "descripcion": "Conceptos básicos del motor Unity y configuración inicial",
             "recursos": [
@@ -347,7 +348,7 @@
             "id": "mod1",
             "titulo": "Introducción a Unity",
             "duracion": "45 min",
-            "videoUrl": "./assets/videos/unity/introduccion.mp4",
+            "videoUrl": "/assets/video/Rick Astley - Never Gonna Give You Up (Official Music Video).mp4",
             "thumbnail": "./assets/videos/unity/thumbnails/introduccion.jpg",
             "descripcion": "Conceptos básicos del motor Unity y configuración inicial",
             "recursos": [
@@ -385,7 +386,7 @@
             "id": "mod1",
             "titulo": "Introducción a Unity",
             "duracion": "45 min",
-            "videoUrl": "./assets/videos/unity/introduccion.mp4",
+            "videoUrl": "/assets/video/Rick Astley - Never Gonna Give You Up (Official Music Video).mp4",
             "thumbnail": "./assets/videos/unity/thumbnails/introduccion.jpg",
             "descripcion": "Conceptos básicos del motor Unity y configuración inicial",
             "recursos": [
@@ -422,7 +423,7 @@
             "id": "mod1",
             "titulo": "Introducción a Unity",
             "duracion": "45 min",
-            "videoUrl": "./assets/videos/unity/introduccion.mp4",
+            "videoUrl": "/assets/video/Rick Astley - Never Gonna Give You Up (Official Music Video).mp4",
             "thumbnail": "./assets/videos/unity/thumbnails/introduccion.jpg",
             "descripcion": "Conceptos básicos del motor Unity y configuración inicial",
             "recursos": [
@@ -460,7 +461,7 @@
             "id": "mod1",
             "titulo": "Introducción a Unity",
             "duracion": "45 min",
-            "videoUrl": "./assets/videos/unity/introduccion.mp4",
+            "videoUrl": "/assets/video/Rick Astley - Never Gonna Give You Up (Official Music Video).mp4",
             "thumbnail": "./assets/videos/unity/thumbnails/introduccion.jpg",
             "descripcion": "Conceptos básicos del motor Unity y configuración inicial",
             "recursos": [

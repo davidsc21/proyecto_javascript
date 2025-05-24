@@ -5,3 +5,5 @@ document.querySelectorAll('.module').forEach(module => {
       icon.textContent = module.classList.contains('active') ? '-' : '+';
     });
   });
+
+  
