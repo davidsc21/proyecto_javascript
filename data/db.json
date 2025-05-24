@@ -11,6 +11,24 @@
       "prerequisitos": "Basic programming knowledge in any language. Understanding of 3D geometry is helpful but not required.",
       "resultados": "Build complete 3D games, master C# programming, implement game physics, create engaging UI systems, and optimize game performance.",
       "estructuraCurso": "24 interactive lessons, 12 hands-on projects, 4 major game development assignments, and a final capstone project.",
+           "videos": {
+        "totalModulos": 24,
+        "duracionTotal": "15 horas",
+        "modulos": [
+          {
+            "id": "mod1",
+            "titulo": "Introducción a Unity",
+            "duracion": "45 min",
+            "videoUrl": "./assets/videos/unity/introduccion.mp4",
+            "thumbnail": "./assets/videos/unity/thumbnails/introduccion.jpg",
+            "descripcion": "Conceptos básicos del motor Unity y configuración inicial",
+            "recursos": [
+              {"tipo": "pdf", "nombre": "Guía de instalación", "url": "./assets/resources/unity/instalacion.pdf"},
+              {"tipo": "link", "nombre": "Documentación oficial", "url": "https://docs.unity3d.com"}
+            ]
+          }
+        ]
+      },
       "prerequisitosList":[
         {
           "requisit1": "Basic programming knowledge in any language",
@@ -38,6 +56,24 @@
       "prerequisitos": "No prior experience required. Basic computer skills and understanding of gaming concepts recommended.",
       "resultados": "Create basic games using Blueprints, design game levels, implement basic AI, and understand game optimization techniques.",
       "estructuraCurso": "16 lessons, 8 practical exercises, 4 mini-projects, and a final game project.",
+      "videos": {
+        "totalModulos": 24,
+        "duracionTotal": "15 horas",
+        "modulos": [
+          {
+            "id": "mod1",
+            "titulo": "Introducción a Unity",
+            "duracion": "45 min",
+            "videoUrl": "./assets/videos/unity/introduccion.mp4",
+            "thumbnail": "./assets/videos/unity/thumbnails/introduccion.jpg",
+            "descripcion": "Conceptos básicos del motor Unity y configuración inicial",
+            "recursos": [
+              {"tipo": "pdf", "nombre": "Guía de instalación", "url": "./assets/resources/unity/instalacion.pdf"},
+              {"tipo": "link", "nombre": "Documentación oficial", "url": "https://docs.unity3d.com"}
+            ]
+          }
+        ]
+      },
       "prerequisitosList":[
         {
           "requisit1": "No prior experience required ",
@@ -64,6 +100,24 @@
       "prerequisitos": "No technical prerequisites. Passion for games and creative thinking required.",
       "resultados": "Design engaging game mechanics, balance gameplay, create compelling narratives, and understand player psychology.",
       "estructuraCurso": "20 theory lessons, 10 design workshops, 5 game analysis projects, and a final game design document.",
+           "videos": {
+        "totalModulos": 24,
+        "duracionTotal": "15 horas",
+        "modulos": [
+          {
+            "id": "mod1",
+            "titulo": "Introducción a Unity",
+            "duracion": "45 min",
+            "videoUrl": "./assets/videos/unity/introduccion.mp4",
+            "thumbnail": "./assets/videos/unity/thumbnails/introduccion.jpg",
+            "descripcion": "Conceptos básicos del motor Unity y configuración inicial",
+            "recursos": [
+              {"tipo": "pdf", "nombre": "Guía de instalación", "url": "./assets/resources/unity/instalacion.pdf"},
+              {"tipo": "link", "nombre": "Documentación oficial", "url": "https://docs.unity3d.com"}
+            ]
+          }
+        ]
+      },
       "prerequisitosList":[
         {
           "requisit1": "No technical prerequisites ",
@@ -90,6 +144,24 @@
       "prerequisitos": "Strong JavaScript knowledge, basic understanding of backend development and databases.",
       "resultados": "Build scalable APIs, implement authentication, handle database operations, and deploy microservices.",
       "estructuraCurso": "28 lessons, 14 coding projects, 4 major applications, and a final system architecture project.",
+           "videos": {
+        "totalModulos": 24,
+        "duracionTotal": "15 horas",
+        "modulos": [
+          {
+            "id": "mod1",
+            "titulo": "Introducción a Unity",
+            "duracion": "45 min",
+            "videoUrl": "./assets/videos/unity/introduccion.mp4",
+            "thumbnail": "./assets/videos/unity/thumbnails/introduccion.jpg",
+            "descripcion": "Conceptos básicos del motor Unity y configuración inicial",
+            "recursos": [
+              {"tipo": "pdf", "nombre": "Guía de instalación", "url": "./assets/resources/unity/instalacion.pdf"},
+              {"tipo": "link", "nombre": "Documentación oficial", "url": "https://docs.unity3d.com"}
+            ]
+          }
+        ]
+      },
       "prerequisitosList": "Strong JavaScript knowledge, basic understanding of backend development and databases.",
       "resultadosList":[
         {
@@ -111,6 +183,24 @@
       "prerequisitos": "Basic understanding of programming concepts and data structures.",
       "resultados": "Design efficient databases, write complex queries, optimize performance, and handle large datasets.",
       "estructuraCurso": "20 lectures, 10 practical sessions, 5 database design projects, and a final optimization challenge.",
+           "videos": {
+        "totalModulos": 24,
+        "duracionTotal": "15 horas",
+        "modulos": [
+          {
+            "id": "mod1",
+            "titulo": "Introducción a Unity",
+            "duracion": "45 min",
+            "videoUrl": "./assets/videos/unity/introduccion.mp4",
+            "thumbnail": "./assets/videos/unity/thumbnails/introduccion.jpg",
+            "descripcion": "Conceptos básicos del motor Unity y configuración inicial",
+            "recursos": [
+              {"tipo": "pdf", "nombre": "Guía de instalación", "url": "./assets/resources/unity/instalacion.pdf"},
+              {"tipo": "link", "nombre": "Documentación oficial", "url": "https://docs.unity3d.com"}
+            ]
+          }
+        ]
+      },
       "prerequisitosList": "Basic understanding of programming concepts and data structures. ",
       "resultadosList":[
         {
@@ -132,6 +222,25 @@
       "prerequisitos": "Experience with web development and basic understanding of HTTP protocols.",
       "resultados": "Design RESTful APIs, implement GraphQL, secure endpoints, and create comprehensive documentation.",
       "estructuraCurso": "16 lessons, 8 API projects, 4 security workshops, and a final API gateway project.",
+           "videos": {
+        "totalModulos": 24,
+        "duracionTotal": "15 horas",
+        "modulos": [
+          {
+            "id": "mod1",
+            "titulo": "Introducción a Unity",
+            "duracion": "45 min",
+            "videoUrl": "./assets/videos/unity/introduccion.mp4",
+            "thumbnail": "./assets/videos/unity/thumbnails/introduccion.jpg",
+            "descripcion": "Conceptos básicos del motor Unity y configuración inicial",
+            "recursos": [
+              {"tipo": "pdf", "nombre": "Guía de instalación", "url": "./assets/resources/unity/instalacion.pdf"},
+              {"tipo": "link", "nombre": "Documentación oficial", "url": "https://docs.unity3d.com"}
+            ]
+          }
+        ]
+      },
+      
       "prerequisitosList":"Experience with web development and basic understanding of HTTP protocols. ",
       "resultadosList":[
         {
@@ -153,6 +262,24 @@
       "prerequisitos": "Strong JavaScript knowledge and experience with React basics.",
       "resultados": "Master advanced React patterns, state management, performance optimization, and testing strategies.",
       "estructuraCurso": "24 lessons, 12 advanced projects, 6 optimization workshops, and a final enterprise-level application.",
+           "videos": {
+        "totalModulos": 24,
+        "duracionTotal": "15 horas",
+        "modulos": [
+          {
+            "id": "mod1",
+            "titulo": "Introducción a Unity",
+            "duracion": "45 min",
+            "videoUrl": "./assets/videos/unity/introduccion.mp4",
+            "thumbnail": "./assets/videos/unity/thumbnails/introduccion.jpg",
+            "descripcion": "Conceptos básicos del motor Unity y configuración inicial",
+            "recursos": [
+              {"tipo": "pdf", "nombre": "Guía de instalación", "url": "./assets/resources/unity/instalacion.pdf"},
+              {"tipo": "link", "nombre": "Documentación oficial", "url": "https://docs.unity3d.com"}
+            ]
+          }
+        ]
+      },
       "prerequisitosList": "Strong JavaScript knowledge and experience with React basics. ",
       "resultadosList":[
         {
@@ -174,6 +301,24 @@
       "prerequisitos": "Experience with Angular basics and TypeScript.",
       "resultados": "Implement complex state management, write comprehensive tests, and build enterprise applications.",
       "estructuraCurso": "28 lessons, 14 projects, 7 testing workshops, and a final enterprise application.",
+           "videos": {
+        "totalModulos": 24,
+        "duracionTotal": "15 horas",
+        "modulos": [
+          {
+            "id": "mod1",
+            "titulo": "Introducción a Unity",
+            "duracion": "45 min",
+            "videoUrl": "./assets/videos/unity/introduccion.mp4",
+            "thumbnail": "./assets/videos/unity/thumbnails/introduccion.jpg",
+            "descripcion": "Conceptos básicos del motor Unity y configuración inicial",
+            "recursos": [
+              {"tipo": "pdf", "nombre": "Guía de instalación", "url": "./assets/resources/unity/instalacion.pdf"},
+              {"tipo": "link", "nombre": "Documentación oficial", "url": "https://docs.unity3d.com"}
+            ]
+          }
+        ]
+      },
       "prerequisitosList": "Experience with Angular basics and TypeScript.",
       "resultadosList":[
         {
@@ -194,6 +339,24 @@
       "prerequisitos": "High school mathematics or equivalent.",
       "resultados": "Master fundamental mathematical concepts, solve complex problems, and apply mathematical thinking.",
       "estructuraCurso": "32 lectures, 16 problem-solving sessions, 8 assessments, and a final examination.",
+           "videos": {
+        "totalModulos": 24,
+        "duracionTotal": "15 horas",
+        "modulos": [
+          {
+            "id": "mod1",
+            "titulo": "Introducción a Unity",
+            "duracion": "45 min",
+            "videoUrl": "./assets/videos/unity/introduccion.mp4",
+            "thumbnail": "./assets/videos/unity/thumbnails/introduccion.jpg",
+            "descripcion": "Conceptos básicos del motor Unity y configuración inicial",
+            "recursos": [
+              {"tipo": "pdf", "nombre": "Guía de instalación", "url": "./assets/resources/unity/instalacion.pdf"},
+              {"tipo": "link", "nombre": "Documentación oficial", "url": "https://docs.unity3d.com"}
+            ]
+          }
+        ]
+      },
       "prerequisitosList": "High school mathematics or equivalent. ",
       "resultadosList":[
         {
@@ -214,6 +377,24 @@
       "prerequisitos": "Basic mathematics knowledge including algebra and trigonometry.",
       "resultados": "Understand core physics principles, solve physics problems, and conduct basic experiments.",
       "estructuraCurso": "32 lectures, 16 lab sessions, 8 problem-solving workshops, and a final project.",
+           "videos": {
+        "totalModulos": 24,
+        "duracionTotal": "15 horas",
+        "modulos": [
+          {
+            "id": "mod1",
+            "titulo": "Introducción a Unity",
+            "duracion": "45 min",
+            "videoUrl": "./assets/videos/unity/introduccion.mp4",
+            "thumbnail": "./assets/videos/unity/thumbnails/introduccion.jpg",
+            "descripcion": "Conceptos básicos del motor Unity y configuración inicial",
+            "recursos": [
+              {"tipo": "pdf", "nombre": "Guía de instalación", "url": "./assets/resources/unity/instalacion.pdf"},
+              {"tipo": "link", "nombre": "Documentación oficial", "url": "https://docs.unity3d.com"}
+            ]
+          }
+        ]
+      },
       "prerequisitosList": "Basic mathematics knowledge including algebra and trigonometry. ",
       "resultadosList":[
         {
@@ -233,6 +414,24 @@
       "prerequisitos": "Basic understanding of mathematics and scientific notation.",
       "resultados": "Master fundamental chemistry concepts, perform chemical calculations, and understand lab safety.",
       "estructuraCurso": "32 lectures, 16 lab sessions, 8 practical assessments, and a final examination.",
+           "videos": {
+        "totalModulos": 24,
+        "duracionTotal": "15 horas",
+        "modulos": [
+          {
+            "id": "mod1",
+            "titulo": "Introducción a Unity",
+            "duracion": "45 min",
+            "videoUrl": "./assets/videos/unity/introduccion.mp4",
+            "thumbnail": "./assets/videos/unity/thumbnails/introduccion.jpg",
+            "descripcion": "Conceptos básicos del motor Unity y configuración inicial",
+            "recursos": [
+              {"tipo": "pdf", "nombre": "Guía de instalación", "url": "./assets/resources/unity/instalacion.pdf"},
+              {"tipo": "link", "nombre": "Documentación oficial", "url": "https://docs.unity3d.com"}
+            ]
+          }
+        ]
+      },
       "prerequisitosList": "Basic understanding of mathematics and scientific notation. ",
       "resultadosList":[
         {
@@ -252,6 +451,25 @@
       "prerequisitos": "Strong understanding of CSS basics and experience with responsive design.",
       "resultados": "Design scalable CSS architectures, implement modern CSS features, and optimize performance.",
       "estructuraCurso": "12 lessons, 6 styling projects, 3 architecture workshops, and a final design system project.",
+      
+           "videos": {
+        "totalModulos": 24,
+        "duracionTotal": "15 horas",
+        "modulos": [
+          {
+            "id": "mod1",
+            "titulo": "Introducción a Unity",
+            "duracion": "45 min",
+            "videoUrl": "./assets/videos/unity/introduccion.mp4",
+            "thumbnail": "./assets/videos/unity/thumbnails/introduccion.jpg",
+            "descripcion": "Conceptos básicos del motor Unity y configuración inicial",
+            "recursos": [
+              {"tipo": "pdf", "nombre": "Guía de instalación", "url": "./assets/resources/unity/instalacion.pdf"},
+              {"tipo": "link", "nombre": "Documentación oficial", "url": "https://docs.unity3d.com"}
+            ]
+          }
+        ]
+      },
       "prerequisitosList":[
         {
           "requisit1": "No technical prerequisites ",
