@@ -1,3 +1,5 @@
+
+
 class CoursesPage extends HTMLElement {
   constructor() {
     super();
@@ -13,7 +15,7 @@ class CoursesPage extends HTMLElement {
 
   async fetchCoursesData() {
     try {
-      const response = await fetch('/data/db.json');
+      const response = await fetch('./data/db.json');
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
@@ -350,7 +352,7 @@ class CoursesPage extends HTMLElement {
               <h3>${course.titulo}</h3>
               <p>${course.descripcion}</p>
               <div class="card-buttons">
-                <button class="enroll-btn" onclick="money('money')">Enroll Now</button>
+                <button class="enroll-btn" onclick="money('money', ${course.id})">Enroll Now</button>
                 <button class="info-btn">More Info</button>
               </div>
             </div>
@@ -390,367 +392,362 @@ class CoursesPage extends HTMLElement {
 
 customElements.define('courses-page', CoursesPage);
 
-
 class MoneyCourses extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
     this.courseData = null;
+    this.API_URL = 'http://localhost:3000';
   }
 
-  async connectedCallback() {
-    // Obtener el ID del curso de los parámetros de la URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const courseId = urlParams.get('id');
-
-    if (courseId) {
-      await this.fetchCourseData(courseId);
-      this.render();
-      this.setupEventListeners();
-    } else {
-      this.shadowRoot.innerHTML = '<p>Course not found</p>';
+ async connectedCallback() {
+  console.log('Course ID:', this.getAttribute('course-id'));
+  try {
+    // Obtener el ID del atributo del componente
+    const courseId = this.getAttribute('course-id');
+    
+    if (!courseId) {
+      this.showError("No se proporcionó ID del curso");
+      return;
     }
-  }
 
-  async fetchCourseData(courseId) {
+    await this.loadCourseData(courseId);
+    this.render();
+    this.setupEventListeners();
+    
+  } catch (error) {
+    console.error('Error:', error);
+    this.showError(error.message || 'Error al cargar el curso');
+  }
+}
+  async loadCourseData(courseId) {
     try {
-      const response = await fetch('/data/db.json');
+      const response = await fetch(`${this.API_URL}/cursos/${courseId}`);
+      
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        throw new Error(`Error ${response.status}: Curso no encontrado`);
       }
-      const data = await response.json();
-      this.courseData = data.cursos.find(course => course.id === courseId);
+      
+      this.courseData = await response.json();
+      
     } catch (error) {
-      console.error('Error fetching course data:', error);
+      console.error('Error al cargar datos del curso:', error);
+      throw error;
     }
+  }
+
+  showError(message) {
+    this.shadowRoot.innerHTML = `
+      <style>
+        .error-container {
+          padding: 2rem;
+          text-align: center;
+          font-family: sans-serif;
+        }
+        .error-message {
+          color: #dc2626;
+          margin-bottom: 1rem;
+          font-size: 1.2rem;
+        }
+        .back-link {
+          color: #3b82f6;
+          text-decoration: none;
+          font-weight: bold;
+          display: inline-block;
+          margin-top: 1rem;
+          padding: 0.5rem 1rem;
+          border: 1px solid #3b82f6;
+          border-radius: 4px;
+        }
+        .back-link:hover {
+          background-color: #eff6ff;
+        }
+      </style>
+      <div class="error-container">
+        <div class="error-message">${message}</div>
+        <a href="#" class="back-link" onclick="courses('courses')">← Volver a los cursos</a>
+      </div>
+    `;
+  }
+
+  formatPrerequisites() {
+    if (!this.courseData.prerequisitosList) {
+      return `<p>${this.courseData.prerequisitos || 'No se requieren prerequisitos'}</p>`;
+    }
+
+    // Si es string
+    if (typeof this.courseData.prerequisitosList === 'string') {
+      return `<p>${this.courseData.prerequisitosList}</p>`;
+    }
+
+    // Si es array de objetos
+    if (Array.isArray(this.courseData.prerequisitosList)) {
+      const items = [];
+      
+      // Recorrer todos los objetos en el array
+      this.courseData.prerequisitosList.forEach(obj => {
+        // Agregar todos los valores de cada objeto
+        Object.values(obj).forEach(val => {
+          if (val.trim()) items.push(`<li>${val}</li>`);
+        });
+      });
+      
+      return items.length ? `<ul style="list-style-type: disc; padding-left: 1.5rem;">${items.join('')}</ul>` : 
+        `<p>${this.courseData.prerequisitos || 'No se requieren prerequisitos'}</p>`;
+    }
+
+    return `<p>${this.courseData.prerequisitos || 'No se requieren prerequisitos'}</p>`;
+  }
+
+  formatLearningOutcomes() {
+    if (!this.courseData.resultadosList) {
+      return `<p>${this.courseData.resultados || 'No se especificaron resultados'}</p>`;
+    }
+
+    // Si es string
+    if (typeof this.courseData.resultadosList === 'string') {
+      return `<p>${this.courseData.resultadosList}</p>`;
+    }
+
+    // Si es array de objetos
+    if (Array.isArray(this.courseData.resultadosList)) {
+      const items = [];
+      
+      // Recorrer todos los objetos en el array
+      this.courseData.resultadosList.forEach(obj => {
+        // Agregar todos los valores de cada objeto
+        Object.values(obj).forEach(val => {
+          if (val.trim()) items.push(`<li>${val}</li>`);
+        });
+      });
+      
+      return items.length ? `<ul style="list-style-type: disc; padding-left: 1.5rem;">${items.join('')}</ul>` : 
+        `<p>${this.courseData.resultados || 'No se especificaron resultados'}</p>`;
+    }
+
+    return `<p>${this.courseData.resultados || 'No se especificaron resultados'}</p>`;
   }
 
   render() {
     if (!this.courseData) {
-      this.shadowRoot.innerHTML = '<p>Loading course data...</p>';
+      this.shadowRoot.innerHTML = '<p>Cargando datos del curso...</p>';
       return;
     }
 
-    const prerequisitosList = typeof this.courseData.prerequisitosList === 'string' 
-      ? this.courseData.prerequisitosList 
-      : this.courseData.prerequisitosList?.[0] 
-        ? Object.values(this.courseData.prerequisitosList[0]).map(item => `<p style="margin-top: 1rem; border-top: 1px solid #e5e7eb; padding-top: 1rem;">${item}</p>`).join('') 
-        : `<p>${this.courseData.prerequisitos}</p>`;
-
-    const resultadosList = typeof this.courseData.resultadosList === 'string'
-      ? this.courseData.resultadosList
-      : this.courseData.resultadosList?.[0]
-        ? Object.values(this.courseData.resultadosList[0]).map(item => `<p style="margin-top: 1rem; border-top: 1px solid #e5e7eb; padding-top: 1rem;">${item}</p>`).join('')
-        : `<p>${this.courseData.resultados}</p>`;
-
-    // Generar módulos del curso (simplificado - en una implementación real podrías tener esta data en el JSON)
-    const modulesHTML = `
-      <div class="module">
-        <div class="module-header">
-          <div class="title"><span>Module 1</span> Introduction</div>
-          <div class="toggle-icon">+</div>
-        </div>
-        <div class="module-content">
-          <p>Course overview and objectives</p>
-          <p>Setting up your development environment</p>
-        </div>
-      </div>
-      <div class="module">
-        <div class="module-header">
-          <div class="title"><span>Module 2</span> Core Concepts</div>
-          <div class="toggle-icon">+</div>
-        </div>
-        <div class="module-content">
-          <p>Fundamentals of ${this.courseData.titulo}</p>
-          <p>Key concepts and terminology</p>
-        </div>
-      </div>
-      <div class="module">
-        <div class="module-header">
-          <div class="title"><span>Module 3</span> Advanced Topics</div>
-          <div class="toggle-icon">+</div>
-        </div>
-        <div class="module-content">
-          <p>Advanced techniques</p>
-          <p>Real-world applications</p>
-        </div>
-      </div>
-      <div class="module">
-        <div class="module-header">
-          <div class="title"><span>Module 4</span> Final Project</div>
-          <div class="toggle-icon">+</div>
-        </div>
-        <div class="module-content">
-          <p>Project planning</p>
-          <p>Implementation</p>
-          <p>Final presentation</p>
-        </div>
-      </div>
-    `;
+    const prerequisitosHTML = this.formatPrerequisites();
+    const resultadosHTML = this.formatLearningOutcomes();
 
     this.shadowRoot.innerHTML = `
       <style>
-        * {
-          box-sizing: border-box;
-        }
-
-        body {
-          margin: 0;
-          font-family: 'Inter', sans-serif;
-          background-color: #f4f5f7;
-          color: #1f2937;
-        }
-
+        /* Estilos permanecen iguales */
         .container {
-          max-width: 1100px;
-          margin: auto;
-          padding: 2rem 1rem;
+          font-family: 'Segoe UI', sans-serif;
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 2rem;
+          color: #333;
         }
-
-        a.back-link {
+        
+        .back-link {
+          display: inline-block;
+          margin-bottom: 1.5rem;
           color: #3b82f6;
           text-decoration: none;
-          font-size: 0.9rem;
-          display: inline-block;
-          margin-bottom: 1rem;
-          padding:1rem 1rem;
-          cursor:pointer;
+          font-weight: 500;
         }
-
+        
+        .back-link:hover {
+          text-decoration: underline;
+        }
+        
         .header-card {
-          position: relative;
-          border-radius: 1rem;
+          display: flex;
+          gap: 2rem;
+          margin-bottom: 2rem;
+          background: white;
+          border-radius: 12px;
           overflow: hidden;
-          color: white;
-        }
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+          color:white;
+          background-image: url('${this.courseData.imagen}');
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-position:center;
 
-        .header-card img {
-          width:100%;
-          height: 300px;
-          display: block;
-          object-fit: cover;
+         
+          
         }
-
+        
+        
         .header-content {
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          padding: 2rem;
-          background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6));
+          padding: 1.5rem;
+          flex: 1;
           display: flex;
           flex-direction: column;
           justify-content: space-between;
         }
-
+        
         .header-title {
-          font-size: 2.2rem;
-          font-weight: 700;
+          font-size: 1.8rem;
+          margin: 0 0 0.5rem 0;
+          color: white;
         }
-
+        
         .badges {
           display: flex;
-          gap: 0.75rem;
-          margin-top: 0.75rem;
+          gap: 0.5rem;
+          margin-bottom: 1rem;
         }
-
+        
         .badge {
-          background-color: rgba(255, 255, 255, 0.2);
-          padding: 0.4rem 0.8rem;
+          background: black;
+          padding: 0.25rem 0.75rem;
           border-radius: 9999px;
-          font-size: 0.8rem;
-          display: flex;
-          align-items: center;
+          font-size: 0.875rem;
         }
-
+        
         .header-description {
-          margin-top: 1rem;
-          font-size: 0.9rem;
+          margin: 1rem 0;
+          line-height: 1.6;
         }
-
+        
         .instructor {
           display: flex;
           align-items: center;
-          margin-top: 1.5rem;
+          gap: 0.75rem;
+          margin-top: 1rem;
         }
-
+        
         .instructor img {
-          width: 48px;
-          height: 48px;
-          border-radius: 9999px;
-          margin-right: 0.75rem;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
         }
-
+        
         .card-grid {
           display: grid;
-          grid-template-columns: 2fr 1fr;
-          gap: 1.5rem;
-          margin-top: 2rem;
-        }
-
-        .side-card {
-          background-color: white;
-          border-radius: 1rem;
-          padding: 1.5rem;
-          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-          height: 350px;
+          grid-template-columns: 1fr 300px;
+          gap: 2rem;
         }
         
         .card {
-          background-color: white;
-          border-radius: 1rem;
+          background: white;
+          border-radius: 12px;
           padding: 1.5rem;
-          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-        }
-
-        .card h2 {
-          margin-top: 0;
-          font-size: 1.5rem;
-        }
-
-        .side-card {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          text-align: center;
-        }
-
-        .price {
-          font-size: 2rem;
-          font-weight: 700;
-          margin-bottom: 0.5rem;
-        }
-
-        .features {
-          list-style: none;
-          padding: 0;
-          text-align: left;
-          line-height: 1.8;
-          margin: 1rem 0;
-        }
-
-        .features li::before {
-          content: "✓";
-          color: green;
-          margin-right: 0.5rem;
-        }
-
-        .button {
-          flex: 1;
-          padding: 1rem 6rem;
-          font-size: 0.9rem;
-          border-radius: 24px;
-          cursor: pointer;
-          background-color: #3498db;
-          border: 2px solid #3498db;
-          color:white;
-          transition: 0.3s ease;
-        }
-
-        #card {
-          height: 150px;
+          margin-bottom: 1.5rem;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         
-        .container2 {
-          background-color: white;
-          max-width: 700px;
-          margin: auto;
-          padding: 30px;
-          border-radius: 20px;
-          border:none;
-          box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
+        .card h2 {
+          font-size: 1.25rem;
+          margin-top: 0;
+          margin-bottom: 1rem;
+          color: #111;
         }
-
-        h2 {
-          font-size: 32px;
-          color: #1f2937;
-          margin-bottom: 25px;
+        
+        .card p {
+          line-height: 1.6;
+          margin: 0.5rem 0;
         }
-
-        .module {
-          background-color: #f9fafb;
+        
+        .side-card {
+          background: white;
           border-radius: 12px;
-          margin-bottom: 16px;
-          padding: 20px;
+          padding: 1.5rem;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+          position: sticky;
+          top: 1rem;
+          height: fit-content;
+        }
+        
+        .price {
+          font-size: 2rem;
+          font-weight: bold;
+          color: #111;
+          margin-bottom: 0.5rem;
+        }
+        
+        .features {
+          padding-left: 1.25rem;
+          margin: 1.5rem 0;
+        }
+        
+        .features li {
+          margin-bottom: 0.5rem;
+        }
+        
+        .button {
+          width: 100%;
+          padding: 1rem;
+          background: #3b82f6;
+          color: white;
+          border: none;
+          border-radius: 8px;
+          font-weight: 500;
           cursor: pointer;
-          transition: all 0.3s ease;
+          transition: background 0.2s;
         }
-
-        .module:hover {
-          background-color: #f1f5f9;
+        
+        .button:hover {
+          background: #2563eb;
         }
-
+        
+        .module {
+          margin-top: 1.5rem;
+          border: 1px solid #e2e8f0;
+          border-radius: 8px;
+          overflow: hidden;
+        }
+        
         .module-header {
+          padding: 1rem;
+          background: #f8fafc;
           display: flex;
           justify-content: space-between;
           align-items: center;
-          font-size: 16px;
-          font-weight: 500;
+          cursor: pointer;
         }
-
-        .module-header .title {
-          display: flex;
-          gap: 8px;
-        }
-
-        .module-header .title span {
-          color: #3b82f6;
-          font-weight: 600;
-        }
-
-        .toggle-icon {
-          font-size: 20px;
-          color: #6b7280;
-        }
-
+        
         .module-content {
-          margin-top: 15px;
-          padding-left: 20px;
+          padding: 1rem;
           display: none;
-          animation: fadeIn 0.3s ease;
         }
-
-        .module-content p {
-          margin: 8px 0;
-          font-size: 15px;
-          color: #374151;
-          border-top: 1px solid #e5e7eb;
-          padding-top: 10px;
-        }
-
-        .active .module-content {
+        
+        .module.active .module-content {
           display: block;
         }
-
-        .active .toggle-icon {
-          transform: rotate(180deg);
-        }
-
-        @keyframes fadeIn {
-          from {opacity: 0;}
-          to {opacity: 1;}
-        }
-
+        
         @media (max-width: 768px) {
+          .header-card {
+            flex-direction: column;
+          }
+          
+          .header-card img {
+            width: 100%;
+            height: 200px;
+          }
+          
           .card-grid {
             grid-template-columns: 1fr;
+          }
+          
+          .side-card {
+            position: static;
           }
         }
       </style>
 
       <div class="container">
-        <a class="back-link" onclick="courses('courses')">← Back to Courses</a>
+        <a href="#" class="back-link" onclick="courses('courses')">← Volver a los cursos</a>
 
         <div class="header-card">
-          <img src="${this.courseData.imagen}" alt="Course banner" />
           <div class="header-content">
             <div>
               <h1 class="header-title">${this.courseData.titulo}</h1>
               <div class="badges">
                 <div class="badge">⏱ ${this.courseData.duracion}</div>
                 <div class="badge">${this.courseData.nivel}</div>
-                <div class="badge">250+ enrolled</div>
+                <div class="badge">250+ inscritos</div>
               </div>
               <p class="header-description">
                 ${this.courseData.descripcion}
@@ -759,7 +756,7 @@ class MoneyCourses extends HTMLElement {
             <div class="instructor">
               <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Instructor" />
               <div>
-                <strong>Course Instructor</strong><br />
+                <strong>Instructor del curso</strong><br />
                 Dr. John Smith
               </div>
             </div>
@@ -768,26 +765,45 @@ class MoneyCourses extends HTMLElement {
 
         <div class="card-grid">
           <div>
-            <div class="cards">
-              <div class="card">
-                <h2>Course Overview</h2>
-                <p>${this.courseData.descripcion}</p>
+            <div class="card">
+              <h2>Descripción del curso</h2>
+              <p>${this.courseData.descripcion}</p>
+            </div>
+            
+            <div class="card">
+              <h2>Requisitos previos</h2>
+              ${prerequisitosHTML}
+            </div>
+            
+            <div class="card">
+              <h2>Lo que aprenderás</h2>
+              ${resultadosHTML}
+            </div>
+            
+            <div class="card">
+              <h2>Estructura del curso</h2>
+              <p>${this.courseData.estructuraCurso}</p>
+              
+              <!-- Módulos del curso -->
+              <div class="module">
+                <div class="module-header">
+                  <div class="title"><span>Módulo 1</span> Introducción</div>
+                  <div class="toggle-icon">+</div>
+                </div>
+                <div class="module-content">
+                  <p>Descripción general del curso y objetivos</p>
+                  <p>Configuración del entorno de desarrollo</p>
+                </div>
               </div>
-              <br>
-              <div class="card">
-                <h2>Prerequisites</h2>
-                ${prerequisitosList}
-              </div>
-              <br>
-              <div class="card">
-                <h2>What You'll Learn</h2>
-                ${resultadosList}
-              </div>
-              <br>
-              <div class="card">
-                <div class="conatiner2">
-                  <h2>Course Structure</h2>
-                  ${modulesHTML}
+              
+              <div class="module">
+                <div class="module-header">
+                  <div class="title"><span>Módulo 2</span> Conceptos básicos</div>
+                  <div class="toggle-icon">+</div>
+                </div>
+                <div class="module-content">
+                  <p>Fundamentos teóricos</p>
+                  <p>Primeros pasos prácticos</p>
                 </div>
               </div>
             </div>
@@ -795,14 +811,15 @@ class MoneyCourses extends HTMLElement {
 
           <div class="side-card">
             <div class="price">$99.99</div>
-            <p>One-time payment</p>
+            <p>Pago único</p>
             <ul class="features">
-              <li>Lifetime access</li>
-              <li>Certificate of completion</li>
-              <li>30-day money-back guarantee</li>
-              <li>Direct instructor support</li>
+              <li>Acceso de por vida</li>
+              <li>Certificado de finalización</li>
+              <li>Garantía de devolución de 30 días</li>
+              <li>Soporte directo del instructor</li>
             </ul>
-            <button class="button" onclick="video('video')">Start Learning</button>
+           <button class="button" onclick="video('video', '${this.courseData.id}')">Comenzar a aprender</button>
+
           </div>
         </div>
       </div>
@@ -822,13 +839,129 @@ class MoneyCourses extends HTMLElement {
 
 customElements.define('money-course', MoneyCourses);
 
-class VideoPage extends HTMLElement{
-  constructor(){
-    super()
-    this.attachShadow({mode:'open'})
+class VideoPage extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+    this.courseData = null;
+    this.topics = [];
+    this.API_URL = 'http://localhost:3000';
+  }
 
+  async connectedCallback() {
+    try {
+      // Obtener el ID del curso del atributo
+      const courseId = this.getAttribute('course-id');
+      
+      if (!courseId) {
+        this.showError("No se proporcionó ID del curso");
+        return;
+      }
+
+      await this.loadCourseData(courseId);
+      this.prepareTopicsData();
+      this.render();
+      this.setupEventListeners();
+      
+    } catch (error) {
+      console.error('Error:', error);
+      this.showError(error.message || 'Error al cargar el curso');
+    }
+  }
+
+  async loadCourseData(courseId) {
+    try {
+      const response = await fetch(`${this.API_URL}/cursos/${courseId}`);
+      
+      if (!response.ok) {
+        throw new Error(`Error ${response.status}: Curso no encontrado`);
+      }
+      
+      this.courseData = await response.json();
+    } catch (error) {
+      console.error('Error al cargar datos del curso:', error);
+      throw error;
+    }
+  }
+
+  prepareTopicsData() {
+    // Convertimos la estructura del curso en topics para el reproductor
+    if (this.courseData) {
+      // Extraemos módulos de la estructura del curso
+      const modules = this.courseData.estructuraCurso.split(', ');
+      
+      this.topics = modules.map((module, index) => ({
+        title: `Module ${index + 1}: ${module}`,
+        duration: this.calculateDuration(module),
+        video: this.getVideoPath(index),
+        description: this.getDescription(index),
+        image: this.courseData.imagen,
+        completed: false
+      }));
+    }
+  }
+
+  calculateDuration(module) {
+    // Lógica simple para calcular duración basada en palabras
+    const wordCount = module.split(' ').length;
+    return `${Math.max(5, Math.min(30, wordCount))} min`;
+  }
+
+  getVideoPath(index) {
+    // Usamos videos de ejemplo o podrías tener un campo en el JSON
+    return `/assets/video/lesson-${index + 1}.mp4`;
+  }
+
+  getDescription(index) {
+    // Descripciones basadas en el contenido del curso
+    const descriptions = [
+      "Introducción y conceptos básicos del curso",
+      "Profundizando en los fundamentos",
+      "Aplicaciones prácticas",
+      "Ejemplos avanzados",
+      "Proyecto final y conclusiones"
+    ];
+    return descriptions[index] || "Contenido educativo del módulo";
+  }
+
+  showError(message) {
     this.shadowRoot.innerHTML = `
-    <style>
+      <style>
+        .error-container {
+          padding: 2rem;
+          text-align: center;
+          font-family: sans-serif;
+        }
+        .error-message {
+          color: #dc2626;
+          margin-bottom: 1rem;
+          font-size: 1.2rem;
+        }
+        .back-link {
+          color: #3b82f6;
+          text-decoration: none;
+          font-weight: bold;
+          display: inline-block;
+          margin-top: 1rem;
+          padding: 0.5rem 1rem;
+          border: 1px solid #3b82f6;
+          border-radius: 4px;
+        }
+        .back-link:hover {
+          background-color: #eff6ff;
+        }
+      </style>
+      <div class="error-container">
+        <div class="error-message">${message}</div>
+        <a href="#" class="back-link" onclick="courses('courses')">← Volver a los cursos</a>
+      </div>
+    `;
+  }
+
+  render() {
+    // Mantenemos el mismo HTML pero ahora usamos this.topics en lugar de topics fijos
+    this.shadowRoot.innerHTML = `
+       <style>
   .container-total {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -1092,167 +1225,162 @@ button {
 }
     </style>
 
-
-
-          <div class="container-total">
-    <div class="container">
-     <div class="sidebar-back">
-         <a href="#" class="back-link">← Back to Courses</a>
-    </div>
-<div class="video">
-
-    
-    <div class="sidebar">
-        <h1>Course Topic</h1>
-        <p id="progress">0/4 completed</p>
-        <ul class="topics" id="topicList"></ul>
-        <p class="duration"></p>
-    </div>
-    <div class="main">
-        <div id="defaultView">
-            <h2>📺 Select a Topic to Start Learning</h2>
-            <p>Choose a topic from the sidebar to begin watching the course content.</p>
-        </div>
-        <div class="video-container" id="videoView">
-            <iframe id="videoFrame" frameborder="0" allowfullscreen></iframe>
-            <div class="description">
-                <h3 id="topicTitle"></h3>
-                <p id="topicDescription"></p>
+      <div class="container-total">
+        <div class="container">
+          <div class="sidebar-back">
+            <a href="#" class="back-link" onclick="money('money', '${this.getAttribute('course-id')}')">← Back to Course</a>
+          </div>
+          <div class="video">
+            <div class="sidebar">
+              <h1>${this.courseData?.titulo || 'Course Topics'}</h1>
+              <p id="progress">0/${this.topics.length} completed</p>
+              <ul class="topics" id="topicList"></ul>
+              <p class="duration"></p>
             </div>
-                
-            <div class="description-container">
-                 <h2>Additional Resources</h2>
-                <div class="resource-links">
-                   
-                    <a href="#">📄Course Syllabus</a>
-                    <a href="#">📝Setup Instructions</a>
+            <div class="main">
+              <div id="defaultView">
+                <h2>📺 Select a Topic to Start Learning</h2>
+                <p>Choose a topic from the sidebar to begin watching the course content.</p>
+              </div>
+              <div class="video-container" id="videoView">
+                <iframe id="videoFrame" frameborder="0" allowfullscreen></iframe>
+                <div class="description">
+                  <h3 id="topicTitle"></h3>
+                  <p id="topicDescription"></p>
                 </div>
+                    
+                <div class="description-container">
+                  <h2>Course Resources</h2>
+                  <div class="resource-links">
+                    <a href="#">📄 Course Syllabus</a>
+                    <a href="#">📝 Setup Instructions</a>
+                    <a href="#">📚 Additional Readings</a>
+                  </div>
+                </div>
+                
+                <div class="navigation">
+                  <div class="barra"></div>
+                  <div class="buttons">
+                    <button id="prevBtn">&larr; Previous Topic</button>
+                    <button id="completeBtn" class="complete-btn">Mark as Complete</button>
+                    <button id="nextBtn">Next Topic &rarr;</button>
+                  </div>
+                </div>
+              </div>
             </div>
-            
-            
-            <div class="navigation">
-                <div class="barra"></div>
-               <div class="buttons">
-                <button id="prevBtn">&larr; Previous Topic</button>
-                <button id="completeBtn" class="complete-btn">Mark as complate</button>
-                <button id="nextBtn">Next Topic &rarr;</button>
-               </div>
-            </div>
+          </div>
         </div>
-    </div>
-    </div>
-    
+      </div>
+    `;
 
-</div>
-</div>
-   
-    
-    `}
-  connectedCallback(){
-   
-     const topics = [
-      { title: "Introduction to the Course", duration: "10 min", video: "/assets/video/Rick Astley - Never Gonna Give You Up (Official Music Video).mp4", description: "Overview of what you will learn in this course and how to get the most out of it.",image: "279c7b0a-3b5e-43c5-80ea-a1fa39ad5f07.png", completed: false },
-      { title: "Getting Started with Tools", duration: "15 min", video: "/assets/video/Rick Astley - Never Gonna Give You Up (Official Music Video).mp4", description: "Learn how to set up and use the tools required.",image: "279c7b0a-3b5e-43c5-80ea-a1fa39ad5f07.png", completed: false },
-      { title: "Core Concepts", duration: "20 min", video: "/assets/video/Rick Astley - Never Gonna Give You Up (Official Music Video).mp4", description: "Understand the essential concepts you'll need.",image: "279c7b0a-3b5e-43c5-80ea-a1fa39ad5f07.png", completed: false },
-      { title: "Advanced Techniques", duration: "25 min", video: "/assets/video/Rick Astley - Never Gonna Give You Up (Official Music Video).mp4", description: "Dive into advanced applications and techniques.",image: "279c7b0a-3b5e-43c5-80ea-a1fa39ad5f07.png", completed: false },
-    ];
-    
-  const topicList = this.shadowRoot.getElementById("topicList");
-  const progress = this.shadowRoot.getElementById("progress");
-  const defaultView = this.shadowRoot.getElementById("defaultView");
-  const videoView = this.shadowRoot.getElementById("videoView");
-  const videoFrame = this.shadowRoot.getElementById("videoFrame");
-  const topicTitle = this.shadowRoot.getElementById("topicTitle");
-  const topicDescription = this.shadowRoot.getElementById("topicDescription");
-  const completeBtn = this.shadowRoot.getElementById("completeBtn");
-  const prevBtn = this.shadowRoot.getElementById("prevBtn");
-  const nextBtn = this.shadowRoot.getElementById("nextBtn");
-
-  let currentTopicIndex = null;
-
-  function renderTopics() {
-    topicList.innerHTML = "";
-    topics.forEach((topic, index) => {
-      const li = document.createElement("li");
-      li.className = "topic";
-      if (index === currentTopicIndex) li.classList.add("active");
-      if (topic.completed) li.classList.add("completed");
-
-      li.innerHTML = `${index + 1}.
-      <div class="duration"> 
-      <div>${topic.title}</div> 
-      <div class="d-t">${topic.duration}</div>
-      </div>`;
-
-      li.onclick = () => selectTopic(index);
-      topicList.appendChild(li);
-    });
-
-    const completedCount = topics.filter(t => t.completed).length;
-    progress.textContent = `${completedCount}/${topics.length} completed`;
+    // Inicializamos la interfaz después de renderizar
+    this.initInterface();
   }
 
-  function selectTopic(index) {
-    currentTopicIndex = index;
-    const topic = topics[index];
-    defaultView.style.display = "none";
-    videoView.style.display = "flex";
-    videoFrame.src = topic.video;
-    topicTitle.textContent = topic.title;
-    topicDescription.textContent = topic.description;
-    completeBtn.textContent = topic.completed ? "Completed" : "Mark as Complete";
-    completeBtn.classList.toggle("completed", topic);
+  initInterface() {
+    const topicList = this.shadowRoot.getElementById("topicList");
+    const progress = this.shadowRoot.getElementById("progress");
+    const defaultView = this.shadowRoot.getElementById("defaultView");
+    const videoView = this.shadowRoot.getElementById("videoView");
+    const videoFrame = this.shadowRoot.getElementById("videoFrame");
+    const topicTitle = this.shadowRoot.getElementById("topicTitle");
+    const topicDescription = this.shadowRoot.getElementById("topicDescription");
+    const completeBtn = this.shadowRoot.getElementById("completeBtn");
+    const prevBtn = this.shadowRoot.getElementById("prevBtn");
+    const nextBtn = this.shadowRoot.getElementById("nextBtn");
 
-    // Limpiar y marcar como activo
-    this.shadowRoot.querySelectorAll('.topic').forEach(item => item.classList.remove('active'));
-    this.shadowRoot.querySelectorAll('.topic')[index].classList.add('active');
+    let currentTopicIndex = null;
 
+    const renderTopics = () => {
+      topicList.innerHTML = "";
+      this.topics.forEach((topic, index) => {
+        const li = document.createElement("li");
+        li.className = "topic";
+        if (index === currentTopicIndex) li.classList.add("active");
+        if (topic.completed) li.classList.add("completed");
+
+        li.innerHTML = `${index + 1}.
+        <div class="duration"> 
+          <div>${topic.title}</div> 
+          <div class="d-t">${topic.duration}</div>
+        </div>`;
+
+        li.onclick = () => selectTopic(index);
+        topicList.appendChild(li);
+      });
+
+      const completedCount = this.topics.filter(t => t.completed).length;
+      progress.textContent = `${completedCount}/${this.topics.length} completed`;
+    };
+
+    const selectTopic = (index) => {
+      currentTopicIndex = index;
+      const topic = this.topics[index];
+      defaultView.style.display = "none";
+      videoView.style.display = "flex";
+      videoFrame.src = topic.video;
+      topicTitle.textContent = topic.title;
+      topicDescription.textContent = topic.description;
+      completeBtn.textContent = topic.completed ? "Completed" : "Mark as Complete";
+      completeBtn.classList.toggle("completed", topic.completed);
+
+      // Actualizar tema activo
+      this.shadowRoot.querySelectorAll('.topic').forEach(item => item.classList.remove('active'));
+      this.shadowRoot.querySelectorAll('.topic')[index].classList.add('active');
+    };
+
+    completeBtn.onclick = () => {
+      if (currentTopicIndex !== null) {
+        const topic = this.topics[currentTopicIndex];
+        topic.completed = !topic.completed;
+        completeBtn.textContent = topic.completed ? "Completed" : "Mark as Complete";
+        completeBtn.classList.toggle("completed", topic.completed);
+        renderTopics();
+      }
+    };
+
+    prevBtn.onclick = () => {
+      if (currentTopicIndex > 0) selectTopic(currentTopicIndex - 1);
+    };
+
+    nextBtn.onclick = () => {
+      if (currentTopicIndex < this.topics.length - 1) selectTopic(currentTopicIndex + 1);
+    };
+
+    // Renderizar temas inicialmente
     renderTopics();
   }
 
-  completeBtn.onclick = () => {
-    if (currentTopicIndex !== null) {
-      const topic = topics[currentTopicIndex];
-      topic.completed = !topic.completed;
-      completeBtn.textContent = topic.completed ? "Completed" : "Mark as Complete";
-      completeBtn.classList.toggle("completed", topic.completed);
-      renderTopics();
+  setupEventListeners() {
+    // Event listeners para los módulos (si los hay)
+    if (this.shadowRoot.querySelector('.module')) {
+      this.shadowRoot.querySelectorAll('.module').forEach(module => {
+        module.addEventListener('click', () => {
+          module.classList.toggle('active');
+          const icon = module.querySelector('.toggle-icon');
+          if (icon) icon.textContent = module.classList.contains('active') ? '-' : '+';
+        });
+      });
     }
-  };
-
-  prevBtn.onclick = () => {
-    if (currentTopicIndex > 0) selectTopic(currentTopicIndex - 1);
-  };
-
-  nextBtn.onclick = () => {
-    if (currentTopicIndex < topics.length - 1) selectTopic(currentTopicIndex + 1);
-  };
-
-  renderTopics();
-}
-}
-customElements.define('video-page', VideoPage)
-
-const pages5 ={
-  video:`
-  <video-page></video-page>
-  `
-}
-function video(page5){
-  const content = document.getElementById('main')
-  content.appendChild
-  content.innerHTML= pages5[page5] || `pagina no encontrada`
+  }
 }
 
-const pages4 ={
-  money:`
-  <money-course></money-course>
-  `
+customElements.define('video-page', VideoPage);
+const pages5 = {
+  video: (id) => `<video-page course-id="${id}"></video-page>`
+};
+
+function video(page5, id) {
+  const content = document.getElementById('main');
+  content.innerHTML = pages5[page5](id) || 'Página no encontrada';
 }
-function money(page4){
-  const content = document.getElementById('main')
-  content.appendChild
-  content.innerHTML = pages4[page4] || 'pagina no encontrada'
+const pages4 = {
+  money: (id) => `<money-course course-id="${id}"></money-course>`
+};
+
+function money(page4, id) {
+  const content = document.getElementById('main');
+  content.innerHTML = pages4[page4](id) || 'Página no encontrada';
 }
 const pages3 = {
     courses:`
