@@ -525,7 +525,7 @@ h3{
   flex-direction: column;
   z-index: 2;
   position: absolute;
-  top: 23%;
+  top: 25%;
 }
 
 .avatarimg {
@@ -682,8 +682,8 @@ h3{
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
-    gap: 0.5rem;
+    flex-direction: row;
+    gap: 1rem;
     padding: 1rem;
 }
 
@@ -773,7 +773,7 @@ h3{
   width: 100%;
 }
 
-.card-container {
+.card-containerpro {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 30px;
@@ -1104,6 +1104,145 @@ border-radius: 5px;
 /* Estilo para Firefox */
 /*ACA TERMINA EL CSS DE EL PROGRESS */
 
+.globaltareas{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tareas-container{
+  display: flex;
+  width: 60%;
+  padding: 2%;
+  flex-wrap: wrap;
+}
+
+#assingments-tittle{
+  color: #000000;
+}
+
+#headerinfo{
+  background-color: rgb(250, 192, 67);
+  width: 100%;
+  height: 3.5rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  border-radius: 10px;
+}
+
+.headerinfo-tareas{
+  background-color: rgb(255, 247, 199);
+  height: 3.5rem;
+  width: 99.7%;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  padding: 1.5rem;
+  color: rgb(126, 125, 125);
+  font-size: 18px;
+}
+.assignments-info{
+  background-color: white ;
+}
+
+.buttons-assingmentscontainer{
+  display: flex;
+  margin-top: 2rem;
+  height: 3rem;
+  width: 100%;
+  gap: 2rem;
+}
+
+.buttons-assingmentscontainer button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100px;
+  width: 13%;
+  padding: 1rem;
+  color: rgb(87, 87, 87);
+  background-color: #ffffff;
+  border: 2px solid #dfdfdf;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+}
+
+.buttons-assingmentscontainer button:active{
+  background-color: #3498DB;
+  border: none;
+  color: white;
+}
+
+.buttons-assingmentscontainer button:hover{
+  border: 2px solid #3498DB;
+  transform: translateY(-5px);
+  transition: all 0.3s ease;
+}
+
+.tareas-pendientescolor{
+  margin-top: 2rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  border-radius: 10px;
+  width: 100%;
+  height: 10.7rem;
+}
+
+.tareas-pendientes{
+  background-color: white;
+  width: 99.6%;
+  height: auto;
+  border-radius: 10px;
+  margin-top: 2rem;
+}
+
+.tareas-container hr{
+  width: 100%;
+  margin-left: 0.1rem;
+}
+.assingments-category{
+  display: flex;
+  gap: 0.5rem;
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.general-assingments{
+  padding: 1rem;
+}
+
+.assingments-category span{
+  font-size: 2rem;
+}
+
+.assingments-category h3{
+  border-bottom: 3px solid #2aafff;
+}
+
+#bad{
+  background-color: red;
+}
+
+#good{
+  background-color: rgb(60, 224, 60);
+}
+
+.description-assingments{
+  width: 100%;
+  padding: 1rem;
+}
+
+.load-assingments{
+  background-color: rgb(238, 237, 237);
+  width: 100%;
+  padding: 1rem;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
 /* hacer el responsivo para toda la pagina porque que pesadilla hacer el codigo en diferentes pantallas ya resoluciones */
 
 @media only screen and (max-width: 768px) {
@@ -1113,10 +1252,14 @@ border-radius: 5px;
   }
 
   .card-container {
-    grid-template-columns: 1fr;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    place-items: center;
+    width: 100%;
+    grid-template-columns: repeat(1,1fr);
     gap: 20px;
   }
-
   .card {
     max-width: 100%;
     padding: 15px;

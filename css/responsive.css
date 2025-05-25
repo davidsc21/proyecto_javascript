@@ -37,6 +37,16 @@
         width: 300vh;
     }
 
+    .avatarcontainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 2;
+    position: absolute;
+    margin-top: 5%;
+    }
+
     .infoprofile {
     background-color: #fff;
     width: 100%;

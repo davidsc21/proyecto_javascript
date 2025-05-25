@@ -35,9 +35,10 @@
             <ul class="nav-menu">
                 <li class="opcion" id="dashboard"><a href="#">Dashboard</a></li>
                 <li class="opcion" id="courses" onclick="courses('courses')"><a href="#">Courses</a></li>
-                <li class="opcion" id="assignments"><a href="#">Assignments</a></li>
+                <li class="opcion" id="assignments" onclick="navigate('assignments')"><a href="#">Assignments</a></li>
                 <li class="opcion" id="progress"onclick="nav('progreso')"><a>Progress</a></li>
                 <li class="opcion" id="profile" onclick="navigate('profile')"><a href="#">Profile</a></li>
+                <li class="opcion" id="profile" onclick="navigate('profile')"><a href="#">Admin</a></li>
             </ul>
             <div class="nav-actions">
                 <div class="tema-aspecto">
@@ -65,7 +66,7 @@
                     <div class="profile-dropdown">
                         <ul>
                             <!-- TODO: acordarse en el href hacer que se diriga hacia el label del perfi -->
-                            <li><a href="#" class="dropdown-item"><span class="icon" onclick="navigate('profile')">👤</span> My Profile</a></li>
+                            <li onclick="navigate('profile')"><a href="#" class="dropdown-item"><span class="icon">👤</span> My Profile</a></li>
                             <li><a href="#" class="dropdown-item"><span class="icon">⚙️</span> Settings</a></li>
                             <li class="dropdown-divider"></li>
                             <li><button type="button" class="dropdown-item logout"><span class="icon">🚪</span> Logout</button></li>

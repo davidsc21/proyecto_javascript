@@ -91,7 +91,7 @@ function generateProgressSection(data) {
   return `
     <section class="Web-component">
       <header><h1 class="titulo">Learning Progress</h1></header>
-      <div class="card-container">
+      <div class="card-containerpro">
         ${cardsHTML}
       </div>
       ${modalsHTML}

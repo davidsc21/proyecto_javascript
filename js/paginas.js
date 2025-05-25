@@ -114,6 +114,99 @@ const pages = {
             </div>
         </div>
     `,
+    assignments: `
+        <div class="globaltareas">
+            <div class="tareas-container">
+                <div class="header-tareas">
+                    <h2 id="assingments-tittle">Your Assingments</h2>
+                </div>
+                <div id="headerinfo">
+                    <div class="headerinfo-tareas">
+                        <p>⚠ Some assignments require course completion before submission.</p>
+                    </div>
+                </div>
+                <div class="buttons-assingmentscontainer">
+                    <button class"assignments-button">🗒 All</button>
+                    <button class"assignments-button">⏳Peding</button>
+                    <button class"assignments-button">✅Completed</button>
+                    <button class"assignments-button">⚠ Overdue</button>
+                    <button class"assignments-button">🔒Locked</button>
+                </div>
+                <div class="assingments-category">
+                    <span>💻</span>
+                    <h3>Web Development</h3>
+                </div>
+                <div class="tareas-pendientescolor" id="bad">
+                    <div class="tareas-pendientes">
+                        <div class="general-assingments">
+                        <p>⚠ Some assignments require course completion before submission.</p>
+                        </div>
+                        <hr>
+                        <div class="description-assingments">
+                        <p>Hola</p>
+                        </div>
+                        <div class="load-assingments">
+                        <p>2</p>
+                        </div>
+                    </div>
+                </div>
+                 <div class="assingments-category">
+                    <span>📊</span>
+                    <h3>Data Science</h3>
+                </div>
+                <div class="tareas-pendientescolor" id="bad">
+                    <div class="tareas-pendientes">
+                        <div class="general-assingments">
+                        <p>⚠ Some assignments require course completion before submission.</p>
+                        </div>
+                        <hr>
+                        <div class="description-assingments">
+                        <p>Hola</p>
+                        </div>
+                        <div class="load-assingments">
+                        <p>2</p>
+                        </div>
+                    </div>
+                </div>
+                 <div class="assingments-category">
+                    <span>🎨</span>
+                    <h3>Desing</h3>
+                </div>
+                <div class="tareas-pendientescolor" id="good">
+                    <div class="tareas-pendientes">
+                        <div class="general-assingments">
+                        <p>⚠ Some assignments require course completion before submission.</p>
+                        </div>
+                        <hr>
+                        <div class="description-assingments">
+                        <p>Hola</p>
+                        </div>
+                        <div class="load-assingments">
+                        <p>2</p>
+                        </div>
+                    </div>
+                </div>
+                 <div class="assingments-category">
+                    <span>⚡</span>
+                    <h3>Computer Science</h3>
+                </div>
+                <div class="tareas-pendientescolor" id="bad">
+                    <div class="tareas-pendientes">
+                        <div class="general-assingments">
+                        <p>⚠ Some assignments require course completion before submission.</p>
+                        </div>
+                        <hr>
+                        <div class="description-assingments">
+                        <p>Hola</p>
+                        </div>
+                        <div class="load-assingments">
+                        <p>2</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `,
 }
 
 function navigate(page) {
